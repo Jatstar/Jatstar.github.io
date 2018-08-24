@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png">
+
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Animations," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Jat's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="Raywenderlich的《iOS Animations by Tutorials》 读书笔记">
+<meta name="keywords" content="Animations">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《iOS Animations by Tutorials》笔记">
+<meta property="og:url" content="http://Jatstar.cn/2016/08/18/iOS-Animations-by-Tutorials/index.html">
+<meta property="og:site_name" content="Jat&#39;s Blog">
+<meta property="og:description" content="Raywenderlich的《iOS Animations by Tutorials》 读书笔记">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="http://ww3.sinaimg.cn/large/a50bf7fdjw1f6ybw7irzrj208206zt8s.jpg">
+<meta property="og:image" content="http://ww2.sinaimg.cn/large/a50bf7fdjw1f7hx8ds7kuj20kr04rt9c.jpg">
+<meta property="og:updated_time" content="2018-07-13T06:24:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《iOS Animations by Tutorials》笔记">
+<meta name="twitter:description" content="Raywenderlich的《iOS Animations by Tutorials》 读书笔记">
+<meta name="twitter:image" content="http://ww3.sinaimg.cn/large/a50bf7fdjw1f6ybw7irzrj208206zt8s.jpg">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '2860370',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://Jatstar.cn/2016/08/18/iOS-Animations-by-Tutorials/"/>
+
+
+
+
+
+  <title>《iOS Animations by Tutorials》笔记 | Jat's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88751319-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f1e21a4dabe008718f0175fb3ac63569";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jat's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">如果没有见过太阳,我本可以忍受黑暗</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-feed">
+          <a href="/atom.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-rss"></i> <br />
+            
+            RSS
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://Jatstar.cn/2016/08/18/iOS-Animations-by-Tutorials/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jatstar">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jat's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">《iOS Animations by Tutorials》笔记</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-08-18T22:43:12+08:00">
+                2016-08-18
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/08/18/iOS-Animations-by-Tutorials/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/08/18/iOS-Animations-by-Tutorials/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Raywenderlich的《iOS Animations by Tutorials》 读书笔记<br><a id="more"></a></p>
+<h1 id="View-Animations"><a href="#View-Animations" class="headerlink" title="View Animations"></a>View Animations</h1><h2 id="Getting-Started-With-View-Animations"><a href="#Getting-Started-With-View-Animations" class="headerlink" title="Getting Started With View Animations"></a>Getting Started With View Animations</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">UIView</span>.animateWithDuration(<span class="number">0.5</span>, animations: &#123;</span><br><span class="line"><span class="keyword">self</span>.heading.center.x += <span class="keyword">self</span>.view.bounds.width</span><br><span class="line">&#125;)</span><br><span class="line"><span class="comment">//duration 持续时间</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="type">UIView</span>.animateWithDuration(<span class="number">0.5</span>, delay: <span class="number">0.4</span>, options: [], animations: &#123;</span><br><span class="line"></span><br><span class="line"><span class="keyword">self</span>.password.center.x += <span class="keyword">self</span>.view.bounds.width</span><br><span class="line">&#125;, completion: <span class="literal">nil</span>)</span><br><span class="line"><span class="comment">//delay：延迟时间(单位为秒)</span></span><br></pre></td></tr></table></figure>
+<h3 id="动画属性-Animatable-properties"><a href="#动画属性-Animatable-properties" class="headerlink" title="动画属性 (Animatable properties)"></a>动画属性 (Animatable properties)</h3><ol>
+<li>Position and size（<code>bounds</code>/<code>frame</code>/<code>center</code>）.</li>
+<li>Appearance (<code>backgroundColor</code>/<code>alpha</code>).</li>
+<li>Transform (ratation,scale,position).</li>
+</ol>
+<h3 id="动画选项（Animation-options）"><a href="#动画选项（Animation-options）" class="headerlink" title="动画选项（Animation options）"></a>动画选项（Animation options）</h3><ol>
+<li>Repeating<ul>
+<li><code>.Repeat</code> : 重复执行</li>
+<li><code>.Autoreverse</code> 与<code>.Repeat</code>连用，重复往返执行。</li>
+</ul>
+</li>
+<li>Animation easing<ul>
+<li><code>.Linear</code> 匀速。</li>
+<li><code>.CurveEaseIn</code> 起始缓慢，逐渐加速。</li>
+<li><code>.CurveEaseOut</code> 起始迅速，逐渐减速。</li>
+<li><code>.CurveEaseInOut</code> 起始缓慢，加速一半时间后减速结束。</li>
+</ul>
+</li>
+</ol>
+<h2 id="Springs-弹簧"><a href="#Springs-弹簧" class="headerlink" title="Springs(弹簧)"></a>Springs(弹簧)</h2><p><img src="http://ww3.sinaimg.cn/large/a50bf7fdjw1f6ybw7irzrj208206zt8s.jpg" alt=""></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">func</span> <span class="title">animateWithDuration</span>(<span class="title">_</span> <span class="title">duration</span>: <span class="title">NSTimeInterval</span>, <span class="title">delay</span> <span class="title">delay</span>: <span class="title">NSTimeInterval</span>, <span class="title">usingSpringWithDamping</span> <span class="title">dampingRatio</span>: <span class="title">CGFloat</span>, <span class="title">initialSpringVelocity</span> <span class="title">velocity</span>: <span class="title">CGFloat</span>, <span class="title">options</span> <span class="title">options</span>: <span class="title">UIViewAnimationOptions</span>, <span class="title">animations</span> <span class="title">animations</span>: () -&gt; <span class="title">Void</span>, <span class="title">completion</span> <span class="title">completion</span>: ((<span class="title">Bool</span>) -&gt; <span class="title">Void</span>)?)</span></span><br><span class="line"><span class="class"></span></span><br><span class="line"><span class="class">//<span class="title">dampingRatio</span> : 弹簧的阻尼 取值范围0-1；越小弹簧波动越大；</span></span><br><span class="line"><span class="class">//<span class="title">velocity</span> : 初始速度。 如果总距离为200<span class="title">pt</span>，移动速度为100<span class="title">pt</span>／<span class="title">s</span>，那么改值设0.5.以此类推。</span></span><br></pre></td></tr></table></figure>
+<h2 id="Transitions"><a href="#Transitions" class="headerlink" title="Transitions"></a>Transitions</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Apple文档示例：</span></span><br><span class="line">[<span class="built_in">UIView</span> transitionWithView:containerView</span><br><span class="line">           duration:<span class="number">0.2</span></span><br><span class="line">           options:<span class="built_in">UIViewAnimationOptionTransitionFlipFromLeft</span></span><br><span class="line">           animations:^&#123; [fromView removeFromSuperview]; [containerView addSubview:toView]; &#125;</span><br><span class="line">           completion:<span class="literal">NULL</span>];</span><br><span class="line"><span class="comment">// 上面代码创建了一个翻转过渡的动画，执行过程中fromView 被移除，添加了toView，看起来像从fromView翻转到了toView；</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="type">UIView</span>.transitionWithView(animationContainerView!,</span><br><span class="line">duration: <span class="number">0.33</span>,</span><br><span class="line">options: [.<span class="type">CurveEaseOut</span>, .<span class="type">TransitionFlipFromBottom</span>],</span><br><span class="line">animations: &#123;</span><br><span class="line"><span class="keyword">self</span>.animationContainerView!.addSubview(newView)</span><br><span class="line">&#125;, completion: <span class="literal">nil</span>)</span><br><span class="line"><span class="comment">// 添加</span></span><br><span class="line"></span><br><span class="line"><span class="type">UIView</span>.transitionWithView(animationContainerView!,</span><br><span class="line">duration: <span class="number">0.33</span>,</span><br><span class="line">options: [.<span class="type">CurveEaseOut</span>, .<span class="type">TransitionFlipFromBottom</span>],</span><br><span class="line">animations: &#123;</span><br><span class="line"><span class="keyword">self</span>.newView.removeFromSuperview()</span><br><span class="line">&#125;, completion: <span class="literal">nil</span>)</span><br><span class="line"><span class="comment">// 移除</span></span><br><span class="line"></span><br><span class="line"><span class="type">UIView</span>.transitionWithView(<span class="keyword">self</span>.newView, duration: <span class="number">0.33</span>, options:</span><br><span class="line">[.<span class="type">CurveEaseOut</span>, .<span class="type">TransitionFlipFromBottom</span>], animations: &#123;</span><br><span class="line"><span class="keyword">self</span>.newView.hidden = <span class="literal">true</span></span><br><span class="line">&#125;, completion: <span class="literal">nil</span>)</span><br><span class="line"><span class="comment">// 隐藏</span></span><br><span class="line"></span><br><span class="line"><span class="type">UIView</span>.transitionFromView(<span class="keyword">self</span>.oldView!, toView: <span class="keyword">self</span>.newView!,</span><br><span class="line"></span><br><span class="line">duration: <span class="number">0.33</span>, options: [.<span class="type">TransitionFlipFromTop</span>],</span><br><span class="line"></span><br><span class="line">completion: <span class="literal">nil</span>)</span><br><span class="line"><span class="comment">// 替换</span></span><br></pre></td></tr></table></figure>
+<h2 id="Keyframe-Animations"><a href="#Keyframe-Animations" class="headerlink" title="Keyframe Animations"></a>Keyframe Animations</h2><p><img src="http://ww2.sinaimg.cn/large/a50bf7fdjw1f7hx8ds7kuj20kr04rt9c.jpg" alt=""></p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">planDepart</span><span class="params">()</span></span>&#123;</span><br><span class="line">        <span class="keyword">let</span> orginalCenter = planeImage.center</span><br><span class="line">        <span class="type">UIView</span>.animateKeyframesWithDuration(<span class="number">1.5</span>, delay: <span class="number">0.0</span>, options: [], animations: &#123;</span><br><span class="line">            <span class="comment">// add kekframes</span></span><br><span class="line">            <span class="type">UIView</span>.addKeyframeWithRelativeStartTime(<span class="number">0.0</span>, relativeDuration: <span class="number">0.25</span>, animations: &#123;</span><br><span class="line">                <span class="keyword">self</span>.planeImage.center.x += <span class="number">80.0</span></span><br><span class="line">                <span class="keyword">self</span>.planeImage.center.y += <span class="number">10</span></span><br><span class="line">            &#125;)</span><br><span class="line">            <span class="type">UIView</span>.addKeyframeWithRelativeStartTime(<span class="number">0.0</span>, relativeDuration: <span class="number">0.4</span>, animations: &#123;</span><br><span class="line">                <span class="keyword">self</span>.planeImage.transform = <span class="type">CGAffineTransformMakeRotation</span>(<span class="type">CGFloat</span>(-<span class="type">M_PI_4</span>/<span class="number">2</span>))</span><br><span class="line">            &#125;)</span><br><span class="line">            </span><br><span class="line">            <span class="type">UIView</span>.addKeyframeWithRelativeStartTime(<span class="number">0.25</span>, relativeDuration: <span class="number">0.25</span>, animations: &#123;</span><br><span class="line">                <span class="keyword">self</span>.planeImage.center.x += <span class="number">100.0</span></span><br><span class="line">                <span class="keyword">self</span>.planeImage.center.y -= <span class="number">50.0</span></span><br><span class="line">                <span class="keyword">self</span>.planeImage.alpha = <span class="number">0.0</span></span><br><span class="line">            &#125;)</span><br><span class="line">            </span><br><span class="line">            <span class="type">UIView</span>.addKeyframeWithRelativeStartTime(<span class="number">0.51</span>, relativeDuration: <span class="number">0.01</span>, animations: &#123;</span><br><span class="line">                <span class="keyword">self</span>.planeImage.transform = <span class="type">CGAffineTransformIdentity</span></span><br><span class="line">                <span class="keyword">self</span>.planeImage.center = <span class="type">CGPoint</span>(x: <span class="number">0.0</span>, y:orginalCenter.y)</span><br><span class="line">            &#125;)</span><br><span class="line">            </span><br><span class="line">            <span class="type">UIView</span>.addKeyframeWithRelativeStartTime(<span class="number">0.55</span>, relativeDuration: <span class="number">0.45</span>, animations: &#123;</span><br><span class="line">                <span class="keyword">self</span>.planeImage.alpha = <span class="number">1.0</span></span><br><span class="line">                <span class="keyword">self</span>.planeImage.center = orginalCenter</span><br><span class="line">            &#125;)</span><br><span class="line">            &#125;, completion: <span class="literal">nil</span>)</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// class func addKeyframeWithRelativeStartTime(_ frameStartTime: Double, relativeDuration frameDuration: Double, animations animations: () -&gt; Void)</span></span><br><span class="line">frameStartTime  frameDuration 取值范围都为 <span class="number">0</span>-<span class="number">1</span> 表示占总时长的百分比。</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Animations/" rel="tag"># Animations</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/27/iOS—copy/" rel="next" title="iOS开发中的深复制与浅拷贝">
+                <i class="fa fa-chevron-left"></i> iOS开发中的深复制与浅拷贝
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/27/iOS-Background-Execution/" rel="prev" title="Background Execution--iOS后台运行机制总结">
+                Background Execution--iOS后台运行机制总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jatstar" />
+          <p class="site-author-name" itemprop="name">Jatstar</p>
+           
+              <p class="site-description motion-element" itemprop="description">Write the bug. Change the world</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jatstar" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/Jatstar" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#View-Animations"><span class="nav-number">1.</span> <span class="nav-text">View Animations</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Getting-Started-With-View-Animations"><span class="nav-number">1.1.</span> <span class="nav-text">Getting Started With View Animations</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#动画属性-Animatable-properties"><span class="nav-number">1.1.1.</span> <span class="nav-text">动画属性 (Animatable properties)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#动画选项（Animation-options）"><span class="nav-number">1.1.2.</span> <span class="nav-text">动画选项（Animation options）</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Springs-弹簧"><span class="nav-number">1.2.</span> <span class="nav-text">Springs(弹簧)</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Transitions"><span class="nav-number">1.3.</span> <span class="nav-text">Transitions</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Keyframe-Animations"><span class="nav-number">1.4.</span> <span class="nav-text">Keyframe Animations</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 &mdash; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jatstar</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    Hosted by  <a class="theme-link" href="https://pages.coding.me">Coding Pages</a>
+  </div>
+
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Mist
+    </a>
+  </div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "https://pingjs.qq.com/h5/stats.js?v2.0.4";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500492087");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=57342025";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://jatstar-cn.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://Jatstar.cn/2016/08/18/iOS-Animations-by-Tutorials/';
+          this.page.identifier = '2016/08/18/iOS-Animations-by-Tutorials/';
+          this.page.title = '《iOS Animations by Tutorials》笔记';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://jatstar-cn.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

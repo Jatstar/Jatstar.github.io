@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png">
+
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,Background-Execution," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Jat's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="iOS后台运行机制的探索总结。">
+<meta name="keywords" content="iOS,Background-Execution">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Background Execution--iOS后台运行机制总结">
+<meta property="og:url" content="http://Jatstar.cn/2016/09/27/iOS-Background-Execution/index.html">
+<meta property="og:site_name" content="Jat&#39;s Blog">
+<meta property="og:description" content="iOS后台运行机制的探索总结。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2018-07-13T06:24:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Background Execution--iOS后台运行机制总结">
+<meta name="twitter:description" content="iOS后台运行机制的探索总结。">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '2860370',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://Jatstar.cn/2016/09/27/iOS-Background-Execution/"/>
+
+
+
+
+
+  <title>Background Execution--iOS后台运行机制总结 | Jat's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88751319-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f1e21a4dabe008718f0175fb3ac63569";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jat's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">如果没有见过太阳,我本可以忍受黑暗</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-feed">
+          <a href="/atom.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-rss"></i> <br />
+            
+            RSS
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://Jatstar.cn/2016/09/27/iOS-Background-Execution/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jatstar">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jat's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">Background Execution--iOS后台运行机制总结</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-09-27T21:32:57+08:00">
+                2016-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/09/27/iOS-Background-Execution/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/09/27/iOS-Background-Execution/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>iOS后台运行机制的探索总结。</p>
+<a id="more"></a>
+<h2 id="序"><a href="#序" class="headerlink" title="序"></a>序</h2><p>为了能够把系统资源合理的分配给用户正在使用的前台应用以及改善电池的使用寿命，iOS中，对于许多应用，当应用不在前台运行时，系统会将以一种简短的方式将其挂起。<a href="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/BackgroundExecution/BackgroundExecution.html" target="_blank" rel="noopener">(For many apps, the background state is just a brief stop on the way to the app being suspended)</a>.</p>
+<p>绝大部分应用程序简单的挂起就足够了，但是也有一部分应用以正当的理由在后台继续运行。比如，远足应用需要随时跟踪用户位置，音频应用可能需要后台播放音乐，还有一些应用需要后台下载，以便零延迟的向用户呈现内容。<br>当你认为你的应用程序需要在后台运行，iOS提供的技术可以高效的帮你完成。其实现大致分为以下三种：</p>
+<ol>
+<li><p>应用前台时，开启短任务（short task）。</p>
+</li>
+<li><p>将下载任务交给系统处理，从而使程序被暂停或终止时，下载任务仍然继续。</p>
+</li>
+<li><p>特定类型任务，应用可以申报一个或多个后台运行模式（background execution modes.）。</p>
+</li>
+</ol>
+<blockquote>
+<p>Always try to avoid doing any background work unless doing so improves the overall user experience. An app might move to the background because the user launched a different app or because the user locked the device and is not using it right now. In both situations, the user is signaling that your app does not need to be doing any meaningful work right now. Continuing to run in such conditions will only drain the device’s battery and might lead the user to force quit your app altogether. So be mindful about the work you do in the background and avoid it when you can.</p>
+</blockquote>
+<h2 id="执行有限长度的任务"><a href="#执行有限长度的任务" class="headerlink" title="执行有限长度的任务"></a>执行有限长度的任务</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)applicationDidEnterBackground:(<span class="built_in">UIApplication</span> *)application</span><br><span class="line">&#123;</span><br><span class="line">    __block <span class="built_in">UIBackgroundTaskIdentifier</span> bgTask;</span><br><span class="line">    bgTask = [application beginBackgroundTaskWithName:<span class="string">@"MyTask"</span> expirationHandler:^&#123;</span><br><span class="line">        <span class="comment">// 处理未完成的任务</span></span><br><span class="line">        <span class="comment">// 结束任务.</span></span><br><span class="line">        [application endBackgroundTask:bgTask];</span><br><span class="line">        bgTask = <span class="built_in">UIBackgroundTaskInvalid</span>;</span><br><span class="line">    &#125;];</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 异步执行，保证使用耗时任务时能够及时调用 endBackgroundTask： 方法</span></span><br><span class="line">    <span class="built_in">dispatch_async</span>(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, <span class="number">0</span>), ^&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// 耗时任务</span></span><br><span class="line">        </span><br><span class="line">        [application endBackgroundTask:bgTask];</span><br><span class="line">        bgTask = <span class="built_in">UIBackgroundTaskInvalid</span>;</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>由于时间的限制，只能执行有限时长的任务。</p>
+<h2 id="后台下载"><a href="#后台下载" class="headerlink" title="后台下载"></a>后台下载</h2><p>为了支持后台传输，您必须配置NSURLSession适当的对象。要配置会话，必须先创建一个<code>NSURLSessionConfiguration</code>对象，并设置多个属性为适当的值。然后，该配置对象传递给适当的初始化方法NSURLSession创建会话时。</p>
+<p>创建一处后台下载的任务方法：</p>
+<ol>
+<li>使用<code>backgroundSessionConfigurationWithIdentifier:</code>创建<code>NSURLSessionConfiguration</code>配置对象 .</li>
+<li>设置配置对象的<code>sessionSendsLaunchEvents</code>属性为YES。</li>
+<li>大文件时推荐把<code>discretionary</code>属性设为<code>YES</code>。</li>
+<li>适当的配置其他属性。</li>
+<li>使用配置好的<code>NSURLSessionConfiguration</code>对象来创建你的<code>NSURLSession</code>对象。</li>
+</ol>
+<h2 id="执行长时间运行的任务"><a href="#执行长时间运行的任务" class="headerlink" title="执行长时间运行的任务"></a>执行长时间运行的任务</h2><p>在iOS中，只有特定类型的应用程序允许在后台运行：</p>
+<ol>
+<li>后台播放音频的软件，如音乐播放器。</li>
+<li>后台录制音频的软件。</li>
+<li>是用户在任何时候知晓自己的位置，如导航应用。</li>
+<li>VoIP应用，如QQ电话。</li>
+<li>需要定期下载和更新内容的应用。</li>
+<li>定期从外部附件收到更新的应用。</li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>Xcode background mode</th>
+<th>UIBackgroundModes value</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Audio and AirPlay</td>
+<td>audio</td>
+<td>后台播放或录制音频</td>
+</tr>
+<tr>
+<td>Loaction updates</td>
+<td>location</td>
+<td>实时告知用户自己的位置</td>
+</tr>
+<tr>
+<td>Voice over IP</td>
+<td>voip</td>
+<td>网络电话</td>
+</tr>
+<tr>
+<td>Newsstand downloads</td>
+<td>newsstand-content</td>
+<td>后台下载杂志或报纸内容</td>
+</tr>
+<tr>
+<td>External accessory communication</td>
+<td>external accessory</td>
+<td>外部附件</td>
+</tr>
+<tr>
+<td>Uses Bluetooth LE accessories</td>
+<td>bluetooth-central</td>
+<td>蓝牙</td>
+</tr>
+<tr>
+<td>Acts as a Bluetooth LE accessory</td>
+<td>bluetooth-periphral</td>
+<td>蓝牙</td>
+</tr>
+<tr>
+<td>Background fetch</td>
+<td>fetch</td>
+<td>定期下载少了来自网络的内容</td>
+</tr>
+<tr>
+<td>Remote-notification</td>
+<td>remote-notification</td>
+<td>收到推送时，下载相关内容。</td>
+</tr>
+</tbody>
+</table>
+<h3 id="跟踪用户位置"><a href="#跟踪用户位置" class="headerlink" title="跟踪用户位置"></a>跟踪用户位置</h3><p>有以下三种方式在后台跟踪用户的位置：</p>
+<ol>
+<li>位置发生显著的变化服务（significant-change location service）。（推荐）</li>
+<li>前台定位服务（Foreground-only location services）。</li>
+<li>后台定位服务（Background location services）。</li>
+</ol>
+<p>显著的位置变化服务：基站定位，位置发生大的改变时唤醒应用在后台执行更新。<br>前台定位服务只有在前台时才可以获取到用户的位置信息。<br>后台定位服务不能阻止系统挂起应用，但是有新的位置数据更新时，能够唤醒应用执行任务。</p>
+<blockquote>
+<p><a href="Location and Maps Programming Guide">《Location and Maps Programming Guide》</a></p>
+</blockquote>
+<h3 id="播放和录制背景声音"><a href="#播放和录制背景声音" class="headerlink" title="播放和录制背景声音"></a>播放和录制背景声音</h3><p>当UIBackgroundModes项包含audio值，播放或录制音频文件时，应用将不能被暂停,但是播放或录制停止时，系统将挂起应用。<br>注：早期为了后台运行，会弄一个无声音的音频文件不停播放。现在被发现被拒。</p>
+<blockquote>
+<p><a href="https://developer.apple.com/library/content/documentation/Audio/Conceptual/AudioSessionProgrammingGuide/Introduction/Introduction.html#//apple_ref/doc/uid/TP40007875" target="_blank" rel="noopener">《Audio Session Programming Guide》</a></p>
+</blockquote>
+<h3 id="构建VoIP应用"><a href="#构建VoIP应用" class="headerlink" title="构建VoIP应用"></a>构建VoIP应用</h3><blockquote>
+<p><a href="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/StrategiesforImplementingYourApp/StrategiesforImplementingYourApp.html#//apple_ref/doc/uid/TP40007072-CH5-SW13" target="_blank" rel="noopener">《Tips for Developing a VoIP App》</a></p>
+</blockquote>
+<h3 id="不失时机地获取少量的内容"><a href="#不失时机地获取少量的内容" class="headerlink" title="不失时机地获取少量的内容"></a>不失时机地获取少量的内容</h3><p>需要在<code>Info.plist</code> 文件中 <code>UIBackgroundModes</code>项增加 <code>fetch</code> 类型。系统将在最佳时机唤醒或启动应用到后台，调用<code>application:performFetchWithCompletionHandler:</code>方法，使用该方法来检查新的内容，有内容时启动下载操作。<br>建议使用NSURLSession类来启动和管理您的下载，有关如何使用这个类来管理上传和下载任务的信息，请参阅<a href="https://developer.apple.com/library/content/documentation/Cocoa/Conceptual/URLLoadingSystem/URLLoadingSystem.html#//apple_ref/doc/uid/10000165i" target="_blank" rel="noopener">《URL Session Programming Guide》</a>。</p>
+<h3 id="使用推送通知来启动下载"><a href="#使用推送通知来启动下载" class="headerlink" title="使用推送通知来启动下载"></a>使用推送通知来启动下载</h3><p>需要在 <code>Info.plist</code> 文件中 <code>UIBackgroundModes</code> 项增加 <code>remote-notification</code> 类型,远程通知payload中必须包含  <code>content-available</code> key，而且，value 为 1。<br>满足以上条件，收到通知时 系统将唤醒后台的程序 ，并调用  <code>delegate</code> 的 <code>application:didReceiveRemoteNotification:fetchCompletionHandler:</code>。</p>
+<h3 id="后台下载杂志"><a href="#后台下载杂志" class="headerlink" title="后台下载杂志"></a>后台下载杂志</h3><blockquote>
+<p><a href="https://developer.apple.com/reference/newsstandkit" target="_blank" rel="noopener">《Newsstand Kit Framework Reference》</a>.</p>
+</blockquote>
+<h3 id="连接外部附件"><a href="#连接外部附件" class="headerlink" title="连接外部附件"></a>连接外部附件</h3><p>任何支持连接外部附件的后台处理更新的应用程序必须遵循几个基本原则：</p>
+<ul>
+<li>应用必须提供一个接口，它允许用户启动和停止附件更新事件的传输。该接口应该在合适的时候打开或关闭。</li>
+<li>一旦被唤醒，应用程序有10秒左右来处理数据。理想的情况下，就应该尽可能快地处理数据，并允许自身被再次挂起。如果需要更多的时间，有必要的情况下，应用程序可以使用该<code>beginBackgroundTaskWithExpirationHandler:</code>方法来请求额外的时间。</li>
+</ul>
+<h3 id="连接蓝牙外设"><a href="#连接蓝牙外设" class="headerlink" title="连接蓝牙外设"></a>连接蓝牙外设</h3><blockquote>
+<p><a href="https://developer.apple.com/library/content/documentation/NetworkingInternetWeb/Conceptual/CoreBluetooth_concepts/CoreBluetoothBackgroundProcessingForIOSApps/PerformingTasksWhileYourAppIsInTheBackground.html#//apple_ref/doc/uid/TP40013257-CH7-SW1" target="_blank" rel="noopener">《Core Bluetooth Programming Guide》</a>.</p>
+</blockquote>
+<h2 id="在后台运行时获取用户的关注"><a href="#在后台运行时获取用户的关注" class="headerlink" title="在后台运行时获取用户的关注"></a>在后台运行时获取用户的关注</h2><p>本地通知示例代码：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">- (<span class="keyword">void</span>)scheduleAlarmForDate:(<span class="built_in">NSDate</span>*)theDate</span><br><span class="line">&#123;</span><br><span class="line">    <span class="built_in">UIApplication</span>* app = [<span class="built_in">UIApplication</span> sharedApplication];</span><br><span class="line">    <span class="built_in">NSArray</span>*    oldNotifications = [app scheduledLocalNotifications];</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// Clear out the old notification before scheduling a new one.</span></span><br><span class="line">    <span class="keyword">if</span> ([oldNotifications count] &gt; <span class="number">0</span>)</span><br><span class="line">        [app cancelAllLocalNotifications];</span><br><span class="line"> </span><br><span class="line">    <span class="comment">// Create a new notification.</span></span><br><span class="line">    <span class="built_in">UILocalNotification</span>* alarm = [[<span class="built_in">UILocalNotification</span> alloc] init];</span><br><span class="line">    <span class="keyword">if</span> (alarm)</span><br><span class="line">    &#123;</span><br><span class="line">        alarm.fireDate = theDate;</span><br><span class="line">        alarm.timeZone = [<span class="built_in">NSTimeZone</span> defaultTimeZone];</span><br><span class="line">        alarm.repeatInterval = <span class="number">0</span>;</span><br><span class="line">        alarm.soundName = <span class="string">@"alarmsound.caf"</span>;</span><br><span class="line">        alarm.alertBody = <span class="string">@"Time to wake up!"</span>;</span><br><span class="line"> </span><br><span class="line">        [app scheduleLocalNotification:alarm];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>您可以取消计划的通知或获得通知的清单。有关这些方法的详细信息，请参阅<a href="https://developer.apple.com/reference/uikit/uiapplication" target="_blank" rel="noopener">《UIApplication Class Reference》</a>。有关配置本地通知的更多信息，请参阅<a href="https://developer.apple.com/library/content/documentation/NetworkingInternet/Conceptual/RemoteNotificationsPG/Chapters/Introduction.html#//apple_ref/doc/uid/TP40008194" target="_blank" rel="noopener">《Local and Remote Notification Programming Guide》</a>。</p>
+<h2 id="做一个负责的后台应用"><a href="#做一个负责的后台应用" class="headerlink" title="做一个负责的后台应用"></a>做一个负责的后台应用</h2><p>当涉及到利用系统资源和硬件,前台应用始终拥有高于后台应用程序的优先级。在后台运行的应用程序需要对这种差异有所准备，并调整自己的行为。具体来说，应用在后台时应遵循以下原则：</p>
+<ul>
+<li>不要做任何的OpenGL ES代码调用。</li>
+<li>被暂停之前取消所有的Bonjour相关的服务。</li>
+<li>准备处理基于sockets 的 连接错误。</li>
+<li>进入到后台之前保存您的应用程序的状态。参阅<a href="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/StrategiesforImplementingYourApp/StrategiesforImplementingYourApp.html#//apple_ref/doc/uid/TP40007072-CH5-SW2" target="_blank" rel="noopener">《Preserving Your App’s Visual Appearance Across Launches》</a></li>
+<li>移动到后台时删除对不需要的对象的强引用。</li>
+<li>停止使用共享系统资源。如地址簿，日历数据库。如果在后台使用这些戏院，程序将被系统杀死。</li>
+<li>避免刷新windows和views.</li>
+<li>响应连接和断开了外部附件的通知.<a href="https://developer.apple.com/library/content/featuredarticles/ExternalAccessoryPT/Introduction/Introduction.html#//apple_ref/doc/uid/TP40009502" target="_blank" rel="noopener">《External Accessory Programming Topics》</a>.</li>
+<li>清理主动警告的视图。系统不会自动dismiss <code>UIActionSheet</code>和 <code>UIAlertView</code> ,进入后台之前，你可能需要做一些清理工作。</li>
+<li>进入后台之前隐藏敏感信息。如密码等，应该在<code>applicationDidEnterBackground:</code>之前隐藏，防止被后台快照捕捉到。</li>
+<li>考虑到诸多限制，在后台运行时，应该做最少的工作。</li>
+</ul>
+<h2 id="禁止后台运行"><a href="#禁止后台运行" class="headerlink" title="禁止后台运行"></a>禁止后台运行</h2><p>如果你希望你的程序任何时候都不要在后台运行，可以在程序的<code>Info.plist</code>中 设置 <code>UIApplicationExitsOnSuspend</code>key，并将值设置<code>YES</code>。<br>此时如果用户按下Home键，delegate的 <code>applicationWillTerminate:</code>方法将被调用，大约五秒后，程序将被终止。<br>使用场景比较小。如果后台执行显著增加了程序的复杂性，关闭后台运行也许是一个简单的方案。另外，如果程序需要消耗大量的内存，而且不能轻易的释放任何信息，系统可能会迅速杀死你的应用为其他应用让路，这种情况下选择禁止后台运行，会产生相同的结果，并节省开发时间和精力。</p>
+<h2 id="相关资料"><a href="#相关资料" class="headerlink" title="相关资料"></a>相关资料</h2><ul>
+<li><a href="https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/BackgroundExecution/BackgroundExecution.html" target="_blank" rel="noopener">《Background Execution》</a>.</li>
+<li><a href="http://www.aichengxu.com/view/6564145" target="_blank" rel="noopener">《iOS后台运行机制-实践总结》</a>.</li>
+</ul>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Background-Execution/" rel="tag"># Background-Execution</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/08/18/iOS-Animations-by-Tutorials/" rel="next" title="《iOS Animations by Tutorials》笔记">
+                <i class="fa fa-chevron-left"></i> 《iOS Animations by Tutorials》笔记
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/10/13/AutoLayout/" rel="prev" title="Auto Layout总结">
+                Auto Layout总结 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jatstar" />
+          <p class="site-author-name" itemprop="name">Jatstar</p>
+           
+              <p class="site-description motion-element" itemprop="description">Write the bug. Change the world</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jatstar" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/Jatstar" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#序"><span class="nav-number">1.</span> <span class="nav-text">序</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行有限长度的任务"><span class="nav-number">2.</span> <span class="nav-text">执行有限长度的任务</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后台下载"><span class="nav-number">3.</span> <span class="nav-text">后台下载</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#执行长时间运行的任务"><span class="nav-number">4.</span> <span class="nav-text">执行长时间运行的任务</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#跟踪用户位置"><span class="nav-number">4.1.</span> <span class="nav-text">跟踪用户位置</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#播放和录制背景声音"><span class="nav-number">4.2.</span> <span class="nav-text">播放和录制背景声音</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#构建VoIP应用"><span class="nav-number">4.3.</span> <span class="nav-text">构建VoIP应用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#不失时机地获取少量的内容"><span class="nav-number">4.4.</span> <span class="nav-text">不失时机地获取少量的内容</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#使用推送通知来启动下载"><span class="nav-number">4.5.</span> <span class="nav-text">使用推送通知来启动下载</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#后台下载杂志"><span class="nav-number">4.6.</span> <span class="nav-text">后台下载杂志</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接外部附件"><span class="nav-number">4.7.</span> <span class="nav-text">连接外部附件</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#连接蓝牙外设"><span class="nav-number">4.8.</span> <span class="nav-text">连接蓝牙外设</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#在后台运行时获取用户的关注"><span class="nav-number">5.</span> <span class="nav-text">在后台运行时获取用户的关注</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#做一个负责的后台应用"><span class="nav-number">6.</span> <span class="nav-text">做一个负责的后台应用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#禁止后台运行"><span class="nav-number">7.</span> <span class="nav-text">禁止后台运行</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#相关资料"><span class="nav-number">8.</span> <span class="nav-text">相关资料</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 &mdash; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jatstar</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    Hosted by  <a class="theme-link" href="https://pages.coding.me">Coding Pages</a>
+  </div>
+
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Mist
+    </a>
+  </div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "https://pingjs.qq.com/h5/stats.js?v2.0.4";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500492087");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=57342025";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://jatstar-cn.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://Jatstar.cn/2016/09/27/iOS-Background-Execution/';
+          this.page.identifier = '2016/09/27/iOS-Background-Execution/';
+          this.page.title = 'Background Execution--iOS后台运行机制总结';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://jatstar-cn.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

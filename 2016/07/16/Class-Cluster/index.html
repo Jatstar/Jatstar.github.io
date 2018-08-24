@@ -1,0 +1,909 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png">
+
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Effective-Objective-C 2.0,Class Clusters,设计模式," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Jat's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="如果要继承自NSString，NSArray，NSDictionary，NSNumber，要当心！">
+<meta name="keywords" content="Effective-Objective-C 2.0,Class Clusters,设计模式">
+<meta property="og:type" content="article">
+<meta property="og:title" content="从NSArray看Objective-C中的类族(Class Clusters)和工厂模式">
+<meta property="og:url" content="http://Jatstar.cn/2016/07/16/Class-Cluster/index.html">
+<meta property="og:site_name" content="Jat&#39;s Blog">
+<meta property="og:description" content="如果要继承自NSString，NSArray，NSDictionary，NSNumber，要当心！">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://developer.apple.com/library/ios/documentation/General/Conceptual/CocoaEncyclopedia/Art/cluster3.gif">
+<meta property="og:updated_time" content="2018-07-13T06:24:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="从NSArray看Objective-C中的类族(Class Clusters)和工厂模式">
+<meta name="twitter:description" content="如果要继承自NSString，NSArray，NSDictionary，NSNumber，要当心！">
+<meta name="twitter:image" content="https://developer.apple.com/library/ios/documentation/General/Conceptual/CocoaEncyclopedia/Art/cluster3.gif">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '2860370',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://Jatstar.cn/2016/07/16/Class-Cluster/"/>
+
+
+
+
+
+  <title>从NSArray看Objective-C中的类族(Class Clusters)和工厂模式 | Jat's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88751319-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f1e21a4dabe008718f0175fb3ac63569";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jat's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">如果没有见过太阳,我本可以忍受黑暗</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-feed">
+          <a href="/atom.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-rss"></i> <br />
+            
+            RSS
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://Jatstar.cn/2016/07/16/Class-Cluster/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jatstar">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jat's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">从NSArray看Objective-C中的类族(Class Clusters)和工厂模式</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-16T20:58:26+08:00">
+                2016-07-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2016/07/16/Class-Cluster/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2016/07/16/Class-Cluster/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>如果要继承自<code>NSString，NSArray，NSDictionary，NSNumber</code>，要当心！</p>
+<a id="more"></a>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul>
+<li>工厂模式(Factory pattern)：</li>
+</ul>
+<blockquote>
+<p>“Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.”</p>
+</blockquote>
+<p>即：定义一个接口来创建对象，让子类来决定实例哪个类。工厂方法让一个类的实例化延迟到子类中。</p>
+<ul>
+<li>类簇(class cluster)：</li>
+</ul>
+<blockquote>
+<p>Class clusters are a design pattern that the Foundation framework makes extensive use of. Class clusters group a number of private concrete subclasses under a public abstract superclass. The grouping of classes in this way simplifies the publicly visible architecture of an object-oriented framework without reducing its functional richness. Class clusters are based on the Abstract Factory design pattern. -<a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/CocoaEncyclopedia/ClassClusters/ClassClusters.html]" target="_blank" rel="noopener">《Concepts in Objective-C Programming》</a></p>
+</blockquote>
+<p>类簇是Foundation框架中广泛使用的设计模式。类簇将一些私有的、具体的子类组合在一个公共的、抽象的超类下面，以这种方法来组织类可以简化一个面向对象框架的公开架构，而又不减少功能的丰富性。类族是基于抽象工厂模式。<br>这样做的目的是为了接口的简单性。<br>官方文档中举了NSNumber 作为例子.<br><img src="https://developer.apple.com/library/ios/documentation/General/Conceptual/CocoaEncyclopedia/Art/cluster3.gif" alt=""><br>类族模式体现在 使用NSNumber的<code>numberWith…</code>方法时，返回类型并不总是NSNumber类型，例如</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSNumber</span> *boolNumber = [<span class="built_in">NSNumber</span> numberWithBool:<span class="literal">true</span>];</span><br><span class="line"><span class="built_in">NSNumber</span> *intNumber = [<span class="built_in">NSNumber</span> numberWithInteger:<span class="number">1</span>];</span><br><span class="line">    </span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"boolNumber class = %@ "</span>,[boolNumber <span class="keyword">class</span>]);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"intNumber class = %@"</span>,[intNumber <span class="keyword">class</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Output:</span></span><br><span class="line"><span class="comment">2016-07-16 23:27:29.834 Test[19339:874972] boolNumber class = __NSCFBoolean </span></span><br><span class="line"><span class="comment">2016-07-16 23:27:29.835 Test[19339:874972] intNumber class = __NSCFNumber</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p><code>__NSCFBoolean</code>和<code>__NSCFNumber</code>都是NSNumber的子类，但是使用者不必关心这些子类，只需要把它当作是一个NSNumber对象就行了。这种设计模式保证了接口的简单性。<br>但是当我要创建子类时，麻烦就来了。</p>
+<h2 id="SubClass"><a href="#SubClass" class="headerlink" title="SubClass"></a>SubClass</h2><p>以NSArray为例，<br>如果我创建一个继承自NSArray的MonthArray类</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">MonthArray *months = [[MonthArray alloc]init];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,months.count);</span><br><span class="line"></span><br><span class="line"><span class="comment">//上述代码并没有和预想的一样，输出0;而是报了如下错误：</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*Output:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '*** -[NSArray count]: method only defined for abstract class.  Define -[MonthArray count]!'</span></span><br><span class="line"><span class="comment">*** First throw call stack:</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">	0   CoreFoundation                      0x00007fff8b4124f2 __exceptionPreprocess + 178</span></span><br><span class="line"><span class="comment">	1   libobjc.A.dylib                     0x00007fff93302f7e objc_exception_throw + 48</span></span><br><span class="line"><span class="comment">	2   CoreFoundation                      0x00007fff8b47cccf __CFRequireConcreteImplementation + 271</span></span><br><span class="line"><span class="comment">	3   CoreFoundation                      0x00007fff8b469d97 -[NSArray count] + 39</span></span><br><span class="line"><span class="comment">	4   Test                                0x0000000100000e9e main + 94</span></span><br><span class="line"><span class="comment">	5   libdyld.dylib                       0x00007fff89a775ad start + 1</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">libc++abi.dylib: terminating with uncaught exception of type NSException</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p>method only defined for abstract class 即：<strong>抽象类仅定义了方法</strong>。</p>
+<p>在<a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/CocoaEncyclopedia/ClassClusters/ClassClusters.html" target="_blank" rel="noopener">官方文档</a>中找到了类簇的子类扩展的方法：</p>
+<pre><code>A True Subclass
+A new class that you create within a class cluster must:
+Be a subclass of the cluster’s abstract superclass
+Declare its own storage
+Override all initializer methods of the superclass
+Override the superclass’s primitive methods (described below)
+</code></pre><p>要做类族的子类，就要做到：</p>
+<ol>
+<li>以公共“抽象”类为父类，比如NSNumber、NSArray等，而非其子类</li>
+<li>提供自定义存储</li>
+<li>重写（覆盖）父类所有初始化方法</li>
+<li>重写父类中“原始”方法</li>
+</ol>
+<p>原始方法(primitive methods)是一个类的接口的基础，以NSArray为例，以它的两个原始方法<code>count</code>和<code>objectAtIndex:</code>为基础，其他派生方法(derived methods)可以派生实现,例如：</p>
+<table>
+<thead>
+<tr>
+<th>Derived Method</th>
+<th>Possible Implementation</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>lastObject</code></td>
+<td><code>[self objectAtIndex: ([self count] –1)]</code></td>
+</tr>
+<tr>
+<td><code>containsObject:</code></td>
+<td>递增索引反复调用<code>objectAtIndex</code>，然后对所得到的对象进行等同性判断</td>
+</tr>
+</tbody>
+</table>
+<p>到这里，《Effective-Objective-C 2.0》第9条讲到<code>从类族的公共类抽象基类中继承子类时要当心，若有开发文档，则应首先阅读</code>的原因，已经清晰明了了。<br>示例代码：</p>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.h</span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;foundation/foundation.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MonthArray</span> : <span class="title">NSArray</span></span></span><br><span class="line">+ monthArray;</span><br><span class="line">- (<span class="keyword">unsigned</span>)count;</span><br><span class="line">- (<span class="keyword">id</span>)objectAtIndex:(<span class="keyword">unsigned</span>)index;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.m</span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"MonthArray.h"</span></span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">MonthArray</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> MonthArray *sharedMonthArray = <span class="literal">nil</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *months[] = &#123; <span class="string">@"January"</span>, <span class="string">@"February"</span>, <span class="string">@"March"</span>,</span><br><span class="line">    <span class="string">@"April"</span>, <span class="string">@"May"</span>, <span class="string">@"June"</span>, <span class="string">@"July"</span>, <span class="string">@"August"</span>, <span class="string">@"September"</span>,</span><br><span class="line">    <span class="string">@"October"</span>, <span class="string">@"November"</span>, <span class="string">@"December"</span> &#125;;</span><br><span class="line"></span><br><span class="line">+ monthArray</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!sharedMonthArray) &#123;</span><br><span class="line">        sharedMonthArray = [[MonthArray alloc] init];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sharedMonthArray;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">unsigned</span>)count</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">12</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">id</span>)objectAtIndex:(<span class="keyword">unsigned</span> <span class="keyword">int</span>)index&#123;</span><br><span class="line">    <span class="keyword">if</span> (index &gt;= [<span class="keyword">self</span> count])&#123;</span><br><span class="line">        [<span class="built_in">NSException</span> raise:<span class="built_in">NSRangeException</span> format:<span class="string">@"***%s: index(%d) beyond bounds (%d)"</span>, sel_getName(_cmd), index,[<span class="keyword">self</span> count] - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> months[index];   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">MonthArray *months = [[MonthArray alloc]init];</span><br><span class="line">    </span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"lastmonth = %@"</span>,months.lastObject);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"firstmonth = %@"</span>,months.firstObject);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Output:</span></span><br><span class="line"><span class="comment">2016-07-17 00:13:05.558 Test[19513:920103] lastmonth = December</span></span><br><span class="line"><span class="comment">2016-07-17 00:13:05.559 Test[19513:920103] firstmonth = January</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<h2 id="对象的所属类判断"><a href="#对象的所属类判断" class="headerlink" title="对象的所属类判断"></a>对象的所属类判断</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">MonthArray *months = [[MonthArray alloc]init]; </span><br><span class="line"><span class="built_in">BOOL</span> isEqual1 = [months <span class="keyword">class</span>] == [<span class="built_in">NSArray</span> <span class="keyword">class</span>];<span class="comment">//0</span></span><br><span class="line"><span class="built_in">BOOL</span> isEqual2 = [months isKindOfClass:[<span class="built_in">NSArray</span> <span class="keyword">class</span>]];<span class="comment">//1</span></span><br><span class="line"><span class="built_in">BOOL</span> isEqual3 = [months isMemberOfClass:[<span class="built_in">NSArray</span> <span class="keyword">class</span>]];<span class="comment">//0</span></span><br><span class="line">    </span><br><span class="line"><span class="built_in">BOOL</span> isEqual4 = [months <span class="keyword">class</span>] == [MonthArray <span class="keyword">class</span>];<span class="comment">//1</span></span><br><span class="line"><span class="built_in">BOOL</span> isEqual5 = [months isKindOfClass:[MonthArray <span class="keyword">class</span>]];<span class="comment">//1</span></span><br><span class="line"><span class="built_in">BOOL</span> isEqual6 = [months isMemberOfClass:[MonthArray <span class="keyword">class</span>]];<span class="comment">//1</span></span><br><span class="line">    </span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual1);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual2);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual3);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual4);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual5);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual6);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Output:</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.650 Test[19556:924326] 0</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 1</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 0</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 1</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 1</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 1</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
+<p><code>isKindOfClass</code>：是否为该类或者该类的子类实例对象；<br><code>isMemberOfClass</code> 是否为该类的实例对象。<br><code>==</code>在此处和<code>isMemberOfClass</code>效果一样。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>当然一般我们不会继承自类族类，扩充方法用Category实现，遇到需要增加实例变量时，可以考虑一下<a href="http://jatstar.cn/2016/07/14/Associative-References/">关联引用</a>。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Effective-Objective-C-2-0/" rel="tag"># Effective-Objective-C 2.0</a>
+          
+            <a href="/tags/Class-Clusters/" rel="tag"># Class Clusters</a>
+          
+            <a href="/tags/设计模式/" rel="tag"># 设计模式</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/07/14/Associative-References/" rel="next" title="Objective-C Associative-References(关联引用)">
+                <i class="fa fa-chevron-left"></i> Objective-C Associative-References(关联引用)
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/07/27/iOS—copy/" rel="prev" title="iOS开发中的深复制与浅拷贝">
+                iOS开发中的深复制与浅拷贝 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jatstar" />
+          <p class="site-author-name" itemprop="name">Jatstar</p>
+           
+              <p class="site-description motion-element" itemprop="description">Write the bug. Change the world</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jatstar" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/Jatstar" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#概念"><span class="nav-number">1.</span> <span class="nav-text">概念</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SubClass"><span class="nav-number">2.</span> <span class="nav-text">SubClass</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#对象的所属类判断"><span class="nav-number">3.</span> <span class="nav-text">对象的所属类判断</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#最后"><span class="nav-number">4.</span> <span class="nav-text">最后</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 &mdash; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jatstar</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    Hosted by  <a class="theme-link" href="https://pages.coding.me">Coding Pages</a>
+  </div>
+
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Mist
+    </a>
+  </div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "https://pingjs.qq.com/h5/stats.js?v2.0.4";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500492087");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=57342025";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://jatstar-cn.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://Jatstar.cn/2016/07/16/Class-Cluster/';
+          this.page.identifier = '2016/07/16/Class-Cluster/';
+          this.page.title = '从NSArray看Objective-C中的类族(Class Clusters)和工厂模式';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://jatstar-cn.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

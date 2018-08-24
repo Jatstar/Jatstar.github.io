@@ -1,0 +1,956 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png">
+
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,Swift," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Jat's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="翻译自Raywenderlich的文章：What’s New in Swift 4?Swift 4 是Swift下一个大版本更新，预计在2017年秋推出Beta版。其重点在与Swift3的兼容性和ABI稳定性。本文重点介绍一些这个版本中显著影响你代码的变化。好了，让我们开始吧。">
+<meta name="keywords" content="iOS,Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What&#39;s New in Swift4?">
+<meta property="og:url" content="http://Jatstar.cn/2017/06/19/What-s-New-in-Swift4/index.html">
+<meta property="og:site_name" content="Jat&#39;s Blog">
+<meta property="og:description" content="翻译自Raywenderlich的文章：What’s New in Swift 4?Swift 4 是Swift下一个大版本更新，预计在2017年秋推出Beta版。其重点在与Swift3的兼容性和ABI稳定性。本文重点介绍一些这个版本中显著影响你代码的变化。好了，让我们开始吧。">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://ooo.0o0.ooo/2017/06/17/59451fb0ae5dd.png">
+<meta property="og:updated_time" content="2018-07-13T06:24:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="What&#39;s New in Swift4?">
+<meta name="twitter:description" content="翻译自Raywenderlich的文章：What’s New in Swift 4?Swift 4 是Swift下一个大版本更新，预计在2017年秋推出Beta版。其重点在与Swift3的兼容性和ABI稳定性。本文重点介绍一些这个版本中显著影响你代码的变化。好了，让我们开始吧。">
+<meta name="twitter:image" content="https://ooo.0o0.ooo/2017/06/17/59451fb0ae5dd.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '2860370',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://Jatstar.cn/2017/06/19/What-s-New-in-Swift4/"/>
+
+
+
+
+
+  <title>What's New in Swift4? | Jat's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88751319-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f1e21a4dabe008718f0175fb3ac63569";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jat's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">如果没有见过太阳,我本可以忍受黑暗</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-feed">
+          <a href="/atom.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-rss"></i> <br />
+            
+            RSS
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://Jatstar.cn/2017/06/19/What-s-New-in-Swift4/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jatstar">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jat's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">What's New in Swift4?</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-06-19T01:17:04+08:00">
+                2017-06-19
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/06/19/What-s-New-in-Swift4/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/06/19/What-s-New-in-Swift4/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>翻译自<a href="https://www.raywenderlich.com" target="_blank" rel="noopener">Raywenderlich</a>的文章：<a href="https://www.raywenderlich.com/163857/whats-new-swift-4#" target="_blank" rel="noopener">What’s New in Swift 4?</a><br>Swift 4 是Swift下一个大版本更新，预计在2017年秋推出Beta版。其重点在与Swift3的兼容性和ABI稳定性。<br>本文重点介绍一些这个版本中显著影响你代码的变化。好了，让我们开始吧。<br><a id="more"></a></p>
+<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><p>Swift 4包含在Xcode 9。你可以从苹果的<a href="https://developer.apple.com/download/" target="_blank" rel="noopener">developer portal</a>下载最新的Xcode9(需要一个有效的开发者账号)。每个Beta版的Xcode 都会捆绑最新的Swift 4 快照。</p>
+<p>在你阅读时，你会注意到<code>[SE-xxxx]</code>格式的链接，这些链接将带你进去相关的<code>Swift Evolution</code>提案。如果你想获得很多和主题相关的信息，请务必点开它们。</p>
+<p>我推荐在<code>Playground</code>中尝试Swift 4 的新特性和更新，这有助于在脑海中巩固知识，并使你深入每个主题。把玩这些例子，并尝试扩展／打断他们。玩得开心。</p>
+<blockquote>
+<p>注：这篇文件将在为每个Bate版的Xcode更新，如果你使用的是不同的Swift快照，这些代码不保证可以运行。</p>
+</blockquote>
+<h2 id="Migrating-to-Swift-4"><a href="#Migrating-to-Swift-4" class="headerlink" title="Migrating to Swift 4"></a>Migrating to Swift 4</h2><p>从Swift 3到 4 的迁移比 Swift 2.2 到 3 少了很多麻烦，一般来说，绝大多数的改变都是附加的，并不需要大量的人为修改。因此，Swift 迁移工具为你处理多数的改变。<br>Xcode 9 同时支持 Swift 4 和 Swift 3.2。如果需要，你可以逐个指定项目中的每个 <code>target</code> 使用 Swift 3.2 还是 Swift 4。 迁移到 并不是完全不受限制的，你可能需要重新部分代码来兼容修的 SDK .而且由于 Swift ABI 仍然尚未稳定所以你需要用 Xcode 9 重新编译你依赖。<br>当你准备迁移到 Swift 4 ， Xcode 9 再次提供一个工具来帮助你，你可以点击<code>Edit/Convert/To Current Swift Syntax…</code>来呼出转换工具。<br>选择你想要转换的 <code>targets</code> 后，Xcode 将提示你 <code>Objective-C</code> 推导中的偏好， 选择推荐的选项通过限制推断来减少你的二进制文件的大小。（关于这个的主题的更多信息，参阅<a href="https://www.raywenderlich.com/163857/whats-new-swift-4#objc" target="_blank" rel="noopener">Limiting @objc Inference</a>）.<br><img src="https://ooo.0o0.ooo/2017/06/17/59451fb0ae5dd.png" alt=""><br>为了更好地理解你代码中预期的变化，我们将首先介绍Swift 4 中变更的API。</p>
+<h2 id="API-Changes"><a href="#API-Changes" class="headerlink" title="API Changes"></a>API Changes</h2><p>在跳转到 Swift 4 加入的新特新前，让我们首先来看一下它对现有的 API 有哪些改成／改善。</p>
+<h3 id="String"><a href="#String" class="headerlink" title="String"></a>String</h3><p>Swift 4 中的 <code>String</code> 获得了很多应得的称赞。这个提案包含大量的改变，让我们来分解下<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0163-string-revision-1.md" target="_blank" rel="noopener">[SE-0163]</a>：</p>
+<p>怕你怀旧，strings 再次变为集合像之前的 Swift2.0 一样。这个改变使你不在依赖 <code>characters</code> 数组，现在你直接遍历 <code>String</code> 对象 ：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> galaxy = <span class="string">"Milky Way 🐮"</span></span><br><span class="line"><span class="keyword">for</span> char <span class="keyword">in</span> galaxy &#123;</span><br><span class="line">  <span class="built_in">print</span>(char)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>不仅仅是循环，你还可以获得 <code>Sequence</code> 和 <code>Collection</code> 所有附加功能;</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">galaxy.<span class="built_in">count</span>       <span class="comment">// 11</span></span><br><span class="line">galaxy.isEmpty     <span class="comment">// false</span></span><br><span class="line">galaxy.<span class="built_in">dropFirst</span>() <span class="comment">// "ilky Way 🐮"</span></span><br><span class="line"><span class="type">String</span>(galaxy.reversed()) <span class="comment">// "🐮 yaW ykliM"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Filter out any none ASCII characters</span></span><br><span class="line">galaxy.<span class="built_in">filter</span> &#123; char <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">let</span> isASCII = char.unicodeScalars.<span class="built_in">reduce</span>(<span class="literal">true</span>, &#123; $<span class="number">0</span> &amp;&amp; $<span class="number">1</span>.isASCII &#125;)</span><br><span class="line">  <span class="keyword">return</span> isASCII</span><br><span class="line">&#125; <span class="comment">// "Milky Way "</span></span><br></pre></td></tr></table></figure>
+<p>ASCII 的例子演示了对 <code>Character</code> 一个小改进,现在你可以从 <code>Character</code> 直接访问 <code>UnicodeScalarView</code>,以前你需要实例化一个新的 <code>String</code><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0178-character-unicode-view.md" target="_blank" rel="noopener">[SE-0178]</a>。</p>
+<p>还有一个附加的时候 <code>StringProtocol</code>,<br>它声明以前在 <code>String</code> 上声明的大部分功能。这种变化的原因是为了改善切片工作。Swift 4 在 <code>String</code> 中增加了 <code>Substring</code> 类型，继承自 <code>StringProtocol</code>。</p>
+<p><code>String</code> 和 <code>Substring</code> 都实现了 <code>StringProtocol</code>,这是两者几乎拥有相同的功能。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"> <span class="comment">// Grab a subsequence of String</span></span><br><span class="line"><span class="keyword">let</span> endIndex = galaxy.index(galaxy.startIndex, offsetBy: <span class="number">3</span>)</span><br><span class="line"><span class="keyword">var</span> milkSubstring = galaxy[galaxy.startIndex...endIndex]   <span class="comment">// "Milk"</span></span><br><span class="line">type(of: milkSubstring)   <span class="comment">// Substring.Type</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Concatenate a String onto a Substring</span></span><br><span class="line">milkSubstring += <span class="string">"🥛"</span>     <span class="comment">// "Milk🥛"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Create a String from a Substring</span></span><br><span class="line"><span class="keyword">let</span> milkString = <span class="type">String</span>(milkSubstring) <span class="comment">// "Milk🥛"</span></span><br></pre></td></tr></table></figure>
+<p>另一项改进是 <code>String</code> 对字形簇的解读，这个决议来自于Unicode 9的改编。在这之前，多码点（multiple code points）构成的 unicode 字符的 count 结果大于1，这通常发生在选定肤色的emoji表情，下面是一些前后对比：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"👩‍💻"</span>.<span class="built_in">count</span> <span class="comment">// Now: 1, Before: 2</span></span><br><span class="line"><span class="string">"👍🏽"</span>.<span class="built_in">count</span> <span class="comment">// Now: 1, Before: 2</span></span><br><span class="line"><span class="string">"👨‍❤️‍💋‍👨"</span>.<span class="built_in">count</span> <span class="comment">// Now: 1, Before, 4</span></span><br></pre></td></tr></table></figure>
+<p>这只是<a href="https://github.com/apple/swift/blob/master/docs/StringManifesto.md" target="_blank" rel="noopener">[String Manifesto]</a>的一部分，你可以阅读预期改动的原始动机和被提议后的答复。</p>
+<h3 id="Dictionary-和-Set"><a href="#Dictionary-和-Set" class="headerlink" title="Dictionary 和 Set"></a>Dictionary 和 Set</h3><p>至于 <code>Collection</code> 类型，<code>Set</code> 和  <code>Dictionary</code> 不是很直观，幸运的是，Swift 团队给了它们很多必要的关照 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0165-dict.md" target="_blank" rel="noopener">[SE-0165]</a>.</p>
+<h4 id="Sequence-Based-Initialization"><a href="#Sequence-Based-Initialization" class="headerlink" title="Sequence Based Initialization"></a>Sequence Based Initialization</h4><p>第一个是可以创建一个dictionary 从序列的键值对（元组）：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> nearestStarNames = [<span class="string">"Proxima Centauri"</span>, <span class="string">"Alpha Centauri A"</span>, <span class="string">"Alpha Centauri B"</span>, <span class="string">"Barnard's Star"</span>, <span class="string">"Wolf 359"</span>]</span><br><span class="line"><span class="keyword">let</span> nearestStarDistances = [<span class="number">4.24</span>, <span class="number">4.37</span>, <span class="number">4.37</span>, <span class="number">5.96</span>, <span class="number">7.78</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// Dictionary from sequence of keys-values</span></span><br><span class="line"><span class="keyword">let</span> starDistanceDict = <span class="type">Dictionary</span>(uniqueKeysWithValues: <span class="built_in">zip</span>(nearestStarNames, nearestStarDistances)) </span><br><span class="line"><span class="comment">// ["Wolf 359": 7.78, "Alpha Centauri B": 4.37, "Proxima Centauri": 4.24, "Alpha Centauri A": 4.37, "Barnard's Star": 5.96]</span></span><br></pre></td></tr></table></figure>
+<h4 id="Duplicate-Key-Resolution"><a href="#Duplicate-Key-Resolution" class="headerlink" title="Duplicate Key Resolution"></a>Duplicate Key Resolution</h4><p>现在你可以用喜欢的方式复制 keys 实例化一个 dictionary，这使我们不需要写繁琐的键值对关系语句：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">// Random vote of people&apos;s favorite stars</span><br><span class="line">let favoriteStarVotes = [&quot;Alpha Centauri A&quot;, &quot;Wolf 359&quot;, &quot;Alpha Centauri A&quot;, &quot;Barnard&apos;s Star&quot;]</span><br><span class="line"></span><br><span class="line">// Merging keys with closure for conflicts</span><br><span class="line">let mergedKeysAndValues = Dictionary(zip(favoriteStarVotes, repeatElement(1, count: favoriteStarVotes.count)), uniquingKeysWith: +) // [&quot;Barnard&apos;s Star&quot;: 1, &quot;Alpha Centauri A&quot;: 2, &quot;Wolf 359&quot;: 1]</span><br></pre></td></tr></table></figure>
+<p>上面的代码使用了 zip 和 缩写 + 处理重复的 keys 和冲突的 values 。</p>
+<blockquote>
+<p>注： 如果你不熟悉 <code>zip</code> 你可以快速的在Apple的 <a href="https://developer.apple.com/documentation/swift/1541125-zip" target="_blank" rel="noopener">[Swift Documentation]</a> 学习它。</p>
+</blockquote>
+<h4 id="Filtering"><a href="#Filtering" class="headerlink" title="Filtering"></a>Filtering</h4><p> <code>Dictionary</code> 和 <code>Set</code> 现在可以筛选将结果赋给一个新的同类型对象。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Filtering results into dictionary rather than array of tuples</span></span><br><span class="line"><span class="keyword">let</span> closeStars = starDistanceDict.<span class="built_in">filter</span> &#123; $<span class="number">0</span>.value &lt; <span class="number">5.0</span> &#125;</span><br><span class="line">closeStars <span class="comment">// Dictionary: ["Proxima Centauri": 4.24, "Alpha Centauri A": 4.37, "Alpha Centauri B": 4.37]</span></span><br></pre></td></tr></table></figure>
+<h4 id="Dictionary-Mapping"><a href="#Dictionary-Mapping" class="headerlink" title="Dictionary Mapping"></a>Dictionary Mapping</h4><p><code>Dictionary</code> 获得了一个非常有用的方法用来 map 它的 values：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Mapping values directly resulting in a dictionary</span></span><br><span class="line"><span class="keyword">let</span> mappedCloseStars = closeStars.mapValues &#123; <span class="string">"\($0)"</span> &#125;</span><br><span class="line">mappedCloseStars <span class="comment">// ["Proxima Centauri": "4.24", "Alpha Centauri A": "4.37", "Alpha Centauri B": "4.37"]</span></span><br></pre></td></tr></table></figure>
+<h4 id="Dictionary-Default-Values"><a href="#Dictionary-Default-Values" class="headerlink" title="Dictionary Default Values"></a>Dictionary Default Values</h4><p>访问 <code>Dictionary</code>  的 value 时，常见的做法是使用 <code>nil coalescing operator</code> 来给一个默认值（译者注 ：<code>a != nil ? a! : b</code> 的方式，见<a href="https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/BasicOperators.html" target="_blank" rel="noopener">[Basic Operators]</a>。在 Swift 4 现在有了简洁的多的方式：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Subscript with a default value</span></span><br><span class="line"><span class="keyword">let</span> siriusDistance = mappedCloseStars[<span class="string">"Wolf 359"</span>, <span class="keyword">default</span>: <span class="string">"unknown"</span>] <span class="comment">// "unknown"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Subscript with a default value used for mutating</span></span><br><span class="line"><span class="keyword">var</span> starWordsCount: [<span class="type">String</span>: <span class="type">Int</span>] = [:]</span><br><span class="line"><span class="keyword">for</span> starName <span class="keyword">in</span> nearestStarNames &#123;</span><br><span class="line">  <span class="keyword">let</span> numWords = starName.<span class="built_in">split</span>(separator: <span class="string">" "</span>).<span class="built_in">count</span></span><br><span class="line">  starWordsCount[starName, <span class="keyword">default</span>: <span class="number">0</span>] += numWords <span class="comment">// Amazing </span></span><br><span class="line">&#125;</span><br><span class="line">starWordsCount <span class="comment">// ["Wolf 359": 2, "Alpha Centauri B": 3, "Proxima Centauri": 2, "Alpha Centauri A": 3, "Barnard's Star": 2]</span></span><br></pre></td></tr></table></figure>
+<p>以前这种住转变需要包裹在臃肿的 <code>if-let</code> 语句中，在 Swift 4 中可能只需要一行。</p>
+<h4 id="Dictionary-Grouping"><a href="#Dictionary-Grouping" class="headerlink" title="Dictionary Grouping"></a>Dictionary Grouping</h4><p>另一个出奇有用的附加功能可以从 <code>Sequence</code> 实例化一个 <code>Dictionary</code> ，并将其分组：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Grouping sequences by computed key</span></span><br><span class="line"><span class="keyword">let</span> starsByFirstLetter = <span class="type">Dictionary</span>(grouping: nearestStarNames) &#123; $<span class="number">0</span>.first! &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// ["B": ["Barnard's Star"], "A": ["Alpha Centauri A", "Alpha Centauri B"], "W": ["Wolf 359"], "P": ["Proxima Centauri"]]</span></span><br></pre></td></tr></table></figure>
+<p>当对特定的数据进行归类时会变得很方便。</p>
+<h4 id="Reserving-Capacity"><a href="#Reserving-Capacity" class="headerlink" title="Reserving Capacity"></a>Reserving Capacity</h4><p><code>Sequence</code> 和 <code>Dictionary</code> 现在都具备保留容量的功能。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Improved Set/Dictionary capacity reservation</span></span><br><span class="line">starWordsCount.capacity  <span class="comment">// 6</span></span><br><span class="line">starWordsCount.reserveCapacity(<span class="number">20</span>) <span class="comment">// reserves at _least_ 20 elements of capacity</span></span><br><span class="line">starWordsCount.capacity <span class="comment">// 24</span></span><br></pre></td></tr></table></figure>
+<p>在这些类型中，重新分配是代价高昂的任务。使用 <code>reserveCapacity(_:)</code> 可以很容易的改善执行效率。<br>这是一个巨大的改变，所以务必检查这两个类型，想办法使用这些新特性来优化你的代码。</p>
+<h4 id="Private-Access-Modifier"><a href="#Private-Access-Modifier" class="headerlink" title="Private Access Modifier"></a>Private Access Modifier</h4><p>在 Swift 3 上大家并不是很喜欢加入的 <code>fileprivate</code>, 理论上，它很不错，但是实践中它的用法时常让人困惑。在成员内部使用 <code>private</code>,当你在相同的文件共享成员变量的访问时很少使用 <code>fileprivate</code>。<br>问题是 Swift 鼓励使用 extensions 来将代码按逻辑分组。extension 在成员变量的原始作用域之外，导致广泛地需要使用 <code>fileprivate</code> 。<br>Swift 4 意识到上述在类型和 extension 共享访问权的初衷，但是它只在相同的源文件中有效 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0169-improve-interaction-between-private-declarations-and-extensions.md" target="_blank" rel="noopener">[SE-0169]</a>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">SpaceCraft</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">let</span> warpCode: <span class="type">String</span></span><br><span class="line"></span><br><span class="line">  <span class="keyword">init</span>(warpCode: <span class="type">String</span>) &#123;</span><br><span class="line">    <span class="keyword">self</span>.warpCode = warpCode</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">SpaceCraft</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">goToWarpSpeed</span><span class="params">(warpCode: String)</span></span> &#123;</span><br><span class="line">    <span class="keyword">if</span> warpCode == <span class="keyword">self</span>.warpCode &#123; <span class="comment">// Error in Swift 3 unless warpCode is fileprivate</span></span><br><span class="line">      <span class="built_in">print</span>(<span class="string">"Do it Scotty!"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> enterprise = <span class="type">SpaceCraft</span>(warpCode: <span class="string">"KirkIsCool"</span>)</span><br><span class="line"><span class="comment">//enterprise.warpCode  // error: 'warpCode' is inaccessible due to 'private' protection level</span></span><br><span class="line">enterprise.goToWarpSpeed(warpCode: <span class="string">"KirkIsCool"</span>) <span class="comment">// "Do it Scotty!"</span></span><br></pre></td></tr></table></figure>
+<p>这让你可以实现原本 <code>fileprivate</code> 的目的，而不需要杂乱的代码。</p>
+<h2 id="API-Additions"><a href="#API-Additions" class="headerlink" title="API Additions"></a>API Additions</h2><p>现在让我们一起来看一下 Swift 4 的新特性，这些改变只是一下简单的附加功能，不会破坏你现有的代码。</p>
+<h3 id="Archival-and-Serialization"><a href="#Archival-and-Serialization" class="headerlink" title="Archival and Serialization"></a>Archival and Serialization</h3><p>目前为止，Swift 中自定义类型的序列化和归档有太多的坑，对于 <code>class</code> 类型，你需要子类化 <code>NSObject</code> 并且实现 <code>NSCoding</code>协议。</p>
+<p>而像 <code>struct</code> 和 <code>enum</code> 这样的值类型，需要创建一个子类通过扩展 <code>NSObject</code> 和 <code>NSCoding</code> 的 hacks 来实现。<br>Swift 4  解决了这三种类型的序列化问题<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0166-swift-archival-serialization.md" target="_blank" rel="noopener">[SE-0166]</a>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">CuriosityLog</span>: <span class="title">Codable</span> </span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">Discovery</span>: <span class="title">String</span>, <span class="title">Codable</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> rock, water, martian</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> sol: <span class="type">Int</span></span><br><span class="line">  <span class="keyword">var</span> discoveries: [<span class="type">Discovery</span>]</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create a log entry for Mars sol 42</span></span><br><span class="line"><span class="keyword">let</span> logSol42 = <span class="type">CuriosityLog</span>(sol: <span class="number">42</span>, discoveries: [.rock, .rock, .rock, .rock])</span><br></pre></td></tr></table></figure>
+<p> 上面的例子中，你可以看到在 Swift 中类型的 <code>Encodable</code> 和 <code>Decodable</code> 只需要实现 <code>Codable</code> 协议，如果所有的属性都实现了 <code>Codable</code> 协议，那么编译器将自动完成协议的实现。<br>对对象进行编码，你需要把它交给一个编码器，Swift 4 开始积极的实现编码器。每个编码器按照不同的 schemes 。（注：该提案的部分内容仍在开发中）：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> jsonEncoder = <span class="type">JSONEncoder</span>() <span class="comment">// One currently available encoder</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Encode the data</span></span><br><span class="line"><span class="keyword">let</span> jsonData = <span class="keyword">try</span> jsonEncoder.encode(logSol42)</span><br><span class="line"><span class="comment">// Create a String from the data</span></span><br><span class="line"><span class="keyword">let</span> jsonString = <span class="type">String</span>(data: jsonData, encoding: .utf8) <span class="comment">// "&#123;"sol":42,"discoveries":["rock","rock","rock","rock"]&#125;"</span></span><br></pre></td></tr></table></figure>
+<p>它将一个对象自编码成 JSON 对象，请务必检查 <code>JSONEncoder</code> 的属性来定制它的输出。</p>
+<p>过程的最后一部分是解码数据为一个具体对象：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> jsonDecoder = <span class="type">JSONDecoder</span>() <span class="comment">// Pair decoder to JSONEncoder</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Attempt to decode the data to a CuriosityLog object</span></span><br><span class="line"><span class="keyword">let</span> decodedLog = <span class="keyword">try</span> jsonDecoder.decode(<span class="type">CuriosityLog</span>.<span class="keyword">self</span>, from: jsonData)</span><br><span class="line">decodedLog.sol         <span class="comment">// 42</span></span><br><span class="line">decodedLog.discoveries <span class="comment">// [rock, rock, rock, rock]</span></span><br></pre></td></tr></table></figure>
+<p>通过使用 Swift 4的 encoding/decoding，获得Swift的类型安全性。同时不依赖 @objc 协议的开销和限制。</p>
+<h3 id="Key-Value-Coding"><a href="#Key-Value-Coding" class="headerlink" title="Key-Value Coding"></a>Key-Value Coding</h3><p>目前为止，由于函数是一个闭包的缘故，你可以在不调用函数的情况下对函数进行引用。你不能做的通过属性访问是没有暴露借口的私有变量。</p>
+<p>令人兴奋的是 Swift 4 可以用对象的 Key paths 来 get/set 私有变量。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Lightsaber</span> </span>&#123;</span><br><span class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">Color</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> blue, green, red</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> color: <span class="type">Color</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ForceUser</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> name: <span class="type">String</span></span><br><span class="line">  <span class="keyword">var</span> lightsaber: <span class="type">Lightsaber</span></span><br><span class="line">  <span class="keyword">var</span> master: <span class="type">ForceUser</span>?</span><br><span class="line"></span><br><span class="line">  <span class="keyword">init</span>(name: <span class="type">String</span>, lightsaber: <span class="type">Lightsaber</span>, master: <span class="type">ForceUser</span>? = <span class="literal">nil</span>) &#123;</span><br><span class="line">    <span class="keyword">self</span>.name = name</span><br><span class="line">    <span class="keyword">self</span>.lightsaber = lightsaber</span><br><span class="line">    <span class="keyword">self</span>.master = master</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sidious = <span class="type">ForceUser</span>(name: <span class="string">"Darth Sidious"</span>, lightsaber: <span class="type">Lightsaber</span>(color: .red))</span><br><span class="line"><span class="keyword">let</span> obiwan = <span class="type">ForceUser</span>(name: <span class="string">"Obi-Wan Kenobi"</span>, lightsaber: <span class="type">Lightsaber</span>(color: .blue))</span><br><span class="line"><span class="keyword">let</span> anakin = <span class="type">ForceUser</span>(name: <span class="string">"Anakin Skywalker"</span>, lightsaber: <span class="type">Lightsaber</span>(color: .blue), master: obiwan)</span><br></pre></td></tr></table></figure>
+<p>在这里你创建了一些 <code>ForceUser</code> 实例，通过设置他们的 name 、 lightsaber 和 master 。创建 key path ，你只需使用一个反斜杠后面跟上你感兴趣的属性:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Create reference to the ForceUser.name key path</span></span><br><span class="line"><span class="keyword">let</span> nameKeyPath = \<span class="type">ForceUser</span>.name</span><br><span class="line"></span><br><span class="line"><span class="comment">// Access the value from key path on instance</span></span><br><span class="line"><span class="keyword">let</span> obiwanName = obiwan[keyPath: nameKeyPath]  <span class="comment">// "Obi-Wan Kenobi"</span></span><br></pre></td></tr></table></figure>
+<p>在这个例子中，你给 <code>ForceUser</code> 的 <code>name</code> 属性创建了一个 key path。然后使用这个 key path 通过新的下标 <code>keyPath</code> 这个下下标现在在每种类型都可以用。</p>
+<p>这里有一些通过 key path 访问子对象，设置属性，构建 key path 引用的例子：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Use keypath directly inline and to drill down to sub objects</span></span><br><span class="line"><span class="keyword">let</span> anakinSaberColor = anakin[keyPath: \<span class="type">ForceUser</span>.lightsaber.color]  <span class="comment">// blue</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Access a property on the object returned by key path</span></span><br><span class="line"><span class="keyword">let</span> masterKeyPath = \<span class="type">ForceUser</span>.master</span><br><span class="line"><span class="keyword">let</span> anakinMasterName = anakin[keyPath: masterKeyPath]?.name  <span class="comment">// "Obi-Wan Kenobi"</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Change Anakin to the dark side using key path as a setter</span></span><br><span class="line">anakin[keyPath: masterKeyPath] = sidious</span><br><span class="line">anakin.master?.name <span class="comment">// Darth Sidious</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Note: not currently working, but works in some situations</span></span><br><span class="line"><span class="comment">// Append a key path to an existing path</span></span><br><span class="line"><span class="comment">//let masterNameKeyPath = masterKeyPath.appending(path: \ForceUser.name)</span></span><br><span class="line"><span class="comment">//anakin[keyPath: masterKeyPath] // "Darth Sidious"</span></span><br><span class="line">``` </span><br><span class="line"></span><br><span class="line">key path 之美在于它在 <span class="type">Swift</span> 中是坚固的，不像 <span class="type">Objective</span>-<span class="type">C</span> 中的 string 那么凌乱。</span><br><span class="line"></span><br><span class="line">### <span class="type">Multi</span>-line <span class="type">String</span> <span class="type">Literals</span></span><br><span class="line">创建多行文本是很多编程语言一个非常普遍的特性。<span class="type">Swift</span> <span class="number">4</span> 加入这个简单但是有用的语法，用三个引号包装文本[[<span class="type">SE</span>-<span class="number">0168</span>]](https:<span class="comment">//github.com/apple/swift-evolution/blob/master/proposals/0168-multi-line-string-literals.md)：</span></span><br><span class="line"></span><br><span class="line">```swift</span><br><span class="line"><span class="keyword">let</span> star = <span class="string">"⭐️"</span></span><br><span class="line"><span class="keyword">let</span> introString = <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">  A long time ago in a galaxy far,</span></span><br><span class="line"><span class="string">  far away....</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  You could write multi-lined strings</span></span><br><span class="line"><span class="string">  without "</span>escaping<span class="string">" single quotes.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  The indentation of the closing quotes</span></span><br><span class="line"><span class="string">       below deside where the text line</span></span><br><span class="line"><span class="string">  begins.</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">  You can even dynamically add values</span></span><br><span class="line"><span class="string">  from properties: \(star)</span></span><br><span class="line"><span class="string">  "</span><span class="string">""</span></span><br><span class="line"><span class="built_in">print</span>(introString) <span class="comment">// prints the string exactly as written above with the value of star</span></span><br></pre></td></tr></table></figure>
+<p>当构建 <code>XML/JSON</code> 信息或者 UI 上的长文字排版时，这是极为有用的。</p>
+<h3 id="One-Sided-Ranges"><a href="#One-Sided-Ranges" class="headerlink" title="One-Sided Ranges"></a>One-Sided Ranges</h3><p>为了减少冗余和提高可读性，标准库现在可以使用半开区间来推断开始和结束的索引<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0172-one-sided-ranges.md" target="_blank" rel="noopener">[SE-0172]</a>。<br>从集合的一个索引到开始或者结束的索引创建一个区间，有了非常便利的方法：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Collection Subscript</span></span><br><span class="line"><span class="keyword">var</span> planets = [<span class="string">"Mercury"</span>, <span class="string">"Venus"</span>, <span class="string">"Earth"</span>, <span class="string">"Mars"</span>, <span class="string">"Jupiter"</span>, <span class="string">"Saturn"</span>, <span class="string">"Uranus"</span>, <span class="string">"Neptune"</span>]</span><br><span class="line"><span class="keyword">let</span> outsideAsteroidBelt = planets[<span class="number">4</span>...] <span class="comment">// Before: planets[4..&lt;planets.endIndex]</span></span><br><span class="line"><span class="keyword">let</span> firstThree = planets[..&lt;<span class="number">4</span>]          <span class="comment">// Before: planets[planets.startIndex..&lt;4]</span></span><br></pre></td></tr></table></figure>
+<p>如你所见，半开区间不需要指明开始或者结束的索引。</p>
+<h4 id="Infinite-Sequence"><a href="#Infinite-Sequence" class="headerlink" title="Infinite Sequence"></a>Infinite Sequence</h4><p>同时允许你从一个可计算的开始索引定义一个无限的 <code>Sequence</code>：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Infinite range: 1...infinity</span></span><br><span class="line"><span class="keyword">var</span> numberedPlanets = <span class="type">Array</span>(<span class="built_in">zip</span>(<span class="number">1</span>..., planets))</span><br><span class="line"><span class="built_in">print</span>(numberedPlanets) <span class="comment">// [(1, "Mercury"), (2, "Venus"), ..., (8, "Neptune")]</span></span><br><span class="line"></span><br><span class="line">planets.append(<span class="string">"Pluto"</span>)</span><br><span class="line">numberedPlanets = <span class="type">Array</span>(<span class="built_in">zip</span>(<span class="number">1</span>..., planets))</span><br><span class="line"><span class="built_in">print</span>(numberedPlanets) <span class="comment">// [(1, "Mercury"), (2, "Venus"), ..., (9, "Pluto")]</span></span><br></pre></td></tr></table></figure>
+<h4 id="Pattern-Matching"><a href="#Pattern-Matching" class="headerlink" title="Pattern Matching"></a>Pattern Matching</h4><p>半开区间另一个很好的用法是模式匹配：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Pattern matching</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">temperature</span><span class="params">(planetNumber: Int)</span></span> &#123;</span><br><span class="line">  <span class="keyword">switch</span> planetNumber &#123;</span><br><span class="line">  <span class="keyword">case</span> ...<span class="number">2</span>: <span class="comment">// anything less than or equal to 2</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Too hot"</span>)</span><br><span class="line">  <span class="keyword">case</span> <span class="number">4</span>...: <span class="comment">// anything greater than or equal to 4</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Too cold"</span>)</span><br><span class="line">  <span class="keyword">default</span>:</span><br><span class="line">    <span class="built_in">print</span>(<span class="string">"Justtttt right"</span>)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">temperature(planetNumber: <span class="number">3</span>) <span class="comment">// Earth</span></span><br></pre></td></tr></table></figure>
+<h3 id="Generic-Subscripts"><a href="#Generic-Subscripts" class="headerlink" title="Generic Subscripts"></a>Generic Subscripts</h3><p>下标是一种直观且重要的访问数据的方式，为了改善效率，现在可以用在普通类型<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0148-generic-subscripts.md" target="_blank" rel="noopener">[SE-0148]</a>：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">GenericDictionary</span>&lt;<span class="title">Key</span>: <span class="title">Hashable</span>, <span class="title">Value</span>&gt; </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">var</span> data: [<span class="type">Key</span>: <span class="type">Value</span>]</span><br><span class="line"></span><br><span class="line">  <span class="keyword">init</span>(data: [<span class="type">Key</span>: <span class="type">Value</span>]) &#123;</span><br><span class="line">    <span class="keyword">self</span>.data = data</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">subscript</span>&lt;<span class="type">T</span>&gt;(key: <span class="type">Key</span>) -&gt; <span class="type">T</span>? &#123;</span><br><span class="line">    <span class="keyword">return</span> data[key] <span class="keyword">as</span>? <span class="type">T</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>例子中的返回值是泛型，你可以在这个泛型中这样使用下标：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Dictionary of type: [String: Any]</span></span><br><span class="line"><span class="keyword">var</span> earthData = <span class="type">GenericDictionary</span>(data: [<span class="string">"name"</span>: <span class="string">"Earth"</span>, <span class="string">"population"</span>: <span class="number">7500000000</span>, <span class="string">"moons"</span>: <span class="number">1</span>])</span><br><span class="line"></span><br><span class="line"><span class="comment">// Automatically infers return type without "as? String"</span></span><br><span class="line"><span class="keyword">let</span> name: <span class="type">String</span>? = earthData[<span class="string">"name"</span>]</span><br><span class="line"></span><br><span class="line"><span class="comment">// Automatically infers return type without "as? Int"</span></span><br><span class="line"><span class="keyword">let</span> population: <span class="type">Int</span>? = earthData[<span class="string">"population"</span>]</span><br></pre></td></tr></table></figure>
+<p>不仅仅是返回值可以是泛型的，下标也可以是泛型的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">extension GenericDictionary &#123;</span><br><span class="line">  subscript&lt;Keys: Sequence&gt;(keys: Keys) -&gt; [Value] where Keys.Iterator.Element == Key &#123;</span><br><span class="line">    var values: [Value] = []</span><br><span class="line">    for key in keys &#123;</span><br><span class="line">      if let value = data[key] &#123;</span><br><span class="line">        values.append(value)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return values</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">// Array subscript value</span><br><span class="line">let nameAndMoons = earthData[[&quot;moons&quot;, &quot;name&quot;]]        // [1, &quot;Earth&quot;]</span><br><span class="line">// Set subscript value</span><br><span class="line">let nameAndMoons2 = earthData[Set([&quot;moons&quot;, &quot;name&quot;])]  // [1, &quot;Earth&quot;]</span><br></pre></td></tr></table></figure>
+<p>在这个例子中你可以看到，传递两个不同的 <code>Sequence</code> 类型（<code>Array</code> 和 <code>Set</code>）会得到各自的 vlaues 组成的数组。</p>
+<h2 id="Miscellaneous"><a href="#Miscellaneous" class="headerlink" title="Miscellaneous"></a>Miscellaneous</h2><p>以上列举的囊括了swift4中最大变化的部分, 现在让我们快速看看其他方面的小改动。</p>
+<h3 id="MutableCollection-swapAt"><a href="#MutableCollection-swapAt" class="headerlink" title="MutableCollection.swapAt(_:_:)"></a>MutableCollection.swapAt(_:_:)</h3><p><code>MutableCollection</code> 现在有 <code>swapAt(_:_:)</code> 方法，正如它的命名，用来交换给定下标的值 <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0173-swap-indices.md" target="_blank" rel="noopener">[SE-0173]</a>：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Very basic bubble sort with an in-place swap</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">bubbleSort</span>&lt;T: Comparable&gt;<span class="params">(<span class="number">_</span> array: [T])</span></span> -&gt; [<span class="type">T</span>] &#123;</span><br><span class="line">  <span class="keyword">var</span> sortedArray = array</span><br><span class="line">  <span class="keyword">for</span> i <span class="keyword">in</span> <span class="number">0</span>..&lt;sortedArray.<span class="built_in">count</span> - <span class="number">1</span> &#123;</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="number">1</span>..&lt;sortedArray.<span class="built_in">count</span> &#123;</span><br><span class="line">      <span class="keyword">if</span> sortedArray[j-<span class="number">1</span>] &gt; sortedArray[j] &#123;</span><br><span class="line">        sortedArray.swapAt(j-<span class="number">1</span>, j) <span class="comment">// New MutableCollection method</span></span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> sortedArray</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">bubbleSort([<span class="number">4</span>, <span class="number">3</span>, <span class="number">2</span>, <span class="number">1</span>, <span class="number">0</span>]) <span class="comment">// [0, 1, 2, 3, 4]</span></span><br></pre></td></tr></table></figure>
+<h3 id="Associated-Type-Constraints"><a href="#Associated-Type-Constraints" class="headerlink" title="Associated Type Constraints"></a>Associated Type Constraints</h3><p>现在你可以使用 <code>where</code> 从句约束相关的类型<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0142-associated-types-constraints.md" target="_blank" rel="noopener">[SE-0142]</a>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">MyProtocol</span> </span>&#123;</span><br><span class="line">  associatedtype <span class="type">Element</span></span><br><span class="line">  associatedtype <span class="type">SubSequence</span> : <span class="type">Sequence</span> <span class="keyword">where</span> <span class="type">SubSequence</span>.<span class="type">Iterator</span>.<span class="type">Element</span> == <span class="type">Iterator</span>.<span class="type">Element</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>通过约束协议，<code>associatedtype</code> 声明可以直接限制它们的值,不必在大费周折。</p>
+<h3 id="Class-and-Protocol-Existential"><a href="#Class-and-Protocol-Existential" class="headerlink" title="Class and Protocol Existential"></a>Class and Protocol Existential</h3><p>最后一个从 <code>Objective-C</code> 搬过来的特性是可以定义一个类型遵守一类或一组协议<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0156-subclass-existentials.md" target="_blank" rel="noopener">[SE-0156]</a>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">protocol</span> <span class="title">MyProtocol</span> </span>&#123; &#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">View</span> </span>&#123; &#125;</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewSubclass</span>: <span class="title">View</span>, <span class="title">MyProtocol</span> </span>&#123; &#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyClass</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> delegate: (<span class="type">View</span> &amp; <span class="type">MyProtocol</span>)?</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> myClass = <span class="type">MyClass</span>()</span><br><span class="line"><span class="comment">//myClass.delegate = View() // error: cannot assign value of type 'View' to type '(View &amp; MyProtocol)?'</span></span><br><span class="line">myClass.delegate = <span class="type">ViewSubclass</span>()</span><br></pre></td></tr></table></figure>
+<h3 id="Limiting-objc-Inference"><a href="#Limiting-objc-Inference" class="headerlink" title="Limiting @objc Inference"></a>Limiting @objc Inference</h3><p>要向 Objective-C 暴露你的 Swift API ，可以使用 <code>@objc</code> 编译标志。在很多情况下编译器可以为你推导。但是大量的推理会导致三个主要的问题:</p>
+<ol>
+<li>可能显著的增加你的二进制文件大小</li>
+<li>有时候无法准确的推倒</li>
+<li>增加构成  Objective-C  方法选择器冲突的风险</li>
+</ol>
+<p>Swift 4 通过限制 <code>@objc</code> 的推导来解决这个问题，这意味着当你需要 <code>Objective-C</code> 所有的动态调度功能是，你主要明确的使用 <code>@objc</code>。<br>举几个你需要修改的示例包括 <code>private</code> 方法，动态声明 和 <code>NSObject</code>  基类的一些方法。</p>
+<h3 id="NSNumber-Bridging"><a href="#NSNumber-Bridging" class="headerlink" title="NSNumber Bridging"></a>NSNumber Bridging</h3><p>在很长时间内，<code>NSNumber</code> 和 Swift numbers 有很多奇怪的行为都困扰这这门语言。Swift 4 干掉了这些bug <a href="https://github.com/apple/swift-evolution/blob/master/proposals/0170-nsnumber_bridge.md" target="_blank" rel="noopener">[SE-0170]</a>：</p>
+<p>这里有一个示范：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> n = <span class="type">NSNumber</span>(value: <span class="number">999</span>)</span><br><span class="line"><span class="keyword">let</span> v = n <span class="keyword">as</span>? <span class="type">UInt8</span> <span class="comment">// Swift 4: nil, Swift 3: 231</span></span><br></pre></td></tr></table></figure>
+<p>在 Swift 3 中会出现的怪异现象，如果数字溢出，它会简单的从0开始。在这个例子中 999% 2 ^ 8 = 231。</p>
+<p>Swift 4 解决了这个问题，只有当强转后的类型可以安全的容纳时，才会返回值。</p>
+<h2 id="Swift-Package-Manager"><a href="#Swift-Package-Manager" class="headerlink" title="Swift Package Manager"></a>Swift Package Manager</h2><p>近几个月，Swift 包管理有许多更新，一些比较大的更新如下：</p>
+<ol>
+<li>从 branch 或者 comint hash 中获取依赖</li>
+<li>对可接受的包更多的支配</li>
+<li>用更为常见的解决方案代替不直观的命令</li>
+<li>能够定义用来编译的 Swift 版本</li>
+<li>为每个 target 指明 source files 路径。</li>
+</ol>
+<p>这些是 SPM 在必经之路上迈出的大步伐，它还有很长的路要走，我们可以通过积极参与提议来帮忙完善它。</p>
+<p>有关最近已解决的提案的详细描述，请查看<a href="https://lists.swift.org/pipermail/swift-build-dev/Week-of-Mon-20170605/001019.html" target="_blank" rel="noopener">Swift 4 Package Manager Update</a></p>
+<h2 id="Still-In-Progress"><a href="#Still-In-Progress" class="headerlink" title="Still In Progress"></a>Still In Progress</h2><p>在撰写本文时，队列中仍有15个接受的提案。如果你想一睹为快，访问<a href="https://apple.github.io/swift-evolution/" target="_blank" rel="noopener">Swift Evolution Proposals</a> 然后用 <code>Accepted</code> 筛选.</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/11/28/Automatic-Reference-Counting/" rel="next" title="Objective-C内存管理知识梳理">
+                <i class="fa fa-chevron-left"></i> Objective-C内存管理知识梳理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/07/07/Mac-PHP-MAMP/" rel="prev" title="macOS下使用MAMP配置多站点PHP集成开发环境">
+                macOS下使用MAMP配置多站点PHP集成开发环境 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jatstar" />
+          <p class="site-author-name" itemprop="name">Jatstar</p>
+           
+              <p class="site-description motion-element" itemprop="description">Write the bug. Change the world</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jatstar" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/Jatstar" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Getting-Started"><span class="nav-number">1.</span> <span class="nav-text">Getting Started</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Migrating-to-Swift-4"><span class="nav-number">2.</span> <span class="nav-text">Migrating to Swift 4</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API-Changes"><span class="nav-number">3.</span> <span class="nav-text">API Changes</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#String"><span class="nav-number">3.1.</span> <span class="nav-text">String</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dictionary-和-Set"><span class="nav-number">3.2.</span> <span class="nav-text">Dictionary 和 Set</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Sequence-Based-Initialization"><span class="nav-number">3.2.1.</span> <span class="nav-text">Sequence Based Initialization</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Duplicate-Key-Resolution"><span class="nav-number">3.2.2.</span> <span class="nav-text">Duplicate Key Resolution</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Filtering"><span class="nav-number">3.2.3.</span> <span class="nav-text">Filtering</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dictionary-Mapping"><span class="nav-number">3.2.4.</span> <span class="nav-text">Dictionary Mapping</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dictionary-Default-Values"><span class="nav-number">3.2.5.</span> <span class="nav-text">Dictionary Default Values</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Dictionary-Grouping"><span class="nav-number">3.2.6.</span> <span class="nav-text">Dictionary Grouping</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Reserving-Capacity"><span class="nav-number">3.2.7.</span> <span class="nav-text">Reserving Capacity</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Private-Access-Modifier"><span class="nav-number">3.2.8.</span> <span class="nav-text">Private Access Modifier</span></a></li></ol></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API-Additions"><span class="nav-number">4.</span> <span class="nav-text">API Additions</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Archival-and-Serialization"><span class="nav-number">4.1.</span> <span class="nav-text">Archival and Serialization</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Key-Value-Coding"><span class="nav-number">4.2.</span> <span class="nav-text">Key-Value Coding</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#One-Sided-Ranges"><span class="nav-number">4.3.</span> <span class="nav-text">One-Sided Ranges</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#Infinite-Sequence"><span class="nav-number">4.3.1.</span> <span class="nav-text">Infinite Sequence</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#Pattern-Matching"><span class="nav-number">4.3.2.</span> <span class="nav-text">Pattern Matching</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generic-Subscripts"><span class="nav-number">4.4.</span> <span class="nav-text">Generic Subscripts</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Miscellaneous"><span class="nav-number">5.</span> <span class="nav-text">Miscellaneous</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#MutableCollection-swapAt"><span class="nav-number">5.1.</span> <span class="nav-text">MutableCollection.swapAt(_:_:)</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Associated-Type-Constraints"><span class="nav-number">5.2.</span> <span class="nav-text">Associated Type Constraints</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Class-and-Protocol-Existential"><span class="nav-number">5.3.</span> <span class="nav-text">Class and Protocol Existential</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Limiting-objc-Inference"><span class="nav-number">5.4.</span> <span class="nav-text">Limiting @objc Inference</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#NSNumber-Bridging"><span class="nav-number">5.5.</span> <span class="nav-text">NSNumber Bridging</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Swift-Package-Manager"><span class="nav-number">6.</span> <span class="nav-text">Swift Package Manager</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Still-In-Progress"><span class="nav-number">7.</span> <span class="nav-text">Still In Progress</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 &mdash; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jatstar</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    Hosted by  <a class="theme-link" href="https://pages.coding.me">Coding Pages</a>
+  </div>
+
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Mist
+    </a>
+  </div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "https://pingjs.qq.com/h5/stats.js?v2.0.4";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500492087");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=57342025";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://jatstar-cn.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://Jatstar.cn/2017/06/19/What-s-New-in-Swift4/';
+          this.page.identifier = '2017/06/19/What-s-New-in-Swift4/';
+          this.page.title = 'What\'s New in Swift4?';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://jatstar-cn.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

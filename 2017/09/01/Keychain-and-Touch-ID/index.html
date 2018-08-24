@@ -1,0 +1,1027 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png">
+
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="Touch ID,Keychain," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Jat's Blog" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="原文 How To Secure iOS User Data: The Keychain and Touch ID使用登录页是一个保护程序中用户数据安全的好方法，你可以使用 iOS 中自带的 Keychain 来确保他们的数据安全。Apple 也提供了另一层保护，那就是 Touch ID 。Touch ID 储存指纹信息在A7以及更新的芯片中的安全区域。  这一起意味着你可以安心的把处理登录信息的">
+<meta name="keywords" content="Touch ID,Keychain">
+<meta property="og:type" content="article">
+<meta property="og:title" content="iOS用户数据安全之--Keychain和Touch ID">
+<meta property="og:url" content="http://Jatstar.cn/2017/09/01/Keychain-and-Touch-ID/index.html">
+<meta property="og:site_name" content="Jat&#39;s Blog">
+<meta property="og:description" content="原文 How To Secure iOS User Data: The Keychain and Touch ID使用登录页是一个保护程序中用户数据安全的好方法，你可以使用 iOS 中自带的 Keychain 来确保他们的数据安全。Apple 也提供了另一层保护，那就是 Touch ID 。Touch ID 储存指纹信息在A7以及更新的芯片中的安全区域。  这一起意味着你可以安心的把处理登录信息的">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://i.loli.net/2017/09/01/59a846c430721.png">
+<meta property="og:image" content="https://i.loli.net/2017/09/03/59ac1600e5737.png">
+<meta property="og:image" content="https://i.loli.net/2017/09/03/59ac216bd425e.png">
+<meta property="og:image" content="https://i.loli.net/2017/09/03/59ac21dd5e550.png">
+<meta property="og:image" content="https://i.loli.net/2017/09/04/59ad78234e254.png">
+<meta property="og:image" content="https://i.loli.net/2017/09/05/59aec4d08ae2e.png">
+<meta property="og:image" content="https://i.loli.net/2017/09/06/59aed19446dd8.png">
+<meta property="og:image" content="https://i.loli.net/2017/09/06/59aedbdb19433.png">
+<meta property="og:image" content="https://ooo.0o0.ooo/2017/09/06/59b00f24c21db.png">
+<meta property="og:image" content="https://ooo.0o0.ooo/2017/09/06/59b010ef8b899.png">
+<meta property="og:image" content="https://ooo.0o0.ooo/2017/09/06/59b011ba96833.png">
+<meta property="og:image" content="https://ooo.0o0.ooo/2017/09/06/59b012106571a.png">
+<meta property="og:image" content="https://ooo.0o0.ooo/2017/09/06/59b01309334ca.png">
+<meta property="og:image" content="https://ooo.0o0.ooo/2017/09/06/59b013a21b0f9.png">
+<meta property="og:image" content="https://ooo.0o0.ooo/2017/09/06/59b014771a2ef.png">
+<meta property="og:image" content="https://ooo.0o0.ooo/2017/09/06/59b0156a99fff.png">
+<meta property="og:updated_time" content="2018-07-13T06:24:13.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="iOS用户数据安全之--Keychain和Touch ID">
+<meta name="twitter:description" content="原文 How To Secure iOS User Data: The Keychain and Touch ID使用登录页是一个保护程序中用户数据安全的好方法，你可以使用 iOS 中自带的 Keychain 来确保他们的数据安全。Apple 也提供了另一层保护，那就是 Touch ID 。Touch ID 储存指纹信息在A7以及更新的芯片中的安全区域。  这一起意味着你可以安心的把处理登录信息的">
+<meta name="twitter:image" content="https://i.loli.net/2017/09/01/59a846c430721.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '2860370',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://Jatstar.cn/2017/09/01/Keychain-and-Touch-ID/"/>
+
+
+
+
+
+  <title>iOS用户数据安全之--Keychain和Touch ID | Jat's Blog</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88751319-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?f1e21a4dabe008718f0175fb3ac63569";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Jat's Blog</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">如果没有见过太阳,我本可以忍受黑暗</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-feed">
+          <a href="/atom.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-rss"></i> <br />
+            
+            RSS
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://Jatstar.cn/2017/09/01/Keychain-and-Touch-ID/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Jatstar">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Jat's Blog">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">iOS用户数据安全之--Keychain和Touch ID</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-09-01T00:55:50+08:00">
+                2017-09-01
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/09/01/Keychain-and-Touch-ID/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2017/09/01/Keychain-and-Touch-ID/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-divider">|</span>
+            <span class="page-pv"><i class="fa fa-file-o"></i>
+            <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
+            </span>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>原文 <a href="https://www.raywenderlich.com/147308/secure-ios-user-data-keychain-touch-id" target="_blank" rel="noopener">How To Secure iOS User Data: The Keychain and Touch ID</a><br>使用登录页是一个保护程序中用户数据安全的好方法，你可以使用 iOS 中自带的 Keychain 来确保他们的数据安全。Apple 也提供了另一层保护，那就是 Touch ID 。Touch ID 储存指纹信息在A7以及更新的芯片中的安全区域。<br>  这一起意味着你可以安心的把处理登录信息的任务交给 Keychain 和（或者） Touch ID。<br><a id="more"></a></p>
+<blockquote>
+<p>Touch ID需要真机调试，Keychain可以在模拟器中使用。</p>
+</blockquote>
+<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><p>请下载这个教程的<a href="https://koenig-media.raywenderlich.com/uploads/2017/04/TouchMeInCD-starter-v1.03-4.zip" target="_blank" rel="noopener">初始项目</a>;</p>
+<p>这是一个基础的记事本应用，使用CoreData来储存用户的笔记。 storyboard上有一个登录页，用户可以填入用户名和密码，剩下的页面也已经彼此连上准备使用。<br>编译运行，可以看到，你的应用看起来是这样的：<br><img src="https://i.loli.net/2017/09/01/59a846c430721.png" alt=""></p>
+<p>现在，点击 Login 按钮轻易的dismisses视图，然后显示笔记列表。你也可以创建一个新的笔记在这个界面。点击 Logout 带你回到登录页。如果应用被切到后台它将立即回到登录页；通过这样的方式保护数据。这是通过设置 info.plist 的 Application does not run in background 为 YES 实现的。<br>在你做任何事之前，你需要修改 Bundle identifier,分配一个适当的 Team 。<br>在 Project Navigator 中选择 TouchMeIn ,然后选择 ToumenIn target 。在 General 一栏中使用自己的域名修改 Bundle Identifier 。使用 reverse-domain-notation 例如  com.raywenderich.TouchMeIn 。<br>然后，从 Team 菜单选择一个 你的开发者账号关联的 team,像这样：<br><img src="https://i.loli.net/2017/09/03/59ac1600e5737.png" alt=""></p>
+<h2 id="Logging-NO-Log-IN"><a href="#Logging-NO-Log-IN" class="headerlink" title="Logging? NO. Log IN."></a>Logging? NO. Log IN.</h2><p>接下来，你将为项目添加验证用户的账号的能力，数据是硬编码的值。</p>
+<p>打开 LoginViewController.swift 然后在 <code>managedObjectContext</code> 下面添加常量：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> usernameKey = <span class="string">"batman"</span></span><br><span class="line"><span class="keyword">let</span> passwordKey = <span class="string">"Hello bruce!"</span></span><br></pre></td></tr></table></figure>
+<p>这是一个简易的硬编码用户名和密码，你将用它来和用户提供的做对比。</p>
+<p>在 <code>loginAction(_:)</code> 下面添加如下方法：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">checkLogin</span><span class="params">(username: String, password: String)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> username == usernameKey &amp;&amp; password == passwordKey</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述方法拿用户输入的账户和你早已定义的常量做对比。</p>
+<p>然后，使用下列代码替换<code>loginAction(_:)</code>方法的内容：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> checkLogin(username: usernameTextField.text!, password: passwordTextField.text!) &#123;</span><br><span class="line">  performSegue(withIdentifier: <span class="string">"dismissLogin"</span>, sender: <span class="keyword">self</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码调用了 <code>checkLogin(username:password:)</code>, 如果账户正确，将 dismisses 登录页。</p>
+<p>编译运行，输入乎用户名 <code>batman</code> 密码 <code>Hello Bruce!</code> 然后点击 Login 按钮，登录页将如预料中一样 dismiss。</p>
+<p>While this simple approach to authentication seems to work, it’s not terribly secure, as credentials stored as strings can easily be compromised by curious hackers with the right tools and training. As a best practice, passwords should NEVER be stored directly in the app.<br>虽然这种简单的认证方法似乎很有效，但它并不是非常安全，因为存储在字符串中的凭证很容易受到好奇的黑客使用合适的工具尝试攻击。作为最佳实践，<em>密码**</em>绝不应该<em>**直接存储在应用程序中</em>。</p>
+<p>接下来一步是添加 Keychain 封装类到你的应用。</p>
+<h2 id="Rapper-No-Wrapper"><a href="#Rapper-No-Wrapper" class="headerlink" title="Rapper? No. Wrapper."></a>Rapper? No. Wrapper.</h2><p>在初始项目中，你可以找到你已经下载的 KeychainPasswordItem.swift 文件，这个类来自 Apple’s sample code 中的 <a href="https://developer.apple.com/library/content/samplecode/GenericKeychain/Introduction/Intro.html#//apple_ref/doc/uid/DTS40007797-Intro-DontLinkElementID_2" target="_blank" rel="noopener"><code>GenericKeychain</code></a>。</p>
+<p>在资源文件夹, 把 KeychainPasswordItem.swift 拖进项目，像这样：<br><img src="https://i.loli.net/2017/09/03/59ac216bd425e.png" alt=""></p>
+<p>在提示中，确认 <code>Copy items if needed</code> 和 <code>TouchMeIn</code> target 是选中的：<br><img src="https://i.loli.net/2017/09/03/59ac21dd5e550.png" alt=""></p>
+<p>编译运行确认没有错误，很好，现在你可以在你的应用中使用 Keychain 了。</p>
+<h2 id="Keychain-Meet-Password-Password-Meet-Keychain"><a href="#Keychain-Meet-Password-Password-Meet-Keychain" class="headerlink" title="Keychain, Meet Password. Password, Meet Keychain"></a>Keychain, Meet Password. Password, Meet Keychain</h2><p>使用 Keychain ，首先你要储存一个用户名密码，然后呢，比对用户提供的账号和 Keychain 的是否相等。</p>
+<p>你需要跟踪用户是否已经创建了账号以便你将登录按钮上的文本从 “Create”改为 “Login” ,你也可以储存用户默认的用户名，这样不用每次都从 Keychain 中访问。</p>
+<p>Keychain 需要一些必要的配置来正确的储存你的应用信息。 你需要配置一个 serviceName 和 一个 可选的 accessGrop 。 你将添加一个结构体来储存他们的值。</p>
+<p>打开 LoginViewController.swift ，在文件的顶端，imports 的下面，加上这个结构体：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Keychain Configuration</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">KeychainConfiguration</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">let</span> serviceName = <span class="string">"TouchMeIn"</span></span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">let</span> accessGroup: <span class="type">String</span>? = <span class="literal">nil</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>然后删除下面的两行：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> usernameKey = <span class="string">"batman"</span></span><br><span class="line"><span class="keyword">let</span> passwordKey = <span class="string">"Hello Bruce!"</span></span><br></pre></td></tr></table></figure>
+<p>在这个地方加入下面的代码： </p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> passwordItems: [<span class="type">KeychainPasswordItem</span>] = []</span><br><span class="line"><span class="keyword">let</span> createLoginButtonTag = <span class="number">0</span></span><br><span class="line"><span class="keyword">let</span> loginButtonTag = <span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="meta">@IBOutlet</span> <span class="keyword">weak</span> <span class="keyword">var</span> loginButton: <span class="type">UIButton</span>!</span><br></pre></td></tr></table></figure>
+<p>passwordItems 一个装 KeychainPasswordItem 类型的数组。接下来的两个常量用来标记这个登录按钮是用来创建账户还是登录；loginButton 的 outlet 将用来根据状态更新相应的标题。</p>
+<p>打开 Main.storyboard 选择 Login View Controller Scene，按住 Ctrl 键同时从 Login View Controller拖一根线到登录按钮，像下面这样：<br><img src="https://i.loli.net/2017/09/04/59ad78234e254.png" alt=""></p>
+<p>在弹出的列表中选择 loginButton ：</p>
+<p><img src="https://i.loli.net/2017/09/05/59aec4d08ae2e.png" alt=""></p>
+<p>接下来当按钮被点击时你需要处理以下两种情况：如果用户没有创建账号，按钮上的文本将显示 “Create”,否则按钮将显示 “Login” 。你还需要对比输入的账户和 keychain 中保存的。</p>
+<p>打开 LoginViewController.swift ，用以下代码覆盖 loginAction(_:)  中的代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">loginAction</span><span class="params">(<span class="number">_</span> sender: AnyObject)</span></span> &#123;</span><br><span class="line">    <span class="comment">// 1</span></span><br><span class="line">    <span class="comment">// Check that text has been entered into both the username and password fields.</span></span><br><span class="line">    <span class="keyword">guard</span></span><br><span class="line">      <span class="keyword">let</span> newAccountName = usernameTextField.text,</span><br><span class="line">      <span class="keyword">let</span> newPassword = passwordTextField.text,</span><br><span class="line">      !newAccountName.isEmpty &amp;&amp;</span><br><span class="line">      !newPassword.isEmpty <span class="keyword">else</span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">let</span> alertView = <span class="type">UIAlertController</span>(title: <span class="string">"Login Problem"</span>,</span><br><span class="line">                                          message: <span class="string">"Wrong username or password."</span>,</span><br><span class="line">                                          preferredStyle:. alert)</span><br><span class="line">        <span class="keyword">let</span> okAction = <span class="type">UIAlertAction</span>(title: <span class="string">"Foiled Again!"</span>, style: .<span class="keyword">default</span>, handler: <span class="literal">nil</span>)</span><br><span class="line">        alertView.addAction(okAction)</span><br><span class="line">        present(alertView, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 2</span></span><br><span class="line">    usernameTextField.resignFirstResponder()</span><br><span class="line">    passwordTextField.resignFirstResponder()</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 3</span></span><br><span class="line">    <span class="keyword">if</span> sender.tag == createLoginButtonTag &#123;</span><br><span class="line">      </span><br><span class="line">      <span class="comment">// 4</span></span><br><span class="line">      <span class="keyword">let</span> hasLoginKey = <span class="type">UserDefaults</span>.standard.bool(forKey: <span class="string">"hasLoginKey"</span>)</span><br><span class="line">      <span class="keyword">if</span> !hasLoginKey &#123;</span><br><span class="line">        <span class="type">UserDefaults</span>.standard.setValue(usernameTextField.text, forKey: <span class="string">"username"</span>)</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      <span class="comment">// 5</span></span><br><span class="line">      <span class="keyword">do</span> &#123;</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// This is a new account, create a new keychain item with the account name.</span></span><br><span class="line">        <span class="keyword">let</span> passwordItem = <span class="type">KeychainPasswordItem</span>(service: <span class="type">KeychainConfiguration</span>.serviceName,</span><br><span class="line">                                                account: newAccountName,</span><br><span class="line">                                                accessGroup: <span class="type">KeychainConfiguration</span>.accessGroup)</span><br><span class="line">        </span><br><span class="line">        <span class="comment">// Save the password for the new item.</span></span><br><span class="line">        <span class="keyword">try</span> passwordItem.savePassword(newPassword)</span><br><span class="line">      &#125; <span class="keyword">catch</span> &#123;</span><br><span class="line">        <span class="built_in">fatalError</span>(<span class="string">"Error updating keychain - \(error)"</span>)</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      <span class="comment">// 6</span></span><br><span class="line">      <span class="type">UserDefaults</span>.standard.<span class="keyword">set</span>(<span class="literal">true</span>, forKey: <span class="string">"hasLoginKey"</span>)</span><br><span class="line">      loginButton.tag = loginButtonTag</span><br><span class="line">      </span><br><span class="line">      performSegue(withIdentifier: <span class="string">"dismissLogin"</span>, sender: <span class="keyword">self</span>)</span><br><span class="line">      </span><br><span class="line">    &#125; <span class="keyword">else</span> <span class="keyword">if</span> sender.tag == loginButtonTag &#123;</span><br><span class="line">      </span><br><span class="line">      <span class="comment">// 7</span></span><br><span class="line">      <span class="keyword">if</span> checkLogin(username: usernameTextField.text!, password: passwordTextField.text!) &#123;</span><br><span class="line">        performSegue(withIdentifier: <span class="string">"dismissLogin"</span>, sender: <span class="keyword">self</span>)</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 8</span></span><br><span class="line">        <span class="keyword">let</span> alertView = <span class="type">UIAlertController</span>(title: <span class="string">"Login Problem"</span>,</span><br><span class="line">                                          message: <span class="string">"Wrong username or password."</span>,</span><br><span class="line">                                          preferredStyle: .alert)</span><br><span class="line">        <span class="keyword">let</span> okAction = <span class="type">UIAlertAction</span>(title: <span class="string">"Foiled Again!"</span>, style: .<span class="keyword">default</span>)</span><br><span class="line">        alertView.addAction(okAction)</span><br><span class="line">        present(alertView, animated: <span class="literal">true</span>, completion: <span class="literal">nil</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>以下是代码的说明：</p>
+<ol>
+<li>如果用户名或者密码中有一项为空，弹出警告，并且 return 。</li>
+<li>Dismiss 键盘，如果它可见的话。</li>
+<li>如果登录按钮的 <code>tag</code> 是 <code>createLoginButtonTag</code>，然后开始创建一个新账户。</li>
+<li>接下来 ，从 <code>UserDefaults</code> 读取 <code>hasLoginKey</code> 的值，它标记了 Keychain 中是否有密码保存。 如果 <code>username</code> 的输入框不用空且 <code>hasLoginKey</code> 标记了没有账户保存，那接下来你要保存 <code>username</code> 到 <code>UserDefaults</code> 。</li>
+<li>使用 <code>serviceName</code> ，<code>newAccountName</code>（username）创建一个 <code>KeychainPasswordItem</code>。使用 Swift 的错误处理，如过遇到问题将 <code>catch</code> 掉。</li>
+<li>然后设置 <code>UserDefaults</code> 中的 <code>hasLoginKey</code> 为 <code>true</code> 来标记密码已保存。设置登录按钮的 <code>tag</code> 为 <code>loginButtonTag</code> 来改变按钮上的文本，它将在用户下次运行应用的时候提示用户登录，而不是创建账户。 最后 dismiss loginView。</li>
+<li>如果用户想登陆 （标记为 <code>loginButtonTag</code>），你可以调用 <code>checkLogin</code> 来验证用户提供的账户，如果正确，dismiss 登录页。</li>
+<li>如果账户验证不通过，弹窗通知用户。</li>
+</ol>
+<p>接下来使用 下列代码替换 <code>checkLogin(username:password:)</code> 方法的实现：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">checkLogin</span><span class="params">(username: String, password: String)</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">guard</span> username == <span class="type">UserDefaults</span>.standard.value(forKey: <span class="string">"username"</span>) <span class="keyword">as</span>? <span class="type">String</span> <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">do</span> &#123;</span><br><span class="line">      <span class="keyword">let</span> passwordItem = <span class="type">KeychainPasswordItem</span>(service: <span class="type">KeychainConfiguration</span>.serviceName,</span><br><span class="line">                                              account: username,</span><br><span class="line">                                              accessGroup: <span class="type">KeychainConfiguration</span>.accessGroup)</span><br><span class="line">      <span class="keyword">let</span> keychainPassword = <span class="keyword">try</span> passwordItem.readPassword()</span><br><span class="line">      <span class="keyword">return</span> password == keychainPassword</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">catch</span> &#123;</span><br><span class="line">      <span class="built_in">fatalError</span>(<span class="string">"Error reading password from keychain - \(error)"</span>)</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="literal">false</span></span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>对比输入的用户名和 <code>UserDefaults</code> 存入的，对比密码和 Keychain 存入的。</p>
+<p>现在你需要根据 <code>hasLoginKey</code> 的状态给按钮设置适当的文本和tag。</p>
+<p>在 <code>viewDidLoad()</code> 中，调用 <code>super</code> 的下面加入：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line">  <span class="keyword">let</span> hasLogin = <span class="type">UserDefaults</span>.standard.bool(forKey: <span class="string">"hasLoginKey"</span>)</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 2</span></span><br><span class="line">  <span class="keyword">if</span> hasLogin &#123;</span><br><span class="line">    loginButton.setTitle(<span class="string">"Login"</span>, <span class="keyword">for</span>: .normal)</span><br><span class="line">    loginButton.tag = loginButtonTag</span><br><span class="line">    createInfoLabel.isHidden = <span class="literal">true</span></span><br><span class="line">  &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">    loginButton.setTitle(<span class="string">"Create"</span>, <span class="keyword">for</span>: .normal)</span><br><span class="line">    loginButton.tag = createLoginButtonTag</span><br><span class="line">    createInfoLabel.isHidden = <span class="literal">false</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 3</span></span><br><span class="line">  <span class="keyword">if</span> <span class="keyword">let</span> storedUsername = <span class="type">UserDefaults</span>.standard.value(forKey: <span class="string">"username"</span>) <span class="keyword">as</span>? <span class="type">String</span> &#123;</span><br><span class="line">    usernameTextField.text = storedUsername</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>序号对应的注释：</p>
+<ol>
+<li>你首先要检查 <code>hasLoginKey</code> 来确认是否已有账户。</li>
+<li>如果有，把按钮文本改为 Login，tag 改为 <code>loginButtonTag</code>，还要隐藏包含来“Start by creating a username and password“提示的 <code>createInfoLabel</code>。如果你没有一个已存的账户，设置按钮的文本为 Create 然后显示 createInfoLabel 给用户。</li>
+<li>最后将 <code>UserDefaults</code> 中储存的用户名回填回输入框，给用户提供一点方便。</li>
+</ol>
+<p>编译运行，输入你想要的用户名密码， 然后点击 <code>Create</code>。</p>
+<p>现在点击 Logout 然后使用相同的用户名和密码进行登录，你将看到笔记列表。</p>
+<p>点击 Logout ，然后再次尝试登录，这次使用不同的密码然后点击登陆，你将看到下面的提示：<br><img src="https://i.loli.net/2017/09/06/59aed19446dd8.png" alt=""></p>
+<p>恭喜，你完成了使用 Keychain 做验证，下一步 Touch ID。</p>
+<h2 id="Touching-You-Touching-Me"><a href="#Touching-You-Touching-Me" class="headerlink" title="Touching You, Touching Me"></a>Touching You, Touching Me</h2><blockquote>
+<p>需设置支持</p>
+</blockquote>
+<p>在这一节，你讲添加 Touch ID 到你的项目配合 Keychain 。 Keychain并不是 Touch ID 正常工作的必要条件，它是一个好的解决方案，当Touch ID失败时或者设备不支持时。</p>
+<p>打开 <code>Images.xcassets</code>。<br>打开 <code>Resources</code> 文件夹，找到 <code>Touch-icon-lg.png</code>,<a href="mailto:``Touch-icon-lg@2x.png" target="_blank" rel="noopener">``Touch-icon-lg@2x.png</a><code>和</code><a href="mailto:Touch-icon-lg@3x.png" target="_blank" rel="noopener">Touch-icon-lg@3x.png</a><code></code> 选中，然后把这三项全部拖入 Images.xcassets 。Xcode 知道他们是相同的图片，只是分辨率不同：<br><img src="https://i.loli.net/2017/09/06/59aedbdb19433.png" alt=""></p>
+<p>打开 <code>Main.storyboard</code> ，从 <code>Object Library</code> 拖动一个 <code>Button</code> 到 <code>Login View Controller Scene</code> ，贴在 <code>Create Info Label</code> 底部,加到 <code>Stack View</code> 中。你可以打开 <code>Document Outline</code> ,打开三角形，确认 <code>Button</code> 在 <code>Stack View</code> 中。它看起来应该是这样的：</p>
+<p><img src="https://ooo.0o0.ooo/2017/09/06/59b00f24c21db.png" alt=""></p>
+<p>如果你需要回顾 Stack Views的知识，可以查阅 Jawwad Ahmad 写的 <a href="https://www.raywenderlich.com/160646/uistackview-tutorial-introducing-stack-views-2" target="_blank" rel="noopener">UIStackView Tutorial: Introducing Stack Views</a></p>
+<p>使用 Attributes Inspector 调整按钮的属性，如下：</p>
+<ul>
+<li>设置 Type 为 Custom 。</li>
+<li>Title 清空。</li>
+<li>设置 Image 为 Touch-icon-lg 。</li>
+</ul>
+<p>完成之后，按钮的属性应该是这样的：<br><img src="https://ooo.0o0.ooo/2017/09/06/59b010ef8b899.png" alt=""></p>
+<p>在确保新加的按钮为选中的状态下，点击 storyboard 底部的 layout bar 上的 Add New Constraints ，设置约束如下：<br><img src="https://ooo.0o0.ooo/2017/09/06/59b011ba96833.png" alt=""></p>
+<ul>
+<li><code>Width</code> 为 66。</li>
+<li><code>Height</code> 为 67。</li>
+</ul>
+<p>界面现在看起来是这样的：<br><img src="https://ooo.0o0.ooo/2017/09/06/59b012106571a.png" alt=""></p>
+<p>仍然是在  Main.storyboard 上 ，打开 Assistant Editor，确保可见。</p>
+<p>现在，按住 Ctrl 键 ，把按钮加到 LoginViewController.swift 中 ，接在其他属性的下面，像这样：</p>
+<p><img src="https://ooo.0o0.ooo/2017/09/06/59b01309334ca.png" alt=""></p>
+<p>在弹框中的 Name项中填入 <code>touchIDButton</code> ，点击 Connect：</p>
+<p><img src="https://ooo.0o0.ooo/2017/09/06/59b013a21b0f9.png" alt=""></p>
+<p>这样创建了一个 outlet ，在设备没有 Touch ID 可用时隐藏按钮。<br>现在你需要给按钮添加事件。<br>按住 Ctrl 拖动相同的按钮到 LoginViewController.swift 中 checkLogin(username:password:):方法的顶部： </p>
+<p><img src="https://ooo.0o0.ooo/2017/09/06/59b014771a2ef.png" alt=""></p>
+<p>在弹窗中，把 Connection 项改为 Action ，设置 Name 为 touchIDLoginAction ,设置 Type 为 UIbutton ,然后点击 Connect:</p>
+<p><img src="https://ooo.0o0.ooo/2017/09/06/59b0156a99fff.png" alt=""></p>
+<p>编译运行确认无误，此时可以在模拟器中运行，因为还没有添加Touch ID 的支持。现在将要开始了。</p>
+<h2 id="Adding-Local-Authentication"><a href="#Adding-Local-Authentication" class="headerlink" title="Adding Local Authentication"></a>Adding Local Authentication</h2><p> 实现 Touch ID 就像 引入  Local Authentication 库和调用几个方法一样简单。<br>  Local Authentication 文档中这样说到：</p>
+<blockquote>
+<p>“The Local Authentication framework provides facilities for requesting authentication from users with specified security policies.”<br>   Local Authentication 库通过指定的安全策略为用户提供方便的请求认证。</p>
+</blockquote>
+<p>本例中指定的策略将是你的用户的手指～</p>
+<p>在 Xcode 的 Project Navigator 鼠标右键点击 TouchMeIn 组文件夹，点击 New File… ，选择 iOS 下的  Swift File ，点击下一步，确认 <code>TouchMeIn</code> target为选中，保存为 TouchIDAuthentication.swift,点击 <code>Create</code>。</p>
+<p>打开 TouchIDAuthentication.swift， 在 引入 Foundation 的下面加加入：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> LocalAuthentication</span><br></pre></td></tr></table></figure>
+<p>创建一个新的类:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">TouchIDAuth</span> </span>&#123;</span><br><span class="line">  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>现在你需要引入  <code>LAcontext</code> 类。<br>在大括号中加入：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> context = <span class="type">LAContext</span>()</span><br></pre></td></tr></table></figure>
+<p>上文引入一个身份验证上下文，它是 Local Authentication 中的主角，现在需要一个方法来看看用户设备或者模拟器中的 Touch ID是否可用。</p>
+<p>创建下面的方法，返回一个 Bool 支持 Touch ID 的话。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">canEvaluatePolicy</span><span class="params">()</span></span> -&gt; <span class="type">Bool</span> &#123;</span><br><span class="line">  <span class="keyword">return</span> context.canEvaluatePolicy(.deviceOwnerAuthenticationWithBiometrics, error: <span class="literal">nil</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>打开 LoginViewController.swift 。</p>
+<p>创建一个属性引入你刚刚创建的类。</p>
+ <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> touchMe = <span class="type">TouchIDAuth</span>()</span><br></pre></td></tr></table></figure>
+<p> 在 <code>viewDidLoad()</code> 中加入:</p>
+ <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">touchIDButton.isHidden = !touchMe.canEvaluatePolicy()</span><br></pre></td></tr></table></figure>
+<p> 这里使用了 <code>canEvaluatePolicy(_:error:)</code> 来检查设备是否可以实现 Touch ID 认证，如果可以，显示Touch ID按钮，否则就隐藏。</p>
+<p> 编译运行在模拟器上，你会看到 Touch ID 的 logo 是隐藏的。现在你再编译在一台可以 Touch ID 的真机上，会发现，按钮时显示的。</p>
+<h2 id="Putting-Touch-ID-to-Work"><a href="#Putting-Touch-ID-to-Work" class="headerlink" title="Putting Touch ID to Work"></a>Putting Touch ID to Work</h2><p>回到 TouchIDAuthentication.swift 添加一个验证用户的方法，在 TouchIDAuth 类的底部，创建以下方法 ：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">authenticateUser</span><span class="params">(completion: @escaping <span class="params">()</span></span></span> -&gt; <span class="type">Void</span>) &#123; <span class="comment">// 1</span></span><br><span class="line">  <span class="comment">// 2</span></span><br><span class="line">  <span class="keyword">guard</span> canEvaluatePolicy() <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 3</span></span><br><span class="line">  context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,</span><br><span class="line">    localizedReason: <span class="string">"Logging in with Touch ID"</span>) &#123; (success, evaluateError) <span class="keyword">in</span></span><br><span class="line">      <span class="comment">// 4</span></span><br><span class="line">      <span class="keyword">if</span> success &#123;</span><br><span class="line">        <span class="type">DispatchQueue</span>.main.async &#123;</span><br><span class="line">          <span class="comment">// User authenticated successfully, take appropriate action</span></span><br><span class="line">          completion()</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// <span class="doctag">TODO:</span> deal with LAError cases</span></span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这里是说明：</p>
+<ol>
+<li><code>authenticateUser(completion:)</code> 的结果将通过闭包返回给 <code>LoginViewController</code>。</li>
+<li>使用  <code>canEvaluatePolicy()</code> 检车设备是否具备 Touch ID 的能力。</li>
+<li>如果设备支持 Touch ID ，你可以使用 <code>evaluatePolicy(_:localizedReason:reply:)</code> 开始验证，也就是提示用户Touch ID验证，当执行完成这个方法回调 block 。 </li>
+<li>在回调的 block 中，先处理成功的情况。 默认情况下，验证发生在 private 线程，你需要回到住现在来更新UI。 如果验证通过，你将 dismisses 登陆页。</li>
+</ol>
+<p>一会儿来处理错误。</p>
+<p>选择 LoginViewController.swift 滑到 <code>touchIDLoginAction(_:)</code> 。<br>添加代码，使它变成这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">touchIDLoginAction</span><span class="params">(<span class="number">_</span> sender: UIButton)</span></span> &#123;    </span><br><span class="line">    touchMe.authenticateUser() &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></span><br><span class="line">      <span class="keyword">self</span>?.performSegue(withIdentifier: <span class="string">"dismissLogin"</span>, sender: <span class="keyword">self</span>)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<p>如果用户验证通过，就可以 dismiss 登陆页了。</p>
+<p>你可以在你的设备上编译运行，但是等等，如果你没有设置 Touch ID ,或者使用的错误的手指？让我们来处理这个问题。</p>
+<p>继续编译运行，看看是否一切正常。</p>
+<h2 id="Dealing-with-Errors"><a href="#Dealing-with-Errors" class="headerlink" title="Dealing with Errors"></a>Dealing with Errors</h2><p>Local Authentication  的重要一步是 响应错误。所以库中引入了一个 LAError 类型。也可能是第二步 <code>canEvaluatePolicy</code> 得到的错误。 你可以弹出警告展示错误信息给用户。你需要从 TouchIDAuth 传递一个消息到 LoginViewController 。幸运的是你有一个完成的回调，你可以使用它传递一个可选的信息。<br>回到 TouchIDAuthentication.swift ，更新  authenticateUser 方法。<br>插入一个可选的 message ，用在得到错误信息时，传递出去。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">authenticateUser</span><span class="params">(completion: @escaping <span class="params">(String?)</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br></pre></td></tr></table></figure>
+<p>找到 <code>//TODO:</code> 替换 ：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line">            <span class="keyword">let</span> message: <span class="type">String</span></span><br><span class="line">            </span><br><span class="line">            <span class="comment">// 2</span></span><br><span class="line">            <span class="keyword">switch</span> evaluateError &#123;</span><br><span class="line">            <span class="comment">// 3</span></span><br><span class="line">            <span class="keyword">case</span> <span class="type">LAError</span>.authenticationFailed?:</span><br><span class="line">              message = <span class="string">"There was a problem verifying your identity."</span></span><br><span class="line">            <span class="keyword">case</span> <span class="type">LAError</span>.userCancel?:</span><br><span class="line">              message = <span class="string">"You pressed cancel."</span></span><br><span class="line">            <span class="keyword">case</span> <span class="type">LAError</span>.userFallback?:</span><br><span class="line">              message = <span class="string">"You pressed password."</span></span><br><span class="line">            <span class="keyword">default</span>:</span><br><span class="line">              message = <span class="string">"Touch ID may not be configured"</span></span><br><span class="line">            &#125;</span><br><span class="line">            <span class="comment">// 4</span></span><br><span class="line">            completion(message)</span><br></pre></td></tr></table></figure>
+<p>说明 ：</p>
+<ol>
+<li>定义一个 string 来接受消息。</li>
+<li>使用 switch 语句为每种错误的情况设置合适的错误提示信息。</li>
+<li>如果任务失败，你显示一个通用的警告框，练习中，你需要对特定的错误代码进行处理，包括：<ul>
+<li><code>LAError.touchIDNotAvailable</code> touch ID 不可用。</li>
+<li><code>LAError.passcodeNotSet</code> 没有启动 Touch ID必要的 passcode。</li>
+<li><code>LAError.touchIDNotEnrolled</code> 没有指纹存储。</li>
+</ul>
+</li>
+<li>在 completion 闭包中传递消息。</li>
+</ol>
+<p>iOS 会在相关的警告中响应 <code>LAError.passcodeNotSet</code> 和 <code>LAError.touchIDNotEnrolled</code>。  </p>
+<p>还有一个错误要处理。<code>guard</code> 中，<code>else</code> 只有return.</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">completion(<span class="string">"Touch ID not available"</span>)</span><br></pre></td></tr></table></figure>
+<p>最后更新一个下成功的情况，这个需要返回 nil, 代表没有错误。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">completion(<span class="literal">nil</span>)</span><br></pre></td></tr></table></figure>
+<p>完成后，方法应该是这样的：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">authenticateUser</span><span class="params">(completion: @escaping <span class="params">(String?)</span></span></span> -&gt; <span class="type">Void</span>) &#123;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">guard</span> canEvaluatePolicy() <span class="keyword">else</span> &#123;</span><br><span class="line">    completion(<span class="string">"Touch ID not available"</span>)</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  context.evaluatePolicy(.deviceOwnerAuthenticationWithBiometrics,</span><br><span class="line">    localizedReason: <span class="string">"Logging in with Touch ID"</span>) &#123; (success, evaluateError) <span class="keyword">in</span></span><br><span class="line">      <span class="keyword">if</span> success &#123;</span><br><span class="line">        <span class="type">DispatchQueue</span>.main.async &#123;</span><br><span class="line">          completion(<span class="literal">nil</span>)</span><br><span class="line">        &#125;</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">                            </span><br><span class="line">        <span class="keyword">let</span> message: <span class="type">String</span></span><br><span class="line">                            </span><br><span class="line">        <span class="keyword">switch</span> evaluateError &#123;</span><br><span class="line">        <span class="keyword">case</span> <span class="type">LAError</span>.authenticationFailed?:</span><br><span class="line">          message = <span class="string">"There was a problem verifying your identity."</span></span><br><span class="line">        <span class="keyword">case</span> <span class="type">LAError</span>.userCancel?:</span><br><span class="line">          message = <span class="string">"You pressed cancel."</span></span><br><span class="line">        <span class="keyword">case</span> <span class="type">LAError</span>.userFallback?:</span><br><span class="line">          message = <span class="string">"You pressed password."</span></span><br><span class="line">        <span class="keyword">default</span>:</span><br><span class="line">          message = <span class="string">"Touch ID may not be configured"</span></span><br><span class="line">        &#125;</span><br><span class="line">        </span><br><span class="line">        completion(message)</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>选择 LoginViewController.swift ，更新  <code>touchIDLoginAction(_:)</code> 成这样：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@IBAction</span> <span class="function"><span class="keyword">func</span> <span class="title">touchIDLoginAction</span><span class="params">(<span class="number">_</span> sender: UIButton)</span></span> &#123;</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// 1</span></span><br><span class="line">    touchMe.authenticateUser() &#123; message <span class="keyword">in</span></span><br><span class="line">      </span><br><span class="line">      <span class="comment">// 2</span></span><br><span class="line">      <span class="keyword">if</span> <span class="keyword">let</span> message = message &#123;</span><br><span class="line">        <span class="comment">// if the completion is not nil show an alert</span></span><br><span class="line">        <span class="keyword">let</span> alertView = <span class="type">UIAlertController</span>(title: <span class="string">"Error"</span>,</span><br><span class="line">                                          message: message,</span><br><span class="line">                                          preferredStyle: .alert)</span><br><span class="line">        <span class="keyword">let</span> okAction = <span class="type">UIAlertAction</span>(title: <span class="string">"Darn!"</span>, style: .<span class="keyword">default</span>)</span><br><span class="line">        alertView.addAction(okAction)</span><br><span class="line">        <span class="keyword">self</span>.present(alertView, animated: <span class="literal">true</span>)</span><br><span class="line">        </span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 3</span></span><br><span class="line">        <span class="keyword">self</span>.performSegue(withIdentifier: <span class="string">"dismissLogin"</span>, sender: <span class="keyword">self</span>)</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>我们添加一个尾随闭包（trailing closure）来传递可选消息，如果 Touch ID 正常工作， 没有消息。</li>
+<li>使用 <code>if let</code> 展开错误消息，显示警告。</li>
+<li>不用修改，如果没有错误消息，你可以 dismiss 登陆页。</li>
+</ol>
+<p>编译运行在一个可以指纹识别的设备上，试一下使用 Touch ID 登陆。</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/Touch-ID/" rel="tag"># Touch ID</a>
+          
+            <a href="/tags/Keychain/" rel="tag"># Keychain</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/08/11/iOS-Advance/" rel="next" title="iOS开发资料整理">
+                <i class="fa fa-chevron-left"></i> iOS开发资料整理
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/10/12/iOS-Notifications/" rel="prev" title="What's New in Notifications(WWDC2015-Session 720)">
+                What's New in Notifications(WWDC2015-Session 720) <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="Jatstar" />
+          <p class="site-author-name" itemprop="name">Jatstar</p>
+           
+              <p class="site-description motion-element" itemprop="description">Write the bug. Change the world</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">19</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">30</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/Jatstar" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/Jatstar" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Getting-Started"><span class="nav-number">1.</span> <span class="nav-text">Getting Started</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Logging-NO-Log-IN"><span class="nav-number">2.</span> <span class="nav-text">Logging? NO. Log IN.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Rapper-No-Wrapper"><span class="nav-number">3.</span> <span class="nav-text">Rapper? No. Wrapper.</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Keychain-Meet-Password-Password-Meet-Keychain"><span class="nav-number">4.</span> <span class="nav-text">Keychain, Meet Password. Password, Meet Keychain</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Touching-You-Touching-Me"><span class="nav-number">5.</span> <span class="nav-text">Touching You, Touching Me</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adding-Local-Authentication"><span class="nav-number">6.</span> <span class="nav-text">Adding Local Authentication</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Putting-Touch-ID-to-Work"><span class="nav-number">7.</span> <span class="nav-text">Putting Touch ID to Work</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dealing-with-Errors"><span class="nav-number">8.</span> <span class="nav-text">Dealing with Errors</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 &mdash; 
+  <span itemprop="copyrightYear">2018</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Jatstar</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    Hosted by  <a class="theme-link" href="https://pages.coding.me">Coding Pages</a>
+  </div>
+
+
+  <span class="post-meta-divider">|</span>
+
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Mist
+    </a>
+  </div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="site-uv">
+      <i class="fa fa-user"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+      
+    </span>
+  
+
+  
+    <span class="site-pv">
+      <i class="fa fa-eye"></i>
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+      
+    </span>
+  
+</div>
+
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "https://pingjs.qq.com/h5/stats.js?v2.0.4";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500492087");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=57342025";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://jatstar-cn.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'http://Jatstar.cn/2017/09/01/Keychain-and-Touch-ID/';
+          this.page.identifier = '2017/09/01/Keychain-and-Touch-ID/';
+          this.page.title = 'iOS用户数据安全之--Keychain和Touch ID';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://jatstar-cn.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
