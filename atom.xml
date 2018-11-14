@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://Jatstar.cn/"/>
-  <updated>2018-08-24T10:59:04.000Z</updated>
+  <updated>2018-11-14T10:21:00.596Z</updated>
   <id>http://Jatstar.cn/</id>
   
   <author>
@@ -15,6 +15,31 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Dell U2518DR 开启HiDPI</title>
+    <link href="http://Jatstar.cn/2018/11/14/Dell-U2518DR-HiDPI/"/>
+    <id>http://Jatstar.cn/2018/11/14/Dell-U2518DR-HiDPI/</id>
+    <published>2018-11-14T08:49:37.000Z</published>
+    <updated>2018-11-14T10:21:00.596Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>自iPhone 4s 上市，到前不久的新款 MacBook Air 发布，苹果产品线正式进入了全线 Retina 的时代。习惯了 Retina 屏的果粉在挑选外接屏幕时，一般都会将最低标准定在 4K 分辨率以保证良好的清晰度。<br>    本人由于家境贫寒，只能用 “三米抗锯齿，五米全高清”来安慰自己，于今年光棍节在二手东购入 Dell U2518DR。后显示效果不佳，查阅各种资料开启 HiDPI 后略有改善，特此记录。</p><h2 id="关闭SIP"><a href="#关闭SIP" class="headerlink" title="关闭SIP"></a>关闭SIP</h2><ol><li>重启Mac，按住 Command + R 进入 Recovery 模式。</li><li>在工具栏的 实用工具 里找到终端 ，打开终端输入 <code>csrutil disable</code> .</li><li>重启Mac, 打开终端后输入 <code>csrutil status</code> 可以看到SIP状态。<code>System Integrity Protection status: disabled.</code>即表示 SIP 成功关闭。</li></ol><h2 id="开启HiDPI"><a href="#开启HiDPI" class="headerlink" title="开启HiDPI"></a>开启HiDPI</h2><ol><li>打开终端运行 <code>sudo defaults write /Library/Preferences/com.apple.windowserver.plist DisplayResolutionEnabled -bool true</code> 开启 HiDPI 模式。</li><li><p>运行 <code>ioreg -lw0 | grep IODisplayPrefsKey</code> 得到如下结果：</p> <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    &quot;IODisplayPrefsKey&quot; = &quot;IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/IGPU@2/AppleIntelFramebuffer@0/display0/AppleBacklightDisplay-610-a019&quot;</span><br><span class="line">&quot;IODisplayPrefsKey&quot; = &quot;IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/PEG0@1/IOPP/GFX0@0/ATY,Berbice@3/AMDFramebufferVIB/display0/AppleDisplay-10ac-413c&quot;</span><br></pre></td></tr></table></figure><p> 记下第二行末的 DisplayVendorId：10ac<br>和DisplayProductID：413c<br><strong>注意，开启HiDPI需要关闭U2518DR的 Smart HDR，否则DisplayProductID将为 413d且下述方法无法开启HiDPI,原因未知</strong></p></li><li><p>打开 <a href="https://comsysto.github.io/Display-Override-PropertyList-File-Parser-and-Generator-with-HiDPI-Support-For-Scaled-Resolutions/" target="_blank" rel="noopener">显示器配置生成网址</a>，DisplayProductName     改为 DELL U2518DR ，DisplayProductID 改为 413c ，DisplayVendorID 改为 10ac ，下载配置文件。</p></li><li><p>运行 <code>sudo cp ~/Downloads/DisplayProductID-413c.plist /System/Library/Displays/Contents/Resources/Overrides/DisplayVendorID-10ac/DisplayProductID-413c</code>替换配置文件。</p></li><li><p>重启电脑，打开 <a href="http://avi.alkalay.net/software/RDM/" target="_blank" rel="noopener">DRM</a>,设置分辨率为 1920x1080。如下图即大功告成， <img src="https://i.loli.net/2018/11/14/5bebf0e8538c1.jpg" alt=""></p></li><li><p>重复关闭 SIP 中的步骤，把步骤2中的 <code>csrutil disable</code> 换成 <code>csrutil enable</code>重新打开 SIP。</p></li></ol><h2 id="SwitchResX"><a href="#SwitchResX" class="headerlink" title="SwitchResX"></a>SwitchResX</h2><p>坦率的讲，如果使用 <a href="www.madrau.com">SwitchResX</a>(需要梯子) 开启 HiDPI会方便很多。网上也有教程自行搜索。但是该软件16刀的售价着实让家境清寒的我负担不起。<br>如果你已经安装SwitchResX ，下面分享一下方法 ，熟悉打开 SwitchResX ，在工具栏找到 Unintsall将其卸载 <img src="https://i.loli.net/2018/11/14/5bebf3dcdb9c0.png" alt="">如果显示器色彩配置以及关于本机显示器中仍有 “SwitchResX4-”字样，删除 <code>/Library/Preferences/.GlobalPreferences.plist</code>重启Mac即可。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;自iPhone 4s 上市，到前不久的新款 MacBook Air 发布，苹果产品线正式进入了全线 Retina 的时代。习惯了 Retin
+      
+    
+    </summary>
+    
+    
+      <category term="外设" scheme="http://Jatstar.cn/tags/%E5%A4%96%E8%AE%BE/"/>
+    
+      <category term="硬件" scheme="http://Jatstar.cn/tags/%E7%A1%AC%E4%BB%B6/"/>
+    
+  </entry>
   
   <entry>
     <title>小米路由器Pro 打开SSH 安装 MT 工具箱</title>
