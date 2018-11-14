@@ -116,7 +116,7 @@
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.loli.net/2018/11/14/5bebf0e8538c1.jpg">
 <meta property="og:image" content="https://i.loli.net/2018/11/14/5bebf3dcdb9c0.png">
-<meta property="og:updated_time" content="2018-11-14T10:21:00.596Z">
+<meta property="og:updated_time" content="2018-11-14T10:47:38.712Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Dell U2518DR 开启HiDPI">
 <meta name="twitter:description" content="前言自iPhone 4s 上市，到前不久的新款 MacBook Air 发布，苹果产品线正式进入了全线 Retina 的时代。习惯了 Retina 屏的果粉在挑选外接屏幕时，一般都会将最低标准定在 4K 分辨率以保证良好的清晰度。    本人由于家境贫寒，只能用 “三米抗锯齿，五米全高清”来安慰自己，于今年光棍节在二手东购入 Dell U2518DR。后显示效果不佳，查阅各种资料开启 HiDPI">
@@ -383,19 +383,24 @@
 <h2 id="开启HiDPI"><a href="#开启HiDPI" class="headerlink" title="开启HiDPI"></a>开启HiDPI</h2><ol>
 <li>打开终端运行 <code>sudo defaults write /Library/Preferences/com.apple.windowserver.plist DisplayResolutionEnabled -bool true</code> 开启 HiDPI 模式。</li>
 <li><p>运行 <code>ioreg -lw0 | grep IODisplayPrefsKey</code> 得到如下结果：</p>
- <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">    &quot;IODisplayPrefsKey&quot; = &quot;IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/IGPU@2/AppleIntelFramebuffer@0/display0/AppleBacklightDisplay-610-a019&quot;</span><br><span class="line">&quot;IODisplayPrefsKey&quot; = &quot;IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/PEG0@1/IOPP/GFX0@0/ATY,Berbice@3/AMDFramebufferVIB/display0/AppleDisplay-10ac-413c&quot;</span><br></pre></td></tr></table></figure>
-<p> 记下第二行末的 DisplayVendorId：10ac<br>和DisplayProductID：413c<br><strong>注意，开启HiDPI需要关闭U2518DR的 Smart HDR，否则DisplayProductID将为 413d且下述方法无法开启HiDPI,原因未知</strong></p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&quot;IODisplayPrefsKey&quot; = &quot;IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/IGPU@2/AppleIntelFramebuffer@0/display0/AppleBacklightDisplay-610-a019&quot;</span><br><span class="line">&quot;IODisplayPrefsKey&quot; = &quot;IOService:/AppleACPIPlatformExpert/PCI0@0/AppleACPIPCI/PEG0@1/IOPP/GFX0@0/ATY,Berbice@3/AMDFramebufferVIB/display0/AppleDisplay-10ac-413c&quot;</span><br></pre></td></tr></table></figure>
+<p> 记下第二行末的 10ac 和 413c 备用，它们分别是 DisplayVendorId 和 DisplayProductID。<br><strong>注意，开启HiDPI需要关闭U2518DR的 Smart HDR，否则DisplayProductID将为 413d且下述方法无法开启HiDPI,原因未知</strong></p>
 </li>
 <li><p>打开 <a href="https://comsysto.github.io/Display-Override-PropertyList-File-Parser-and-Generator-with-HiDPI-Support-For-Scaled-Resolutions/" target="_blank" rel="noopener">显示器配置生成网址</a>，DisplayProductName     改为 DELL U2518DR ，DisplayProductID 改为 413c ，DisplayVendorID 改为 10ac ，下载配置文件。</p>
 </li>
-<li><p>运行 <code>sudo cp ~/Downloads/DisplayProductID-413c.plist /System/Library/Displays/Contents/Resources/Overrides/DisplayVendorID-10ac/DisplayProductID-413c</code>替换配置文件。</p>
+<li><p>打开终端运行 <code>sudo cp ~/Downloads/DisplayProductID-413c.plist /System/Library/Displays/Contents/Resources/Overrides/DisplayVendorID-10ac/DisplayProductID-413c</code>替换配置文件。</p>
 </li>
-<li><p>重启电脑，打开 <a href="http://avi.alkalay.net/software/RDM/" target="_blank" rel="noopener">DRM</a>,设置分辨率为 1920x1080。如下图即大功告成， <img src="https://i.loli.net/2018/11/14/5bebf0e8538c1.jpg" alt=""></p>
+<li><p>重启电脑，安装并打开 <a href="http://avi.alkalay.net/software/RDM/" target="_blank" rel="noopener">DRM</a>,设置分辨率为 1920x1080。如下图即大功告成， <img src="https://i.loli.net/2018/11/14/5bebf0e8538c1.jpg" alt=""></p>
 </li>
 <li><p>重复关闭 SIP 中的步骤，把步骤2中的 <code>csrutil disable</code> 换成 <code>csrutil enable</code>重新打开 SIP。</p>
 </li>
 </ol>
-<h2 id="SwitchResX"><a href="#SwitchResX" class="headerlink" title="SwitchResX"></a>SwitchResX</h2><p>坦率的讲，如果使用 <a href="www.madrau.com">SwitchResX</a>(需要梯子) 开启 HiDPI会方便很多。网上也有教程自行搜索。但是该软件16刀的售价着实让家境清寒的我负担不起。<br>如果你已经安装SwitchResX ，下面分享一下方法 ，熟悉打开 SwitchResX ，在工具栏找到 Unintsall将其卸载 <img src="https://i.loli.net/2018/11/14/5bebf3dcdb9c0.png" alt="">如果显示器色彩配置以及关于本机显示器中仍有 “SwitchResX4-”字样，删除 <code>/Library/Preferences/.GlobalPreferences.plist</code>重启Mac即可。</p>
+<h2 id="SwitchResX"><a href="#SwitchResX" class="headerlink" title="SwitchResX"></a>SwitchResX</h2><p>坦率的讲，如果使用 <a href="www.madrau.com">SwitchResX</a>(需要梯子) 开启 HiDPI会方便很多。网上也有教程自行搜索。但是该软件16刀的售价着实让家境清寒的我负担不起。<br>如果你已经安装SwitchResX，首先打开 SwitchResX ，在工具栏找到 Uninstall 将其卸载 <img src="https://i.loli.net/2018/11/14/5bebf3dcdb9c0.png" alt="">如果显示器色彩配置以及关于本机显示器中仍有 “SwitchResX4-”字样，删除 <code>/Library/Preferences/.GlobalPreferences.plist</code>重启Mac即可。</p>
+<h2 id="后记"><a href="#后记" class="headerlink" title="后记"></a>后记</h2><p>开启Smart HDR后无法打开的HiDPI的原因暂时未知。</p>
+<p>破解 SwitchResX ？ 破解是不可能破解的，这辈子都不可能盗版的。</p>
+<p>付费？即使在是16刀的支持开发者的精神照耀下，开启HiDPI后的2K显示器还有和Retina有着显著的区别。</p>
+<p>所以，有那个闲钱还是攒钱上4K吧！<a href="https://www.apple.com/cn/shop/product/HKMY2CH/A?fnode=52d4e9533d4a9fa4c4b4faeeb91482f1c317d3eaf7dc15cbd0afc2c1437dc3d63d1c8dfb8762e150b7af8b7ac50e9144f2e55c2248329fd0a7248b955eb0d3ed6c09762a0f34b22cc8134195150bd63610511aa9a5e655998df0b1297f788dea" target="_blank" rel="noopener">LG UltraFine 4K</a>真香！</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><p><a href="https://www.zhihu.com/question/35300978" target="_blank" rel="noopener">请教一下如何在 Mac OS X 10.11 下开启自定义 HiDPI？</a><br><a href="https://www.v2ex.com/t/322204" target="_blank" rel="noopener">DELL U2515H（ 2K） 开启 1920X1080 HiDPI</a></p>
 
       
     </div>
@@ -599,7 +604,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关闭SIP"><span class="nav-number">2.</span> <span class="nav-text">关闭SIP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启HiDPI"><span class="nav-number">3.</span> <span class="nav-text">开启HiDPI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SwitchResX"><span class="nav-number">4.</span> <span class="nav-text">SwitchResX</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#前言"><span class="nav-number">1.</span> <span class="nav-text">前言</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#关闭SIP"><span class="nav-number">2.</span> <span class="nav-text">关闭SIP</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#开启HiDPI"><span class="nav-number">3.</span> <span class="nav-text">开启HiDPI</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#SwitchResX"><span class="nav-number">4.</span> <span class="nav-text">SwitchResX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#后记"><span class="nav-number">5.</span> <span class="nav-text">后记</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考链接"><span class="nav-number">6.</span> <span class="nav-text">参考链接</span></a></li></ol></div>
             
 
           </div>
