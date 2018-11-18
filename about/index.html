@@ -389,6 +389,13 @@
           
 
   
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
 
 
 
@@ -742,9 +749,30 @@
 
   
 
-
+  
+    <script id="dsq-count-scr" src="https://jatstar-cn.disqus.com/count.js" async></script>
+  
 
   
+    <script type="text/javascript">
+      var disqus_config = function () {
+        this.page.url = 'https://www.devorz.com/about/index.html';
+        this.page.identifier = 'about/index.html';
+        this.page.title = 'About Me';
+        };
+      function loadComments () {
+        var d = document, s = d.createElement('script');
+        s.src = 'https://jatstar-cn.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      }
+      
+        loadComments();
+      
+    </script>
+  
+
+
 
 
 
