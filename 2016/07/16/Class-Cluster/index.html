@@ -12,7 +12,7 @@
 
 
 
-<html class="theme-next mist" lang="zh-Hans">
+<html class="theme-next mist" lang="zh-CN">
 <head>
   <meta charset="UTF-8"/>
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
@@ -110,10 +110,10 @@
 <meta name="keywords" content="Effective-Objective-C 2.0,Class Clusters,设计模式">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从NSArray看Objective-C中的类族(Class Clusters)和工厂模式">
-<meta property="og:url" content="http://Jatstar.cn/2016/07/16/Class-Cluster/index.html">
+<meta property="og:url" content="https://www.devorz.com/2016/07/16/Class-Cluster/index.html">
 <meta property="og:site_name" content="Jat&#39;s Blog">
 <meta property="og:description" content="如果要继承自NSString，NSArray，NSDictionary，NSNumber，要当心！">
-<meta property="og:locale" content="zh-Hans">
+<meta property="og:locale" content="zh-CN">
 <meta property="og:image" content="https://developer.apple.com/library/ios/documentation/General/Conceptual/CocoaEncyclopedia/Art/cluster3.gif">
 <meta property="og:updated_time" content="2018-07-13T06:24:13.000Z">
 <meta name="twitter:card" content="summary">
@@ -128,7 +128,7 @@
 
 
 
-  <link rel="canonical" href="http://Jatstar.cn/2016/07/16/Class-Cluster/"/>
+  <link rel="canonical" href="https://www.devorz.com/2016/07/16/Class-Cluster/"/>
 
 
 
@@ -199,7 +199,7 @@
 
 </head>
 
-<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
 
   
   
@@ -229,7 +229,7 @@
   </div>
 
   <div class="site-nav-toggle">
-    <button aria-label="Toggle navigation bar">
+    <button aria-label="切换导航栏">
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
       <span class="btn-bar"></span>
@@ -257,7 +257,7 @@
 
     
 
-    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />Home</a>
+    <a href="/archives/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br />首页</a>
 
   </li>
         
@@ -274,7 +274,7 @@
 
     
 
-    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br />Tags</a>
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br />标签</a>
 
   </li>
         
@@ -291,7 +291,7 @@
 
     
 
-    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br />About</a>
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br />关于</a>
 
   </li>
 
@@ -343,7 +343,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://Jatstar.cn/2016/07/16/Class-Cluster/">
+    <link itemprop="mainEntityOfPage" href="https://www.devorz.com/2016/07/16/Class-Cluster/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Jatstar">
@@ -378,14 +378,14 @@
                 <i class="fa fa-calendar-o"></i>
               </span>
               
-                <span class="post-meta-item-text">Posted on</span>
+                <span class="post-meta-item-text">发表于</span>
               
 
               
                 
               
 
-              <time title="Created: 2016-07-16 20:58:26" itemprop="dateCreated datePublished" datetime="2016-07-16T20:58:26+08:00">2016-07-16</time>
+              <time title="创建时间：2016-07-16 20:58:26" itemprop="dateCreated datePublished" datetime="2016-07-16T20:58:26+08:00">2016-07-16</time>
             
 
             
@@ -400,9 +400,9 @@
                   <i class="fa fa-calendar-check-o"></i>
                 </span>
                 
-                  <span class="post-meta-item-text">Edited on</span>
+                  <span class="post-meta-item-text">更新于</span>
                 
-                <time title="Modified: 2018-07-13 14:24:13" itemprop="dateModified" datetime="2018-07-13T14:24:13+08:00">2018-07-13</time>
+                <time title="修改时间：2018-07-13 14:24:13" itemprop="dateModified" datetime="2018-07-13T14:24:13+08:00">2018-07-13</time>
               
             
           </span>
@@ -421,7 +421,7 @@
             <span class="post-meta-item-icon"
             >
             <i class="fa fa-eye"></i>
-             Views:  
+             阅读次数： 
             <span class="busuanzi-value" id="busuanzi_value_page_pv" ></span>
             </span>
           
@@ -503,7 +503,7 @@ Override the superclass’s primitive methods (described below)
 <figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">MonthArray *months = [[MonthArray alloc]init];</span><br><span class="line">    </span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"lastmonth = %@"</span>,months.lastObject);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"firstmonth = %@"</span>,months.firstObject);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Output:</span></span><br><span class="line"><span class="comment">2016-07-17 00:13:05.558 Test[19513:920103] lastmonth = December</span></span><br><span class="line"><span class="comment">2016-07-17 00:13:05.559 Test[19513:920103] firstmonth = January</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 <h2 id="对象的所属类判断"><a href="#对象的所属类判断" class="headerlink" title="对象的所属类判断"></a>对象的所属类判断</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">MonthArray *months = [[MonthArray alloc]init]; </span><br><span class="line"><span class="built_in">BOOL</span> isEqual1 = [months <span class="keyword">class</span>] == [<span class="built_in">NSArray</span> <span class="keyword">class</span>];<span class="comment">//0</span></span><br><span class="line"><span class="built_in">BOOL</span> isEqual2 = [months isKindOfClass:[<span class="built_in">NSArray</span> <span class="keyword">class</span>]];<span class="comment">//1</span></span><br><span class="line"><span class="built_in">BOOL</span> isEqual3 = [months isMemberOfClass:[<span class="built_in">NSArray</span> <span class="keyword">class</span>]];<span class="comment">//0</span></span><br><span class="line">    </span><br><span class="line"><span class="built_in">BOOL</span> isEqual4 = [months <span class="keyword">class</span>] == [MonthArray <span class="keyword">class</span>];<span class="comment">//1</span></span><br><span class="line"><span class="built_in">BOOL</span> isEqual5 = [months isKindOfClass:[MonthArray <span class="keyword">class</span>]];<span class="comment">//1</span></span><br><span class="line"><span class="built_in">BOOL</span> isEqual6 = [months isMemberOfClass:[MonthArray <span class="keyword">class</span>]];<span class="comment">//1</span></span><br><span class="line">    </span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual1);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual2);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual3);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual4);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual5);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual6);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Output:</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.650 Test[19556:924326] 0</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 1</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 0</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 1</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 1</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 1</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure>
 <p><code>isKindOfClass</code>：是否为该类或者该类的子类实例对象；<br><code>isMemberOfClass</code> 是否为该类的实例对象。<br><code>==</code>在此处和<code>isMemberOfClass</code>效果一样。</p>
-<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>当然一般我们不会继承自类族类，扩充方法用Category实现，遇到需要增加实例变量时，可以考虑一下<a href="http://jatstar.cn/2016/07/14/Associative-References/">关联引用</a>。</p>
+<h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>当然一般我们不会继承自类族类，扩充方法用Category实现，遇到需要增加实例变量时，可以考虑一下<a href="http://jatstar.cn/2016/07/14/Associative-References/" target="_blank" rel="noopener">关联引用</a>。</p>
 
       
     </div>
@@ -603,10 +603,10 @@ Override the superclass’s primitive methods (described below)
       
         <ul class="sidebar-nav motion-element">
           <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
-            Table of Contents
+            文章目录
           </li>
           <li class="sidebar-nav-overview" data-target="site-overview-wrap">
-            Overview
+            站点概览
           </li>
         </ul>
       
@@ -627,7 +627,7 @@ Override the superclass’s primitive methods (described below)
                   <a href="/archives">
                 
                     <span class="site-state-item-count">21</span>
-                    <span class="site-state-item-name">posts</span>
+                    <span class="site-state-item-name">日志</span>
                   </a>
                 </div>
               
@@ -714,7 +714,7 @@ Override the superclass’s primitive methods (described below)
                       
                     
                     <span class="site-state-item-count">36</span>
-                    <span class="site-state-item-name">tags</span>
+                    <span class="site-state-item-name">标签</span>
                   </a>
                 </div>
               
@@ -841,14 +841,14 @@ Override the superclass’s primitive methods (described below)
   <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
   
-    <span class="site-uv" title="Total Visitors">
+    <span class="site-uv" title="总访客量">
       <i class="fa fa-user"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
     </span>
   
 
   
-    <span class="site-pv" title="Total Views">
+    <span class="site-pv" title="总访问量">
       <i class="fa fa-eye"></i>
       <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
     </span>

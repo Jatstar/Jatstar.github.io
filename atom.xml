@@ -5,9 +5,9 @@
   <subtitle>如果没有见过太阳,我本可以忍受黑暗</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://Jatstar.cn/"/>
+  <link href="https://www.devorz.com/"/>
   <updated>2018-11-14T10:47:38.712Z</updated>
-  <id>http://Jatstar.cn/</id>
+  <id>https://www.devorz.com/</id>
   
   <author>
     <name>Jatstar</name>
@@ -18,8 +18,8 @@
   
   <entry>
     <title>Dell U2518DR 开启HiDPI</title>
-    <link href="http://Jatstar.cn/2018/11/14/Dell-U2518DR-HiDPI/"/>
-    <id>http://Jatstar.cn/2018/11/14/Dell-U2518DR-HiDPI/</id>
+    <link href="https://www.devorz.com/2018/11/14/Dell-U2518DR-HiDPI/"/>
+    <id>https://www.devorz.com/2018/11/14/Dell-U2518DR-HiDPI/</id>
     <published>2018-11-14T08:49:37.000Z</published>
     <updated>2018-11-14T10:47:38.712Z</updated>
     
@@ -35,16 +35,16 @@
     </summary>
     
     
-      <category term="外设" scheme="http://Jatstar.cn/tags/%E5%A4%96%E8%AE%BE/"/>
+      <category term="外设" scheme="https://www.devorz.com/tags/%E5%A4%96%E8%AE%BE/"/>
     
-      <category term="硬件" scheme="http://Jatstar.cn/tags/%E7%A1%AC%E4%BB%B6/"/>
+      <category term="硬件" scheme="https://www.devorz.com/tags/%E7%A1%AC%E4%BB%B6/"/>
     
   </entry>
   
   <entry>
     <title>小米路由器Pro 打开SSH 安装 MT 工具箱</title>
-    <link href="http://Jatstar.cn/2018/08/24/miwifi-shadowsocks/"/>
-    <id>http://Jatstar.cn/2018/08/24/miwifi-shadowsocks/</id>
+    <link href="https://www.devorz.com/2018/08/24/miwifi-shadowsocks/"/>
+    <id>https://www.devorz.com/2018/08/24/miwifi-shadowsocks/</id>
     <published>2018-08-24T09:56:48.000Z</published>
     <updated>2018-08-24T10:59:04.000Z</updated>
     
@@ -57,20 +57,20 @@
     </summary>
     
     
-      <category term="Shadowsocks" scheme="http://Jatstar.cn/tags/Shadowsocks/"/>
+      <category term="Shadowsocks" scheme="https://www.devorz.com/tags/Shadowsocks/"/>
     
-      <category term="VPN" scheme="http://Jatstar.cn/tags/VPN/"/>
+      <category term="VPN" scheme="https://www.devorz.com/tags/VPN/"/>
     
-      <category term="翻墙" scheme="http://Jatstar.cn/tags/%E7%BF%BB%E5%A2%99/"/>
+      <category term="翻墙" scheme="https://www.devorz.com/tags/%E7%BF%BB%E5%A2%99/"/>
     
-      <category term="SS" scheme="http://Jatstar.cn/tags/SS/"/>
+      <category term="SS" scheme="https://www.devorz.com/tags/SS/"/>
     
   </entry>
   
   <entry>
     <title>折腾树莓派-初次安装</title>
-    <link href="http://Jatstar.cn/2017/12/27/Paspbian-On-macOs/"/>
-    <id>http://Jatstar.cn/2017/12/27/Paspbian-On-macOs/</id>
+    <link href="https://www.devorz.com/2017/12/27/Paspbian-On-macOs/"/>
+    <id>https://www.devorz.com/2017/12/27/Paspbian-On-macOs/</id>
     <published>2017-12-27T14:09:39.000Z</published>
     <updated>2018-07-13T06:24:13.000Z</updated>
     
@@ -86,16 +86,16 @@
     </summary>
     
     
-      <category term="Paspberry Pi" scheme="http://Jatstar.cn/tags/Paspberry-Pi/"/>
+      <category term="Paspberry Pi" scheme="https://www.devorz.com/tags/Paspberry-Pi/"/>
     
-      <category term="树莓派" scheme="http://Jatstar.cn/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
+      <category term="树莓派" scheme="https://www.devorz.com/tags/%E6%A0%91%E8%8E%93%E6%B4%BE/"/>
     
   </entry>
   
   <entry>
     <title>What&#39;s New in Notifications(WWDC2015-Session 720)</title>
-    <link href="http://Jatstar.cn/2017/10/12/iOS-Notifications/"/>
-    <id>http://Jatstar.cn/2017/10/12/iOS-Notifications/</id>
+    <link href="https://www.devorz.com/2017/10/12/iOS-Notifications/"/>
+    <id>https://www.devorz.com/2017/10/12/iOS-Notifications/</id>
     <published>2017-10-12T15:48:01.000Z</published>
     <updated>2018-07-13T06:24:13.000Z</updated>
     
@@ -111,20 +111,20 @@
     </summary>
     
     
-      <category term="APNs" scheme="http://Jatstar.cn/tags/APNs/"/>
+      <category term="APNs" scheme="https://www.devorz.com/tags/APNs/"/>
     
-      <category term="Notification" scheme="http://Jatstar.cn/tags/Notification/"/>
+      <category term="Notification" scheme="https://www.devorz.com/tags/Notification/"/>
     
-      <category term="WWDC" scheme="http://Jatstar.cn/tags/WWDC/"/>
+      <category term="WWDC" scheme="https://www.devorz.com/tags/WWDC/"/>
     
-      <category term="Sission 720" scheme="http://Jatstar.cn/tags/Sission-720/"/>
+      <category term="Sission 720" scheme="https://www.devorz.com/tags/Sission-720/"/>
     
   </entry>
   
   <entry>
     <title>iOS用户数据安全之--Keychain和Touch ID</title>
-    <link href="http://Jatstar.cn/2017/09/01/Keychain-and-Touch-ID/"/>
-    <id>http://Jatstar.cn/2017/09/01/Keychain-and-Touch-ID/</id>
+    <link href="https://www.devorz.com/2017/09/01/Keychain-and-Touch-ID/"/>
+    <id>https://www.devorz.com/2017/09/01/Keychain-and-Touch-ID/</id>
     <published>2017-08-31T16:55:50.000Z</published>
     <updated>2018-07-13T06:24:13.000Z</updated>
     
@@ -137,16 +137,16 @@
     </summary>
     
     
-      <category term="Touch ID" scheme="http://Jatstar.cn/tags/Touch-ID/"/>
+      <category term="Touch ID" scheme="https://www.devorz.com/tags/Touch-ID/"/>
     
-      <category term="Keychain" scheme="http://Jatstar.cn/tags/Keychain/"/>
+      <category term="Keychain" scheme="https://www.devorz.com/tags/Keychain/"/>
     
   </entry>
   
   <entry>
     <title>iOS开发资料整理</title>
-    <link href="http://Jatstar.cn/2017/08/11/iOS-Advance/"/>
-    <id>http://Jatstar.cn/2017/08/11/iOS-Advance/</id>
+    <link href="https://www.devorz.com/2017/08/11/iOS-Advance/"/>
+    <id>https://www.devorz.com/2017/08/11/iOS-Advance/</id>
     <published>2017-08-10T16:45:43.000Z</published>
     <updated>2018-07-13T06:24:13.000Z</updated>
     
@@ -164,14 +164,14 @@
     </summary>
     
     
-      <category term="iOS" scheme="http://Jatstar.cn/tags/iOS/"/>
+      <category term="iOS" scheme="https://www.devorz.com/tags/iOS/"/>
     
   </entry>
   
   <entry>
     <title>macOS下使用MAMP配置多站点PHP集成开发环境</title>
-    <link href="http://Jatstar.cn/2017/07/07/Mac-PHP-MAMP/"/>
-    <id>http://Jatstar.cn/2017/07/07/Mac-PHP-MAMP/</id>
+    <link href="https://www.devorz.com/2017/07/07/Mac-PHP-MAMP/"/>
+    <id>https://www.devorz.com/2017/07/07/Mac-PHP-MAMP/</id>
     <published>2017-07-06T16:07:50.000Z</published>
     <updated>2018-07-13T06:24:13.000Z</updated>
     
@@ -191,18 +191,18 @@
     </summary>
     
     
-      <category term="PHP" scheme="http://Jatstar.cn/tags/PHP/"/>
+      <category term="PHP" scheme="https://www.devorz.com/tags/PHP/"/>
     
-      <category term="MAMP" scheme="http://Jatstar.cn/tags/MAMP/"/>
+      <category term="MAMP" scheme="https://www.devorz.com/tags/MAMP/"/>
     
-      <category term="Memcache" scheme="http://Jatstar.cn/tags/Memcache/"/>
+      <category term="Memcache" scheme="https://www.devorz.com/tags/Memcache/"/>
     
   </entry>
   
   <entry>
     <title>What&#39;s New in Swift4?</title>
-    <link href="http://Jatstar.cn/2017/06/19/What-s-New-in-Swift4/"/>
-    <id>http://Jatstar.cn/2017/06/19/What-s-New-in-Swift4/</id>
+    <link href="https://www.devorz.com/2017/06/19/What-s-New-in-Swift4/"/>
+    <id>https://www.devorz.com/2017/06/19/What-s-New-in-Swift4/</id>
     <published>2017-06-18T17:17:04.000Z</published>
     <updated>2018-07-13T06:24:13.000Z</updated>
     
@@ -215,16 +215,16 @@
     </summary>
     
     
-      <category term="iOS" scheme="http://Jatstar.cn/tags/iOS/"/>
+      <category term="iOS" scheme="https://www.devorz.com/tags/iOS/"/>
     
-      <category term="Swift" scheme="http://Jatstar.cn/tags/Swift/"/>
+      <category term="Swift" scheme="https://www.devorz.com/tags/Swift/"/>
     
   </entry>
   
   <entry>
     <title>Objective-C内存管理知识梳理</title>
-    <link href="http://Jatstar.cn/2016/11/28/Automatic-Reference-Counting/"/>
-    <id>http://Jatstar.cn/2016/11/28/Automatic-Reference-Counting/</id>
+    <link href="https://www.devorz.com/2016/11/28/Automatic-Reference-Counting/"/>
+    <id>https://www.devorz.com/2016/11/28/Automatic-Reference-Counting/</id>
     <published>2016-11-28T15:06:13.000Z</published>
     <updated>2018-07-13T06:24:13.000Z</updated>
     
@@ -237,18 +237,18 @@
     </summary>
     
     
-      <category term="MRC" scheme="http://Jatstar.cn/tags/MRC/"/>
+      <category term="MRC" scheme="https://www.devorz.com/tags/MRC/"/>
     
-      <category term="ARC" scheme="http://Jatstar.cn/tags/ARC/"/>
+      <category term="ARC" scheme="https://www.devorz.com/tags/ARC/"/>
     
-      <category term="内存管理" scheme="http://Jatstar.cn/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
+      <category term="内存管理" scheme="https://www.devorz.com/tags/%E5%86%85%E5%AD%98%E7%AE%A1%E7%90%86/"/>
     
   </entry>
   
   <entry>
     <title>Objective-c中属性名以new开头编译报错</title>
-    <link href="http://Jatstar.cn/2016/10/30/iOS-Property-Prefix-new/"/>
-    <id>http://Jatstar.cn/2016/10/30/iOS-Property-Prefix-new/</id>
+    <link href="https://www.devorz.com/2016/10/30/iOS-Property-Prefix-new/"/>
+    <id>https://www.devorz.com/2016/10/30/iOS-Property-Prefix-new/</id>
     <published>2016-10-29T17:18:40.000Z</published>
     <updated>2018-07-13T06:24:13.000Z</updated>
     
@@ -263,14 +263,14 @@
     </summary>
     
     
-      <category term="Objective-c" scheme="http://Jatstar.cn/tags/Objective-c/"/>
+      <category term="Objective-c" scheme="https://www.devorz.com/tags/Objective-c/"/>
     
   </entry>
   
   <entry>
     <title>Auto Layout总结</title>
-    <link href="http://Jatstar.cn/2016/10/13/AutoLayout/"/>
-    <id>http://Jatstar.cn/2016/10/13/AutoLayout/</id>
+    <link href="https://www.devorz.com/2016/10/13/AutoLayout/"/>
+    <id>https://www.devorz.com/2016/10/13/AutoLayout/</id>
     <published>2016-10-13T14:01:49.000Z</published>
     <updated>2018-07-13T06:24:13.000Z</updated>
     
@@ -287,8 +287,8 @@
   
   <entry>
     <title>Background Execution--iOS后台运行机制总结</title>
-    <link href="http://Jatstar.cn/2016/09/27/iOS-Background-Execution/"/>
-    <id>http://Jatstar.cn/2016/09/27/iOS-Background-Execution/</id>
+    <link href="https://www.devorz.com/2016/09/27/iOS-Background-Execution/"/>
+    <id>https://www.devorz.com/2016/09/27/iOS-Background-Execution/</id>
     <published>2016-09-27T13:32:57.000Z</published>
     <updated>2018-07-13T06:24:13.000Z</updated>
     
@@ -301,16 +301,16 @@
     </summary>
     
     
-      <category term="iOS" scheme="http://Jatstar.cn/tags/iOS/"/>
+      <category term="iOS" scheme="https://www.devorz.com/tags/iOS/"/>
     
-      <category term="Background-Execution" scheme="http://Jatstar.cn/tags/Background-Execution/"/>
+      <category term="Background-Execution" scheme="https://www.devorz.com/tags/Background-Execution/"/>
     
   </entry>
   
   <entry>
     <title>《iOS Animations by Tutorials》笔记</title>
-    <link href="http://Jatstar.cn/2016/08/18/iOS-Animations-by-Tutorials/"/>
-    <id>http://Jatstar.cn/2016/08/18/iOS-Animations-by-Tutorials/</id>
+    <link href="https://www.devorz.com/2016/08/18/iOS-Animations-by-Tutorials/"/>
+    <id>https://www.devorz.com/2016/08/18/iOS-Animations-by-Tutorials/</id>
     <published>2016-08-18T14:43:12.000Z</published>
     <updated>2018-07-13T06:24:13.000Z</updated>
     
@@ -323,14 +323,14 @@
     </summary>
     
     
-      <category term="Animations" scheme="http://Jatstar.cn/tags/Animations/"/>
+      <category term="Animations" scheme="https://www.devorz.com/tags/Animations/"/>
     
   </entry>
   
   <entry>
     <title>iOS开发中的深复制与浅拷贝</title>
-    <link href="http://Jatstar.cn/2016/07/27/iOS%E2%80%94copy/"/>
-    <id>http://Jatstar.cn/2016/07/27/iOS—copy/</id>
+    <link href="https://www.devorz.com/2016/07/27/iOS%E2%80%94copy/"/>
+    <id>https://www.devorz.com/2016/07/27/iOS—copy/</id>
     <published>2016-07-27T15:33:41.000Z</published>
     <updated>2018-07-13T06:24:13.000Z</updated>
     
@@ -343,20 +343,20 @@
     </summary>
     
     
-      <category term="iOS" scheme="http://Jatstar.cn/tags/iOS/"/>
+      <category term="iOS" scheme="https://www.devorz.com/tags/iOS/"/>
     
-      <category term="NSCopying" scheme="http://Jatstar.cn/tags/NSCopying/"/>
+      <category term="NSCopying" scheme="https://www.devorz.com/tags/NSCopying/"/>
     
   </entry>
   
   <entry>
     <title>从NSArray看Objective-C中的类族(Class Clusters)和工厂模式</title>
-    <link href="http://Jatstar.cn/2016/07/16/Class-Cluster/"/>
-    <id>http://Jatstar.cn/2016/07/16/Class-Cluster/</id>
+    <link href="https://www.devorz.com/2016/07/16/Class-Cluster/"/>
+    <id>https://www.devorz.com/2016/07/16/Class-Cluster/</id>
     <published>2016-07-16T12:58:26.000Z</published>
     <updated>2018-07-13T06:24:13.000Z</updated>
     
-    <content type="html"><![CDATA[<p>如果要继承自<code>NSString，NSArray，NSDictionary，NSNumber</code>，要当心！</p><a id="more"></a><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul><li>工厂模式(Factory pattern)：</li></ul><blockquote><p>“Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.”</p></blockquote><p>即：定义一个接口来创建对象，让子类来决定实例哪个类。工厂方法让一个类的实例化延迟到子类中。</p><ul><li>类簇(class cluster)：</li></ul><blockquote><p>Class clusters are a design pattern that the Foundation framework makes extensive use of. Class clusters group a number of private concrete subclasses under a public abstract superclass. The grouping of classes in this way simplifies the publicly visible architecture of an object-oriented framework without reducing its functional richness. Class clusters are based on the Abstract Factory design pattern. -<a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/CocoaEncyclopedia/ClassClusters/ClassClusters.html]" target="_blank" rel="noopener">《Concepts in Objective-C Programming》</a></p></blockquote><p>类簇是Foundation框架中广泛使用的设计模式。类簇将一些私有的、具体的子类组合在一个公共的、抽象的超类下面，以这种方法来组织类可以简化一个面向对象框架的公开架构，而又不减少功能的丰富性。类族是基于抽象工厂模式。<br>这样做的目的是为了接口的简单性。<br>官方文档中举了NSNumber 作为例子.<br><img src="https://developer.apple.com/library/ios/documentation/General/Conceptual/CocoaEncyclopedia/Art/cluster3.gif" alt=""><br>类族模式体现在 使用NSNumber的<code>numberWith…</code>方法时，返回类型并不总是NSNumber类型，例如</p><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSNumber</span> *boolNumber = [<span class="built_in">NSNumber</span> numberWithBool:<span class="literal">true</span>];</span><br><span class="line"><span class="built_in">NSNumber</span> *intNumber = [<span class="built_in">NSNumber</span> numberWithInteger:<span class="number">1</span>];</span><br><span class="line">    </span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"boolNumber class = %@ "</span>,[boolNumber <span class="keyword">class</span>]);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"intNumber class = %@"</span>,[intNumber <span class="keyword">class</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Output:</span></span><br><span class="line"><span class="comment">2016-07-16 23:27:29.834 Test[19339:874972] boolNumber class = __NSCFBoolean </span></span><br><span class="line"><span class="comment">2016-07-16 23:27:29.835 Test[19339:874972] intNumber class = __NSCFNumber</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure><p><code>__NSCFBoolean</code>和<code>__NSCFNumber</code>都是NSNumber的子类，但是使用者不必关心这些子类，只需要把它当作是一个NSNumber对象就行了。这种设计模式保证了接口的简单性。<br>但是当我要创建子类时，麻烦就来了。</p><h2 id="SubClass"><a href="#SubClass" class="headerlink" title="SubClass"></a>SubClass</h2><p>以NSArray为例，<br>如果我创建一个继承自NSArray的MonthArray类</p><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">MonthArray *months = [[MonthArray alloc]init];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,months.count);</span><br><span class="line"></span><br><span class="line"><span class="comment">//上述代码并没有和预想的一样，输出0;而是报了如下错误：</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*Output:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '*** -[NSArray count]: method only defined for abstract class.  Define -[MonthArray count]!'</span></span><br><span class="line"><span class="comment">*** First throw call stack:</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">0   CoreFoundation                      0x00007fff8b4124f2 __exceptionPreprocess + 178</span></span><br><span class="line"><span class="comment">1   libobjc.A.dylib                     0x00007fff93302f7e objc_exception_throw + 48</span></span><br><span class="line"><span class="comment">2   CoreFoundation                      0x00007fff8b47cccf __CFRequireConcreteImplementation + 271</span></span><br><span class="line"><span class="comment">3   CoreFoundation                      0x00007fff8b469d97 -[NSArray count] + 39</span></span><br><span class="line"><span class="comment">4   Test                                0x0000000100000e9e main + 94</span></span><br><span class="line"><span class="comment">5   libdyld.dylib                       0x00007fff89a775ad start + 1</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">libc++abi.dylib: terminating with uncaught exception of type NSException</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure><p>method only defined for abstract class 即：<strong>抽象类仅定义了方法</strong>。</p><p>在<a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/CocoaEncyclopedia/ClassClusters/ClassClusters.html" target="_blank" rel="noopener">官方文档</a>中找到了类簇的子类扩展的方法：</p><pre><code>A True SubclassA new class that you create within a class cluster must:Be a subclass of the cluster’s abstract superclassDeclare its own storageOverride all initializer methods of the superclassOverride the superclass’s primitive methods (described below)</code></pre><p>要做类族的子类，就要做到：</p><ol><li>以公共“抽象”类为父类，比如NSNumber、NSArray等，而非其子类</li><li>提供自定义存储</li><li>重写（覆盖）父类所有初始化方法</li><li>重写父类中“原始”方法</li></ol><p>原始方法(primitive methods)是一个类的接口的基础，以NSArray为例，以它的两个原始方法<code>count</code>和<code>objectAtIndex:</code>为基础，其他派生方法(derived methods)可以派生实现,例如：</p><table><thead><tr><th>Derived Method</th><th>Possible Implementation</th></tr></thead><tbody><tr><td><code>lastObject</code></td><td><code>[self objectAtIndex: ([self count] –1)]</code></td></tr><tr><td><code>containsObject:</code></td><td>递增索引反复调用<code>objectAtIndex</code>，然后对所得到的对象进行等同性判断</td></tr></tbody></table><p>到这里，《Effective-Objective-C 2.0》第9条讲到<code>从类族的公共类抽象基类中继承子类时要当心，若有开发文档，则应首先阅读</code>的原因，已经清晰明了了。<br>示例代码：</p><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.h</span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;foundation/foundation.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MonthArray</span> : <span class="title">NSArray</span></span></span><br><span class="line">+ monthArray;</span><br><span class="line">- (<span class="keyword">unsigned</span>)count;</span><br><span class="line">- (<span class="keyword">id</span>)objectAtIndex:(<span class="keyword">unsigned</span>)index;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.m</span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"MonthArray.h"</span></span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">MonthArray</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> MonthArray *sharedMonthArray = <span class="literal">nil</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *months[] = &#123; <span class="string">@"January"</span>, <span class="string">@"February"</span>, <span class="string">@"March"</span>,</span><br><span class="line">    <span class="string">@"April"</span>, <span class="string">@"May"</span>, <span class="string">@"June"</span>, <span class="string">@"July"</span>, <span class="string">@"August"</span>, <span class="string">@"September"</span>,</span><br><span class="line">    <span class="string">@"October"</span>, <span class="string">@"November"</span>, <span class="string">@"December"</span> &#125;;</span><br><span class="line"></span><br><span class="line">+ monthArray</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!sharedMonthArray) &#123;</span><br><span class="line">        sharedMonthArray = [[MonthArray alloc] init];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sharedMonthArray;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">unsigned</span>)count</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">12</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">id</span>)objectAtIndex:(<span class="keyword">unsigned</span> <span class="keyword">int</span>)index&#123;</span><br><span class="line">    <span class="keyword">if</span> (index &gt;= [<span class="keyword">self</span> count])&#123;</span><br><span class="line">        [<span class="built_in">NSException</span> raise:<span class="built_in">NSRangeException</span> format:<span class="string">@"***%s: index(%d) beyond bounds (%d)"</span>, sel_getName(_cmd), index,[<span class="keyword">self</span> count] - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> months[index];   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">MonthArray *months = [[MonthArray alloc]init];</span><br><span class="line">    </span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"lastmonth = %@"</span>,months.lastObject);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"firstmonth = %@"</span>,months.firstObject);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Output:</span></span><br><span class="line"><span class="comment">2016-07-17 00:13:05.558 Test[19513:920103] lastmonth = December</span></span><br><span class="line"><span class="comment">2016-07-17 00:13:05.559 Test[19513:920103] firstmonth = January</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure><h2 id="对象的所属类判断"><a href="#对象的所属类判断" class="headerlink" title="对象的所属类判断"></a>对象的所属类判断</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">MonthArray *months = [[MonthArray alloc]init]; </span><br><span class="line"><span class="built_in">BOOL</span> isEqual1 = [months <span class="keyword">class</span>] == [<span class="built_in">NSArray</span> <span class="keyword">class</span>];<span class="comment">//0</span></span><br><span class="line"><span class="built_in">BOOL</span> isEqual2 = [months isKindOfClass:[<span class="built_in">NSArray</span> <span class="keyword">class</span>]];<span class="comment">//1</span></span><br><span class="line"><span class="built_in">BOOL</span> isEqual3 = [months isMemberOfClass:[<span class="built_in">NSArray</span> <span class="keyword">class</span>]];<span class="comment">//0</span></span><br><span class="line">    </span><br><span class="line"><span class="built_in">BOOL</span> isEqual4 = [months <span class="keyword">class</span>] == [MonthArray <span class="keyword">class</span>];<span class="comment">//1</span></span><br><span class="line"><span class="built_in">BOOL</span> isEqual5 = [months isKindOfClass:[MonthArray <span class="keyword">class</span>]];<span class="comment">//1</span></span><br><span class="line"><span class="built_in">BOOL</span> isEqual6 = [months isMemberOfClass:[MonthArray <span class="keyword">class</span>]];<span class="comment">//1</span></span><br><span class="line">    </span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual1);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual2);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual3);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual4);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual5);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual6);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Output:</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.650 Test[19556:924326] 0</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 1</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 0</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 1</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 1</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 1</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure><p><code>isKindOfClass</code>：是否为该类或者该类的子类实例对象；<br><code>isMemberOfClass</code> 是否为该类的实例对象。<br><code>==</code>在此处和<code>isMemberOfClass</code>效果一样。</p><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>当然一般我们不会继承自类族类，扩充方法用Category实现，遇到需要增加实例变量时，可以考虑一下<a href="http://jatstar.cn/2016/07/14/Associative-References/">关联引用</a>。</p>]]></content>
+    <content type="html"><![CDATA[<p>如果要继承自<code>NSString，NSArray，NSDictionary，NSNumber</code>，要当心！</p><a id="more"></a><h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><ul><li>工厂模式(Factory pattern)：</li></ul><blockquote><p>“Define an interface for creating an object, but let subclasses decide which class to instantiate. Factory Method lets a class defer instantiation to subclasses.”</p></blockquote><p>即：定义一个接口来创建对象，让子类来决定实例哪个类。工厂方法让一个类的实例化延迟到子类中。</p><ul><li>类簇(class cluster)：</li></ul><blockquote><p>Class clusters are a design pattern that the Foundation framework makes extensive use of. Class clusters group a number of private concrete subclasses under a public abstract superclass. The grouping of classes in this way simplifies the publicly visible architecture of an object-oriented framework without reducing its functional richness. Class clusters are based on the Abstract Factory design pattern. -<a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/CocoaEncyclopedia/ClassClusters/ClassClusters.html]" target="_blank" rel="noopener">《Concepts in Objective-C Programming》</a></p></blockquote><p>类簇是Foundation框架中广泛使用的设计模式。类簇将一些私有的、具体的子类组合在一个公共的、抽象的超类下面，以这种方法来组织类可以简化一个面向对象框架的公开架构，而又不减少功能的丰富性。类族是基于抽象工厂模式。<br>这样做的目的是为了接口的简单性。<br>官方文档中举了NSNumber 作为例子.<br><img src="https://developer.apple.com/library/ios/documentation/General/Conceptual/CocoaEncyclopedia/Art/cluster3.gif" alt=""><br>类族模式体现在 使用NSNumber的<code>numberWith…</code>方法时，返回类型并不总是NSNumber类型，例如</p><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSNumber</span> *boolNumber = [<span class="built_in">NSNumber</span> numberWithBool:<span class="literal">true</span>];</span><br><span class="line"><span class="built_in">NSNumber</span> *intNumber = [<span class="built_in">NSNumber</span> numberWithInteger:<span class="number">1</span>];</span><br><span class="line">    </span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"boolNumber class = %@ "</span>,[boolNumber <span class="keyword">class</span>]);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"intNumber class = %@"</span>,[intNumber <span class="keyword">class</span>]);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Output:</span></span><br><span class="line"><span class="comment">2016-07-16 23:27:29.834 Test[19339:874972] boolNumber class = __NSCFBoolean </span></span><br><span class="line"><span class="comment">2016-07-16 23:27:29.835 Test[19339:874972] intNumber class = __NSCFNumber</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure><p><code>__NSCFBoolean</code>和<code>__NSCFNumber</code>都是NSNumber的子类，但是使用者不必关心这些子类，只需要把它当作是一个NSNumber对象就行了。这种设计模式保证了接口的简单性。<br>但是当我要创建子类时，麻烦就来了。</p><h2 id="SubClass"><a href="#SubClass" class="headerlink" title="SubClass"></a>SubClass</h2><p>以NSArray为例，<br>如果我创建一个继承自NSArray的MonthArray类</p><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">MonthArray *months = [[MonthArray alloc]init];</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%@"</span>,months.count);</span><br><span class="line"></span><br><span class="line"><span class="comment">//上述代码并没有和预想的一样，输出0;而是报了如下错误：</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/*Output:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">*** Terminating app due to uncaught exception 'NSInvalidArgumentException', reason: '*** -[NSArray count]: method only defined for abstract class.  Define -[MonthArray count]!'</span></span><br><span class="line"><span class="comment">*** First throw call stack:</span></span><br><span class="line"><span class="comment">(</span></span><br><span class="line"><span class="comment">0   CoreFoundation                      0x00007fff8b4124f2 __exceptionPreprocess + 178</span></span><br><span class="line"><span class="comment">1   libobjc.A.dylib                     0x00007fff93302f7e objc_exception_throw + 48</span></span><br><span class="line"><span class="comment">2   CoreFoundation                      0x00007fff8b47cccf __CFRequireConcreteImplementation + 271</span></span><br><span class="line"><span class="comment">3   CoreFoundation                      0x00007fff8b469d97 -[NSArray count] + 39</span></span><br><span class="line"><span class="comment">4   Test                                0x0000000100000e9e main + 94</span></span><br><span class="line"><span class="comment">5   libdyld.dylib                       0x00007fff89a775ad start + 1</span></span><br><span class="line"><span class="comment">)</span></span><br><span class="line"><span class="comment">libc++abi.dylib: terminating with uncaught exception of type NSException</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure><p>method only defined for abstract class 即：<strong>抽象类仅定义了方法</strong>。</p><p>在<a href="https://developer.apple.com/library/ios/documentation/General/Conceptual/CocoaEncyclopedia/ClassClusters/ClassClusters.html" target="_blank" rel="noopener">官方文档</a>中找到了类簇的子类扩展的方法：</p><pre><code>A True SubclassA new class that you create within a class cluster must:Be a subclass of the cluster’s abstract superclassDeclare its own storageOverride all initializer methods of the superclassOverride the superclass’s primitive methods (described below)</code></pre><p>要做类族的子类，就要做到：</p><ol><li>以公共“抽象”类为父类，比如NSNumber、NSArray等，而非其子类</li><li>提供自定义存储</li><li>重写（覆盖）父类所有初始化方法</li><li>重写父类中“原始”方法</li></ol><p>原始方法(primitive methods)是一个类的接口的基础，以NSArray为例，以它的两个原始方法<code>count</code>和<code>objectAtIndex:</code>为基础，其他派生方法(derived methods)可以派生实现,例如：</p><table><thead><tr><th>Derived Method</th><th>Possible Implementation</th></tr></thead><tbody><tr><td><code>lastObject</code></td><td><code>[self objectAtIndex: ([self count] –1)]</code></td></tr><tr><td><code>containsObject:</code></td><td>递增索引反复调用<code>objectAtIndex</code>，然后对所得到的对象进行等同性判断</td></tr></tbody></table><p>到这里，《Effective-Objective-C 2.0》第9条讲到<code>从类族的公共类抽象基类中继承子类时要当心，若有开发文档，则应首先阅读</code>的原因，已经清晰明了了。<br>示例代码：</p><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.h</span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;foundation/foundation.h&gt;</span></span></span><br><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">MonthArray</span> : <span class="title">NSArray</span></span></span><br><span class="line">+ monthArray;</span><br><span class="line">- (<span class="keyword">unsigned</span>)count;</span><br><span class="line">- (<span class="keyword">id</span>)objectAtIndex:(<span class="keyword">unsigned</span>)index;</span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//.m</span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"MonthArray.h"</span></span></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">MonthArray</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> MonthArray *sharedMonthArray = <span class="literal">nil</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="built_in">NSString</span> *months[] = &#123; <span class="string">@"January"</span>, <span class="string">@"February"</span>, <span class="string">@"March"</span>,</span><br><span class="line">    <span class="string">@"April"</span>, <span class="string">@"May"</span>, <span class="string">@"June"</span>, <span class="string">@"July"</span>, <span class="string">@"August"</span>, <span class="string">@"September"</span>,</span><br><span class="line">    <span class="string">@"October"</span>, <span class="string">@"November"</span>, <span class="string">@"December"</span> &#125;;</span><br><span class="line"></span><br><span class="line">+ monthArray</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">if</span> (!sharedMonthArray) &#123;</span><br><span class="line">        sharedMonthArray = [[MonthArray alloc] init];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> sharedMonthArray;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">- (<span class="keyword">unsigned</span>)count</span><br><span class="line">&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">12</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">-(<span class="keyword">id</span>)objectAtIndex:(<span class="keyword">unsigned</span> <span class="keyword">int</span>)index&#123;</span><br><span class="line">    <span class="keyword">if</span> (index &gt;= [<span class="keyword">self</span> count])&#123;</span><br><span class="line">        [<span class="built_in">NSException</span> raise:<span class="built_in">NSRangeException</span> format:<span class="string">@"***%s: index(%d) beyond bounds (%d)"</span>, sel_getName(_cmd), index,[<span class="keyword">self</span> count] - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> months[index];   </span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">@end</span></span><br></pre></td></tr></table></figure><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">MonthArray *months = [[MonthArray alloc]init];</span><br><span class="line">    </span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"lastmonth = %@"</span>,months.lastObject);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"firstmonth = %@"</span>,months.firstObject);</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Output:</span></span><br><span class="line"><span class="comment">2016-07-17 00:13:05.558 Test[19513:920103] lastmonth = December</span></span><br><span class="line"><span class="comment">2016-07-17 00:13:05.559 Test[19513:920103] firstmonth = January</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure><h2 id="对象的所属类判断"><a href="#对象的所属类判断" class="headerlink" title="对象的所属类判断"></a>对象的所属类判断</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">MonthArray *months = [[MonthArray alloc]init]; </span><br><span class="line"><span class="built_in">BOOL</span> isEqual1 = [months <span class="keyword">class</span>] == [<span class="built_in">NSArray</span> <span class="keyword">class</span>];<span class="comment">//0</span></span><br><span class="line"><span class="built_in">BOOL</span> isEqual2 = [months isKindOfClass:[<span class="built_in">NSArray</span> <span class="keyword">class</span>]];<span class="comment">//1</span></span><br><span class="line"><span class="built_in">BOOL</span> isEqual3 = [months isMemberOfClass:[<span class="built_in">NSArray</span> <span class="keyword">class</span>]];<span class="comment">//0</span></span><br><span class="line">    </span><br><span class="line"><span class="built_in">BOOL</span> isEqual4 = [months <span class="keyword">class</span>] == [MonthArray <span class="keyword">class</span>];<span class="comment">//1</span></span><br><span class="line"><span class="built_in">BOOL</span> isEqual5 = [months isKindOfClass:[MonthArray <span class="keyword">class</span>]];<span class="comment">//1</span></span><br><span class="line"><span class="built_in">BOOL</span> isEqual6 = [months isMemberOfClass:[MonthArray <span class="keyword">class</span>]];<span class="comment">//1</span></span><br><span class="line">    </span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual1);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual2);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual3);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual4);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual5);</span><br><span class="line"><span class="built_in">NSLog</span>(<span class="string">@"%d"</span>,isEqual6);</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">Output:</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.650 Test[19556:924326] 0</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 1</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 0</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 1</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 1</span></span><br><span class="line"><span class="comment">2016-07-17 00:17:01.651 Test[19556:924326] 1</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure><p><code>isKindOfClass</code>：是否为该类或者该类的子类实例对象；<br><code>isMemberOfClass</code> 是否为该类的实例对象。<br><code>==</code>在此处和<code>isMemberOfClass</code>效果一样。</p><h2 id="最后"><a href="#最后" class="headerlink" title="最后"></a>最后</h2><p>当然一般我们不会继承自类族类，扩充方法用Category实现，遇到需要增加实例变量时，可以考虑一下<a href="http://jatstar.cn/2016/07/14/Associative-References/" target="_blank" rel="noopener">关联引用</a>。</p>]]></content>
     
     <summary type="html">
     
@@ -365,18 +365,18 @@
     </summary>
     
     
-      <category term="Effective-Objective-C 2.0" scheme="http://Jatstar.cn/tags/Effective-Objective-C-2-0/"/>
+      <category term="Effective-Objective-C 2.0" scheme="https://www.devorz.com/tags/Effective-Objective-C-2-0/"/>
     
-      <category term="Class Clusters" scheme="http://Jatstar.cn/tags/Class-Clusters/"/>
+      <category term="Class Clusters" scheme="https://www.devorz.com/tags/Class-Clusters/"/>
     
-      <category term="设计模式" scheme="http://Jatstar.cn/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+      <category term="设计模式" scheme="https://www.devorz.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
     
   </entry>
   
   <entry>
     <title>Objective-C Associative-References(关联引用)</title>
-    <link href="http://Jatstar.cn/2016/07/14/Associative-References/"/>
-    <id>http://Jatstar.cn/2016/07/14/Associative-References/</id>
+    <link href="https://www.devorz.com/2016/07/14/Associative-References/"/>
+    <id>https://www.devorz.com/2016/07/14/Associative-References/</id>
     <published>2016-07-14T15:55:11.000Z</published>
     <updated>2018-07-13T06:24:13.000Z</updated>
     
@@ -389,18 +389,18 @@
     </summary>
     
     
-      <category term="runtime" scheme="http://Jatstar.cn/tags/runtime/"/>
+      <category term="runtime" scheme="https://www.devorz.com/tags/runtime/"/>
     
   </entry>
   
   <entry>
     <title>《Effective-Objective-C 2.0》笔记</title>
-    <link href="http://Jatstar.cn/2016/07/10/Effective-Objective-C-2-0/"/>
-    <id>http://Jatstar.cn/2016/07/10/Effective-Objective-C-2-0/</id>
+    <link href="https://www.devorz.com/2016/07/10/Effective-Objective-C-2-0/"/>
+    <id>https://www.devorz.com/2016/07/10/Effective-Objective-C-2-0/</id>
     <published>2016-07-10T14:04:52.000Z</published>
     <updated>2018-07-13T06:24:13.000Z</updated>
     
-    <content type="html"><![CDATA[<p>中文译名《编写高质量iOS与OS X代码的52个有效方法》。<br>关于这本书的一些笔记。<br><a id="more"></a></p><h2 id="熟悉Objective-C"><a href="#熟悉Objective-C" class="headerlink" title="熟悉Objective-C"></a>熟悉Objective-C</h2><ul><li><p>起源</p><ol><li>由消息型语言鼻祖<a href="http://baike.baidu.com/view/76337.htm" target="_blank" rel="noopener">Smalltalk</a>演化而来。是C语言的超集。</li><li>与函数式语言关键区别：消息结构的语言，运行时所执行的代码由运行环境决定(<a href="http://baike.baidu.com/link?url=Vh0w0LkFM5iY7JITi01r4m7wzruY5L2nxKTMUe60sT7sVj_YGdqnfI1Ja7RCowAVErzRYKKWUhu-T8GKD5fAIq" target="_blank" rel="noopener">动态绑定</a>)；函数调用的语言，由编译器决定。</li><li><code>NSString *someString</code> 中 someString为指向NSString 的指针。<code>Type *</code> 声明的对象总是被分配的<code>堆区(heap space)</code> 中，而绝不可能分配的<code>栈区(stack)</code>。</li><li>如果只需保存<code>int float double char</code> 等<code>非对象类型（nonoobject type）</code> ，使用C结构体(如<code>CGRect</code>)比使用OC对象性能更优，因为创建OC对象需要分配及释放堆区内存等额外开销。 </li></ol></li><li><p>在类的头文件中尽量少引入其他头文件</p><ol><li>头文件在类的头文件中，少引入头文件，使用@Class 向前声明即可。 然后在实现文件中再引入那些类的头文件。这样可以降低类之间的耦合。</li><li>无法使用向前声明的情况，如果 引入当前类遵守的某一项协议，此时把协议单独放下一个头文件中，再将其引入。</li></ol></li><li><p>多用字面量语法，少用与之等价的方法。</p></li></ul><ol><li>举个🌰:</li></ol><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSNumber</span> *intNumber = @<span class="number">1</span>;</span><br><span class="line"><span class="built_in">NSNumber</span> *floatNumber = @<span class="number">2.5</span>f;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSArray</span> *namesArray = @[<span class="string">@"Jat"</span>,<span class="string">@"Jay"</span>,<span class="string">@"Vae"</span>];</span><br><span class="line"><span class="built_in">NSString</span> *myName = namesArray[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSDictionary</span> *personData = @&#123;<span class="string">@"ChineseName"</span>:<span class="string">@"张建宇"</span>,</span><br><span class="line"><span class="string">@"EnglishName"</span>:<span class="string">@"Jat"</span>,</span><br><span class="line"><span class="string">@"age"</span>:<span class="string">@"23"</span>&#125;</span><br><span class="line">Number *myAge = personData[<span class="string">@"age"</span>];</span><br><span class="line"><span class="comment">//通过字面量创建的数组或者字典 ，如果值中有nil，会抛出异常。</span></span><br></pre></td></tr></table></figure><ul><li><p>多用类型常量，少用＃define 预处理指令。</p><ol><li>＃define定义的出来的常量，不包含类型信息，编译器需要再编译前执行查找替换，会增加编译时间。</li><li>只在当前类使用的常量，可以使用 <code>static const</code> 在.m中定义。</li><li>在头文件中使用<code>extern</code>来声明全局变量,并在相关实现文件中定义其值。命名时，通常使用于是相关的类名最为前缀。如<code>UITextFieldTextDidBeginEditingNotification</code> 。</li><li><a href="http://jatstar.cn/2016/01/10/const-static-extern/">《iOS开发中 const,static,extern用法总结》</a></li></ol></li><li><p>使用枚举来表示状态，选项，状态码</p><ol><li>易懂的枚举名可以提高代码的可读性。</li><li>选项为多选时，使用二进制表示枚举值，以便通过按位或将其组合起来。🌰：<code>UIInterfaceOrientationMask</code>。</li><li>switch语句中，不要实现default分支。这样加入新的枚举之后，编译器会提示：switch语句没有处理所有枚举值。</li></ol></li></ul><h2 id="消息／对象／运行时"><a href="#消息／对象／运行时" class="headerlink" title="消息／对象／运行时"></a>消息／对象／运行时</h2><ul><li><p>理解“属性” 这一概念 <a href="http://jatstar.cn/2016/01/07/Objective-C-property/">Objective-C语法@property详解</a></p></li><li><p>在对象内部尽量直接访问实例变量。</p><ol><li>直接访问实例变量不经过方法派发，比点语法快。</li><li>⚠️直接访问copy修饰的属性，不会掉用setter方法，所以不会拷贝该属性。</li><li>⚠️不会触发KVO通知。是否会产生问题，视情况而定。</li><li>初始化方法和dealloc方法中，总是应该直接访问。</li><li>⚠️注意考虑懒加载的情况下，要使用点语法。</li></ol></li><li><p>理解“对象等同性”这一概念。</p><ol><li><code>==</code>比较的是指针地址是否一样。</li><li>特有的等同性判断方法，如<code>isEqualToString</code>比<code>isEqual</code>快一些。</li><li>相同的对象必须具有相同的哈希码，但是哈希码相同的对象未必相同。</li><li>不必逐条比较每个属性的哈希码，依情况，使用速度快，碰撞率低的算法。</li></ol></li><li><p>以“类族模式”隐藏实现细节</p><ol><li>例如<code>UIButton</code> 中的 <code>+ (instancetype)buttonWithType:(UIButtonType)buttonType</code>.</li><li>可以把实现细节隐藏在一个公共的接口后面。</li></ol></li><li><p><a href="http://jatstar.cn/2016/07/14/Associative-References/">在既有类中使用关联对象存放自定义数据</a></p></li><li><p>理解objc_msgSend 的作用</p><ol><li><code>Objective-c</code> “动态绑定(dynamic binding)” 的特性使得所要调用的函数直到运行时才能确定。通过<code>动态消息派发系统(dynamic message dicpatch system)</code>来查出对应的方法并执行。</li><li>消息由接收者(receiver)，选择子(selecter)，以及参数构成。调用方法实际上相当于在给对象发送消息。</li></ol></li><li><p>理解消息转发机制 //TODO： 待续</p></li><li><p>用<code>方法调配技术</code>调试<code>黑盒方法</code> </p></li></ul><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Category</span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"NSString+Test.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;objc/runtime.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">NSString</span> (<span class="title">Test</span>)</span></span><br><span class="line">- (<span class="built_in">NSString</span>*)eoc_myLowercaseString &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *lowercase = [<span class="keyword">self</span> eoc_myLowercaseString];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@ =&gt; %@"</span>, <span class="keyword">self</span>, lowercase);</span><br><span class="line">    <span class="keyword">return</span> lowercase;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 不会死循环，因为eoc_myLowercaseString与lowercaseString方法互换了，运行时期间eoc_myLowercaseString选择子实际上对应的原有的lowercaseString方法实现。</span></span><br><span class="line">+ (<span class="keyword">void</span>)load&#123;</span><br><span class="line">    Method originalMethod = class_getInstanceMethod([<span class="built_in">NSString</span> <span class="keyword">class</span>],<span class="keyword">@selector</span>(lowercaseString));</span><br><span class="line">    Method swappedMethod = class_getInstanceMethod([<span class="built_in">NSString</span> <span class="keyword">class</span>],<span class="keyword">@selector</span>(eoc_myLowercaseString));</span><br><span class="line">    method_exchangeImplementations(originalMethod, swappedMethod);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span> </span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">测试一下：</span></span><br><span class="line"><span class="comment">NSString *string = @"Hello World";</span></span><br><span class="line"><span class="comment">NSString *textString = [string lowercaseString];</span></span><br><span class="line"><span class="comment">Output:</span></span><br><span class="line"><span class="comment">Hello World =&gt; hello world</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure><ul><li>理解<code>类对象</code>的用意 //TODO: 待续</li></ul><h2 id="接口与API设计"><a href="#接口与API设计" class="headerlink" title="接口与API设计"></a>接口与API设计</h2><ul><li>使用前缀避免命名空间冲突。</li><li><p>提供<code>全能初始化方法</code></p><ol><li>提供一个全能初始化方法，并与文档中指明，其他初始化方法均调用此方法。</li><li>全能初始化方法与超类不同时，应该重写，冲突时，应该加上抛异常机制提示。</li></ol></li><li><p>实现<code>description</code>方法</p><ol><li>自定义类，覆写<code>description</code>方法，返回的字符串，NSLog时的显示该字符串；</li><li>重写<code>debugDescription</code>，改变调试控制台输出信息，默认为<code>description</code>方法的返回值。</li></ol></li><li><p>尽量使用不可变对象。</p></li><li>使用清晰而且协调的命名方式</li><li>为私有方法名加前缀<ol><li>给私有方法名加上前缀(虽然我感觉没必要～也没见过知名开源项目有加；但是爱老婆说按规范要加)</li><li>不要使用下划线做私有方法的前缀，因为这种做法是预留给苹果的。</li></ol></li><li>理解Objective-C错误模型<ol><li>只有发生使整个应用崩溃的严重错误时，才之用异常。</li><li>不那么严重的错误，可以指派委托方法来处理错误，也可以把错误信息放在NSError里，由NSLog输出。 </li></ol></li><li>理解NSCoding协议。<ol><li>想令对象具有拷贝功能，需实现NSCoying协议；如果对象有可变版本，还需要实现NSMutableCopying协议。</li><li>浅拷贝之后的内容与原始内容指针地址相同，深拷贝之后的内容指向原始内容相关对象的一份拷贝。(深拷贝会逐个元素发送Copy消息，用拷贝得到元素创建Set);</li></ol></li><li>通过委托与数据源协议进行对象间的通信。<ol><li><code>@property(nonatomic,weak)id&lt;ClassNameDelegate&gt; delegate</code> 用weak修饰，，防止循环引用(retain cycle);</li></ol></li><li>将类的实现代码分散到便于管理的数个分类之中。//易于管理</li><li>总是为第三方类的分类名称增加前缀。</li><li>勿在分类中声明属性。<ol><li>封装数据所用的全部属性都定义在主接口里。</li><li>关联对象可以解决分类不能合成实例变量的问题。//本书作者认为此方法内存管理上容易出错，不是很推荐。</li></ol></li><li>使用“class-continuation”分类 隐藏实现细节 //就是Extension吧，匿名的分类。</li><li>通过协议提供匿名对象。 //隐藏返回值类型</li></ul><h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><ul><li>理解引用计数</li><li>以ARC简化引用计数</li><li>在dealloc方法中只释放引用并移除监听(KVO和Notifications)</li><li>编写 “异常安全代码”时留意内存管理问题(即：使用<code>@try...@catch</code>语法时)</li><li>以弱引用避免保留环(retain cycle :循环引用)</li><li>以“自动释放池块”降低内存峰值。</li><li>用“僵尸对象”调试内存管理问题。<ol><li>系统在回收对象时，可以不将其真正回收，而是把它转化为僵尸对象。</li><li>系统会修改对象的isa指针，令其指向特殊的僵尸类。僵尸类能够响应所有的选择子，打印一条包含消息内容以及接收者的消息，然后终止程序。</li></ol></li><li>不要使用<code>retainCount</code>。(ARC模式下，此方法废弃了)。</li></ul><h2 id="block与GCD"><a href="#block与GCD" class="headerlink" title="block与GCD"></a><code>block</code>与<code>GCD</code></h2><p>//翻译成 块与大中枢派发也是醉了。。。</p><ul><li>理解<code>block</code>这一概念。<ol><li>语法结构： <code>return_type (^block_name)(parameters)</code></li><li>默认情况下block外的变量需要在block中修改的，需要在声明时加<code>__block</code>修饰，但block修改其所在的类的成员变量时不需要加。</li><li>定义block时，它是分配在栈区的，所以。只在其作用域范围有效。调用<code>copy</code>拷贝到堆区之后可以和OC对象一样具备引用计数。由ARC去管理。</li></ol></li><li>为常见的block类型创建typedef</li></ul><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span>(^SomeBlock)(<span class="built_in">BOOL</span> flag,<span class="keyword">int</span> value);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用：</span></span><br><span class="line">SomeBlock block = ^ (<span class="built_in">BOOL</span> flag,<span class="keyword">int</span> value)&#123;</span><br><span class="line"><span class="keyword">if</span>(flag)&#123;</span><br><span class="line"><span class="keyword">return</span> value * <span class="number">5</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"><span class="keyword">return</span> value *<span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>使用handler block降低代码的分散程度。//如AFN中的网络请求回调</li><li>用block引用其所属对象时不要出现循环引用。</li><li>多用派发队列，少用同步锁。<ol><li>派发队列可以用来表述同步语义(<code>synchornization semantic</code>),比使用<code>@synchronized</code>块和NSLock对象更简单。</li><li>使用同步和异步派发结合起来，可以实现与普通加锁一样的同步行为，而且不会阻塞执行异步派发的线程。</li><li>使用同步队列和栅栏块，可以让同步锁更加高效。</li></ol></li><li>多用GCD,少用｀performSelector｀系列方法。</li></ul><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">SEL selector;</span><br><span class="line"><span class="keyword">if</span>(<span class="comment">/* some condition */</span>)&#123;</span><br><span class="line">selector = <span class="keyword">@selector</span>(foo);</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="comment">/* some other condition */</span>)&#123;</span><br><span class="line">selector = <span class="keyword">@selector</span>(bar);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">selector = @selecter(baz)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">运行时才能确定调用列哪个方法，</span></span><br><span class="line"><span class="comment">编译器没有办法在编译时按ARC的内存管理原则判定返回值是不是该释放，</span></span><br><span class="line"><span class="comment">编译器没有添加释放操作。</span></span><br><span class="line"><span class="comment">这将又可能导致内存泄漏</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure><ul><li><p>掌握GCD和<code>NSOperationQueue</code>的使用时机。</p><ol><li>运行任务之前，可以用在NSOperation对象上调用cancel取消该任务。</li><li>可以指定任务间的依赖关系。</li><li>可以通过KVO监听NSOperation的属性。例如<code>isFinished</code>,<code>isCancelled</code>。</li><li>指定操作的优先级。</li><li>重用NSOperation对象。</li></ol></li><li><p>通过Dispathtch Group机制，根据系统资源状况来执行任务。</p></li><li>使用<code>dispatch_once</code>来执行只需运行一次的线程安全代码。</li></ul><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+(<span class="keyword">id</span>)sharedInstance&#123;</span><br><span class="line"><span class="keyword">static</span> SomeClass *sharedInstance = <span class="literal">nil</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> onceToken;</span><br><span class="line"><span class="built_in">dispatch_once</span>(@onceToken,^&#123;</span><br><span class="line">sharedInstance = [[<span class="keyword">self</span> alloc]init];</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">return</span> sharedInstance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>不要使用<code>dispatch_get_current_queue(void);</code>//调试还是可以用下的</li></ul><h2 id="系统框架"><a href="#系统框架" class="headerlink" title="系统框架"></a>系统框架</h2><ul><li><p>熟悉系统框架。</p><ol><li>CFNetWork:提供C语言级别的网络通信能力，将<code>BSDsocket</code>抽象成易于使用的接口。</li><li>CoreAudio:提供的C语言API可用来操作设备上的音频硬件。</li><li>AVFoundation:处理音频视频的录制，回放。</li><li>CoreData:用于实现数据持久化。</li><li>CoreText:提供C语言接口，用于执行文字排版以及渲染操作。</li></ol></li><li><p>多用block枚举，少用for循环。//block枚举本身通过GCD并发执行遍历，更高效。</p></li><li>对自定义其内存管理语义的cellection使用无缝桥接。</li><li>构建缓存时选用NSCache而非NSDictionary.// low memory时 NSCache会自动删减缓存</li><li>精简<code>initalize</code>和<code>load</code>的实现代码。<ol><li>iOS平台上，当类或者分类载入系统时，会先调用<code>+(void) load</code>;同时实现时，先调类里面的，再调用分类里面的。</li><li>无法判断各个类载入的顺序，所以在load方法使用第三方类比较危险。</li><li><code>load</code>方法会阻塞线程，所以要尽量精简里面的代码。</li><li>首次使用某个类是，会调用该类的<code>+(void) initalize</code>方法，可以覆写该方法做一些与类相关的初始化操作。但是同<code>load</code>一样，也应该尽量精简。</li></ol></li><li>别忘了NSTimer会保留目标对象。//weakSelf大法打破循环就好了。</li></ul>]]></content>
+    <content type="html"><![CDATA[<p>中文译名《编写高质量iOS与OS X代码的52个有效方法》。<br>关于这本书的一些笔记。<br><a id="more"></a></p><h2 id="熟悉Objective-C"><a href="#熟悉Objective-C" class="headerlink" title="熟悉Objective-C"></a>熟悉Objective-C</h2><ul><li><p>起源</p><ol><li>由消息型语言鼻祖<a href="http://baike.baidu.com/view/76337.htm" target="_blank" rel="noopener">Smalltalk</a>演化而来。是C语言的超集。</li><li>与函数式语言关键区别：消息结构的语言，运行时所执行的代码由运行环境决定(<a href="http://baike.baidu.com/link?url=Vh0w0LkFM5iY7JITi01r4m7wzruY5L2nxKTMUe60sT7sVj_YGdqnfI1Ja7RCowAVErzRYKKWUhu-T8GKD5fAIq" target="_blank" rel="noopener">动态绑定</a>)；函数调用的语言，由编译器决定。</li><li><code>NSString *someString</code> 中 someString为指向NSString 的指针。<code>Type *</code> 声明的对象总是被分配的<code>堆区(heap space)</code> 中，而绝不可能分配的<code>栈区(stack)</code>。</li><li>如果只需保存<code>int float double char</code> 等<code>非对象类型（nonoobject type）</code> ，使用C结构体(如<code>CGRect</code>)比使用OC对象性能更优，因为创建OC对象需要分配及释放堆区内存等额外开销。 </li></ol></li><li><p>在类的头文件中尽量少引入其他头文件</p><ol><li>头文件在类的头文件中，少引入头文件，使用@Class 向前声明即可。 然后在实现文件中再引入那些类的头文件。这样可以降低类之间的耦合。</li><li>无法使用向前声明的情况，如果 引入当前类遵守的某一项协议，此时把协议单独放下一个头文件中，再将其引入。</li></ol></li><li><p>多用字面量语法，少用与之等价的方法。</p></li></ul><ol><li>举个🌰:</li></ol><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">NSNumber</span> *intNumber = @<span class="number">1</span>;</span><br><span class="line"><span class="built_in">NSNumber</span> *floatNumber = @<span class="number">2.5</span>f;</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSArray</span> *namesArray = @[<span class="string">@"Jat"</span>,<span class="string">@"Jay"</span>,<span class="string">@"Vae"</span>];</span><br><span class="line"><span class="built_in">NSString</span> *myName = namesArray[<span class="number">0</span>];</span><br><span class="line"></span><br><span class="line"><span class="built_in">NSDictionary</span> *personData = @&#123;<span class="string">@"ChineseName"</span>:<span class="string">@"张建宇"</span>,</span><br><span class="line"><span class="string">@"EnglishName"</span>:<span class="string">@"Jat"</span>,</span><br><span class="line"><span class="string">@"age"</span>:<span class="string">@"23"</span>&#125;</span><br><span class="line">Number *myAge = personData[<span class="string">@"age"</span>];</span><br><span class="line"><span class="comment">//通过字面量创建的数组或者字典 ，如果值中有nil，会抛出异常。</span></span><br></pre></td></tr></table></figure><ul><li><p>多用类型常量，少用＃define 预处理指令。</p><ol><li>＃define定义的出来的常量，不包含类型信息，编译器需要再编译前执行查找替换，会增加编译时间。</li><li>只在当前类使用的常量，可以使用 <code>static const</code> 在.m中定义。</li><li>在头文件中使用<code>extern</code>来声明全局变量,并在相关实现文件中定义其值。命名时，通常使用于是相关的类名最为前缀。如<code>UITextFieldTextDidBeginEditingNotification</code> 。</li><li><a href="http://jatstar.cn/2016/01/10/const-static-extern/" target="_blank" rel="noopener">《iOS开发中 const,static,extern用法总结》</a></li></ol></li><li><p>使用枚举来表示状态，选项，状态码</p><ol><li>易懂的枚举名可以提高代码的可读性。</li><li>选项为多选时，使用二进制表示枚举值，以便通过按位或将其组合起来。🌰：<code>UIInterfaceOrientationMask</code>。</li><li>switch语句中，不要实现default分支。这样加入新的枚举之后，编译器会提示：switch语句没有处理所有枚举值。</li></ol></li></ul><h2 id="消息／对象／运行时"><a href="#消息／对象／运行时" class="headerlink" title="消息／对象／运行时"></a>消息／对象／运行时</h2><ul><li><p>理解“属性” 这一概念 <a href="http://jatstar.cn/2016/01/07/Objective-C-property/" target="_blank" rel="noopener">Objective-C语法@property详解</a></p></li><li><p>在对象内部尽量直接访问实例变量。</p><ol><li>直接访问实例变量不经过方法派发，比点语法快。</li><li>⚠️直接访问copy修饰的属性，不会掉用setter方法，所以不会拷贝该属性。</li><li>⚠️不会触发KVO通知。是否会产生问题，视情况而定。</li><li>初始化方法和dealloc方法中，总是应该直接访问。</li><li>⚠️注意考虑懒加载的情况下，要使用点语法。</li></ol></li><li><p>理解“对象等同性”这一概念。</p><ol><li><code>==</code>比较的是指针地址是否一样。</li><li>特有的等同性判断方法，如<code>isEqualToString</code>比<code>isEqual</code>快一些。</li><li>相同的对象必须具有相同的哈希码，但是哈希码相同的对象未必相同。</li><li>不必逐条比较每个属性的哈希码，依情况，使用速度快，碰撞率低的算法。</li></ol></li><li><p>以“类族模式”隐藏实现细节</p><ol><li>例如<code>UIButton</code> 中的 <code>+ (instancetype)buttonWithType:(UIButtonType)buttonType</code>.</li><li>可以把实现细节隐藏在一个公共的接口后面。</li></ol></li><li><p><a href="http://jatstar.cn/2016/07/14/Associative-References/" target="_blank" rel="noopener">在既有类中使用关联对象存放自定义数据</a></p></li><li><p>理解objc_msgSend 的作用</p><ol><li><code>Objective-c</code> “动态绑定(dynamic binding)” 的特性使得所要调用的函数直到运行时才能确定。通过<code>动态消息派发系统(dynamic message dicpatch system)</code>来查出对应的方法并执行。</li><li>消息由接收者(receiver)，选择子(selecter)，以及参数构成。调用方法实际上相当于在给对象发送消息。</li></ol></li><li><p>理解消息转发机制 //TODO： 待续</p></li><li><p>用<code>方法调配技术</code>调试<code>黑盒方法</code> </p></li></ul><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//Category</span></span><br><span class="line"><span class="meta">#import <span class="meta-string">"NSString+Test.h"</span></span></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;objc/runtime.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">@implementation</span> <span class="title">NSString</span> (<span class="title">Test</span>)</span></span><br><span class="line">- (<span class="built_in">NSString</span>*)eoc_myLowercaseString &#123;</span><br><span class="line">    <span class="built_in">NSString</span> *lowercase = [<span class="keyword">self</span> eoc_myLowercaseString];</span><br><span class="line">    <span class="built_in">NSLog</span>(<span class="string">@"%@ =&gt; %@"</span>, <span class="keyword">self</span>, lowercase);</span><br><span class="line">    <span class="keyword">return</span> lowercase;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 不会死循环，因为eoc_myLowercaseString与lowercaseString方法互换了，运行时期间eoc_myLowercaseString选择子实际上对应的原有的lowercaseString方法实现。</span></span><br><span class="line">+ (<span class="keyword">void</span>)load&#123;</span><br><span class="line">    Method originalMethod = class_getInstanceMethod([<span class="built_in">NSString</span> <span class="keyword">class</span>],<span class="keyword">@selector</span>(lowercaseString));</span><br><span class="line">    Method swappedMethod = class_getInstanceMethod([<span class="built_in">NSString</span> <span class="keyword">class</span>],<span class="keyword">@selector</span>(eoc_myLowercaseString));</span><br><span class="line">    method_exchangeImplementations(originalMethod, swappedMethod);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">@end</span> </span><br><span class="line"><span class="comment">/* </span></span><br><span class="line"><span class="comment">测试一下：</span></span><br><span class="line"><span class="comment">NSString *string = @"Hello World";</span></span><br><span class="line"><span class="comment">NSString *textString = [string lowercaseString];</span></span><br><span class="line"><span class="comment">Output:</span></span><br><span class="line"><span class="comment">Hello World =&gt; hello world</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure><ul><li>理解<code>类对象</code>的用意 //TODO: 待续</li></ul><h2 id="接口与API设计"><a href="#接口与API设计" class="headerlink" title="接口与API设计"></a>接口与API设计</h2><ul><li>使用前缀避免命名空间冲突。</li><li><p>提供<code>全能初始化方法</code></p><ol><li>提供一个全能初始化方法，并与文档中指明，其他初始化方法均调用此方法。</li><li>全能初始化方法与超类不同时，应该重写，冲突时，应该加上抛异常机制提示。</li></ol></li><li><p>实现<code>description</code>方法</p><ol><li>自定义类，覆写<code>description</code>方法，返回的字符串，NSLog时的显示该字符串；</li><li>重写<code>debugDescription</code>，改变调试控制台输出信息，默认为<code>description</code>方法的返回值。</li></ol></li><li><p>尽量使用不可变对象。</p></li><li>使用清晰而且协调的命名方式</li><li>为私有方法名加前缀<ol><li>给私有方法名加上前缀(虽然我感觉没必要～也没见过知名开源项目有加；但是爱老婆说按规范要加)</li><li>不要使用下划线做私有方法的前缀，因为这种做法是预留给苹果的。</li></ol></li><li>理解Objective-C错误模型<ol><li>只有发生使整个应用崩溃的严重错误时，才之用异常。</li><li>不那么严重的错误，可以指派委托方法来处理错误，也可以把错误信息放在NSError里，由NSLog输出。 </li></ol></li><li>理解NSCoding协议。<ol><li>想令对象具有拷贝功能，需实现NSCoying协议；如果对象有可变版本，还需要实现NSMutableCopying协议。</li><li>浅拷贝之后的内容与原始内容指针地址相同，深拷贝之后的内容指向原始内容相关对象的一份拷贝。(深拷贝会逐个元素发送Copy消息，用拷贝得到元素创建Set);</li></ol></li><li>通过委托与数据源协议进行对象间的通信。<ol><li><code>@property(nonatomic,weak)id&lt;ClassNameDelegate&gt; delegate</code> 用weak修饰，，防止循环引用(retain cycle);</li></ol></li><li>将类的实现代码分散到便于管理的数个分类之中。//易于管理</li><li>总是为第三方类的分类名称增加前缀。</li><li>勿在分类中声明属性。<ol><li>封装数据所用的全部属性都定义在主接口里。</li><li>关联对象可以解决分类不能合成实例变量的问题。//本书作者认为此方法内存管理上容易出错，不是很推荐。</li></ol></li><li>使用“class-continuation”分类 隐藏实现细节 //就是Extension吧，匿名的分类。</li><li>通过协议提供匿名对象。 //隐藏返回值类型</li></ul><h2 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h2><ul><li>理解引用计数</li><li>以ARC简化引用计数</li><li>在dealloc方法中只释放引用并移除监听(KVO和Notifications)</li><li>编写 “异常安全代码”时留意内存管理问题(即：使用<code>@try...@catch</code>语法时)</li><li>以弱引用避免保留环(retain cycle :循环引用)</li><li>以“自动释放池块”降低内存峰值。</li><li>用“僵尸对象”调试内存管理问题。<ol><li>系统在回收对象时，可以不将其真正回收，而是把它转化为僵尸对象。</li><li>系统会修改对象的isa指针，令其指向特殊的僵尸类。僵尸类能够响应所有的选择子，打印一条包含消息内容以及接收者的消息，然后终止程序。</li></ol></li><li>不要使用<code>retainCount</code>。(ARC模式下，此方法废弃了)。</li></ul><h2 id="block与GCD"><a href="#block与GCD" class="headerlink" title="block与GCD"></a><code>block</code>与<code>GCD</code></h2><p>//翻译成 块与大中枢派发也是醉了。。。</p><ul><li>理解<code>block</code>这一概念。<ol><li>语法结构： <code>return_type (^block_name)(parameters)</code></li><li>默认情况下block外的变量需要在block中修改的，需要在声明时加<code>__block</code>修饰，但block修改其所在的类的成员变量时不需要加。</li><li>定义block时，它是分配在栈区的，所以。只在其作用域范围有效。调用<code>copy</code>拷贝到堆区之后可以和OC对象一样具备引用计数。由ARC去管理。</li></ol></li><li>为常见的block类型创建typedef</li></ul><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">int</span>(^SomeBlock)(<span class="built_in">BOOL</span> flag,<span class="keyword">int</span> value);</span><br><span class="line"></span><br><span class="line"><span class="comment">//使用：</span></span><br><span class="line">SomeBlock block = ^ (<span class="built_in">BOOL</span> flag,<span class="keyword">int</span> value)&#123;</span><br><span class="line"><span class="keyword">if</span>(flag)&#123;</span><br><span class="line"><span class="keyword">return</span> value * <span class="number">5</span>;</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line"><span class="keyword">return</span> value *<span class="number">10</span>;</span><br><span class="line">&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>使用handler block降低代码的分散程度。//如AFN中的网络请求回调</li><li>用block引用其所属对象时不要出现循环引用。</li><li>多用派发队列，少用同步锁。<ol><li>派发队列可以用来表述同步语义(<code>synchornization semantic</code>),比使用<code>@synchronized</code>块和NSLock对象更简单。</li><li>使用同步和异步派发结合起来，可以实现与普通加锁一样的同步行为，而且不会阻塞执行异步派发的线程。</li><li>使用同步队列和栅栏块，可以让同步锁更加高效。</li></ol></li><li>多用GCD,少用｀performSelector｀系列方法。</li></ul><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">SEL selector;</span><br><span class="line"><span class="keyword">if</span>(<span class="comment">/* some condition */</span>)&#123;</span><br><span class="line">selector = <span class="keyword">@selector</span>(foo);</span><br><span class="line">&#125;<span class="keyword">else</span> <span class="keyword">if</span>(<span class="comment">/* some other condition */</span>)&#123;</span><br><span class="line">selector = <span class="keyword">@selector</span>(bar);</span><br><span class="line">&#125;<span class="keyword">else</span>&#123;</span><br><span class="line">selector = @selecter(baz)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">运行时才能确定调用列哪个方法，</span></span><br><span class="line"><span class="comment">编译器没有办法在编译时按ARC的内存管理原则判定返回值是不是该释放，</span></span><br><span class="line"><span class="comment">编译器没有添加释放操作。</span></span><br><span class="line"><span class="comment">这将又可能导致内存泄漏</span></span><br><span class="line"><span class="comment">*/</span></span><br></pre></td></tr></table></figure><ul><li><p>掌握GCD和<code>NSOperationQueue</code>的使用时机。</p><ol><li>运行任务之前，可以用在NSOperation对象上调用cancel取消该任务。</li><li>可以指定任务间的依赖关系。</li><li>可以通过KVO监听NSOperation的属性。例如<code>isFinished</code>,<code>isCancelled</code>。</li><li>指定操作的优先级。</li><li>重用NSOperation对象。</li></ol></li><li><p>通过Dispathtch Group机制，根据系统资源状况来执行任务。</p></li><li>使用<code>dispatch_once</code>来执行只需运行一次的线程安全代码。</li></ul><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">+(<span class="keyword">id</span>)sharedInstance&#123;</span><br><span class="line"><span class="keyword">static</span> SomeClass *sharedInstance = <span class="literal">nil</span>;</span><br><span class="line"><span class="keyword">static</span> <span class="built_in">dispatch_once_t</span> onceToken;</span><br><span class="line"><span class="built_in">dispatch_once</span>(@onceToken,^&#123;</span><br><span class="line">sharedInstance = [[<span class="keyword">self</span> alloc]init];</span><br><span class="line">&#125;)</span><br><span class="line"><span class="keyword">return</span> sharedInstance;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><ul><li>不要使用<code>dispatch_get_current_queue(void);</code>//调试还是可以用下的</li></ul><h2 id="系统框架"><a href="#系统框架" class="headerlink" title="系统框架"></a>系统框架</h2><ul><li><p>熟悉系统框架。</p><ol><li>CFNetWork:提供C语言级别的网络通信能力，将<code>BSDsocket</code>抽象成易于使用的接口。</li><li>CoreAudio:提供的C语言API可用来操作设备上的音频硬件。</li><li>AVFoundation:处理音频视频的录制，回放。</li><li>CoreData:用于实现数据持久化。</li><li>CoreText:提供C语言接口，用于执行文字排版以及渲染操作。</li></ol></li><li><p>多用block枚举，少用for循环。//block枚举本身通过GCD并发执行遍历，更高效。</p></li><li>对自定义其内存管理语义的cellection使用无缝桥接。</li><li>构建缓存时选用NSCache而非NSDictionary.// low memory时 NSCache会自动删减缓存</li><li>精简<code>initalize</code>和<code>load</code>的实现代码。<ol><li>iOS平台上，当类或者分类载入系统时，会先调用<code>+(void) load</code>;同时实现时，先调类里面的，再调用分类里面的。</li><li>无法判断各个类载入的顺序，所以在load方法使用第三方类比较危险。</li><li><code>load</code>方法会阻塞线程，所以要尽量精简里面的代码。</li><li>首次使用某个类是，会调用该类的<code>+(void) initalize</code>方法，可以覆写该方法做一些与类相关的初始化操作。但是同<code>load</code>一样，也应该尽量精简。</li></ol></li><li>别忘了NSTimer会保留目标对象。//weakSelf大法打破循环就好了。</li></ul>]]></content>
     
     <summary type="html">
     
@@ -413,8 +413,8 @@
   
   <entry>
     <title>iOS开发之如何跳到系统设置里的各种设置界面</title>
-    <link href="http://Jatstar.cn/2016/02/04/PresentSystemViewController/"/>
-    <id>http://Jatstar.cn/2016/02/04/PresentSystemViewController/</id>
+    <link href="https://www.devorz.com/2016/02/04/PresentSystemViewController/"/>
+    <id>https://www.devorz.com/2016/02/04/PresentSystemViewController/</id>
     <published>2016-02-04T06:57:30.000Z</published>
     <updated>2018-07-13T06:24:13.000Z</updated>
     
@@ -427,16 +427,16 @@
     </summary>
     
     
-      <category term="iOS" scheme="http://Jatstar.cn/tags/iOS/"/>
+      <category term="iOS" scheme="https://www.devorz.com/tags/iOS/"/>
     
-      <category term="转载" scheme="http://Jatstar.cn/tags/%E8%BD%AC%E8%BD%BD/"/>
+      <category term="转载" scheme="https://www.devorz.com/tags/%E8%BD%AC%E8%BD%BD/"/>
     
   </entry>
   
   <entry>
     <title>在iOS开发中常见的SQLite语句</title>
-    <link href="http://Jatstar.cn/2016/01/10/iOS-SQLite/"/>
-    <id>http://Jatstar.cn/2016/01/10/iOS-SQLite/</id>
+    <link href="https://www.devorz.com/2016/01/10/iOS-SQLite/"/>
+    <id>https://www.devorz.com/2016/01/10/iOS-SQLite/</id>
     <published>2016-01-10T12:32:10.000Z</published>
     <updated>2018-07-13T06:24:13.000Z</updated>
     
@@ -449,20 +449,20 @@
     </summary>
     
     
-      <category term="iOS" scheme="http://Jatstar.cn/tags/iOS/"/>
+      <category term="iOS" scheme="https://www.devorz.com/tags/iOS/"/>
     
-      <category term="数据持久化" scheme="http://Jatstar.cn/tags/%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96/"/>
+      <category term="数据持久化" scheme="https://www.devorz.com/tags/%E6%95%B0%E6%8D%AE%E6%8C%81%E4%B9%85%E5%8C%96/"/>
     
-      <category term="数据库" scheme="http://Jatstar.cn/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+      <category term="数据库" scheme="https://www.devorz.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
     
-      <category term="SQLite" scheme="http://Jatstar.cn/tags/SQLite/"/>
+      <category term="SQLite" scheme="https://www.devorz.com/tags/SQLite/"/>
     
   </entry>
   
   <entry>
     <title>iOS开发中 const,static,extern用法总结</title>
-    <link href="http://Jatstar.cn/2016/01/10/const-static-extern/"/>
-    <id>http://Jatstar.cn/2016/01/10/const-static-extern/</id>
+    <link href="https://www.devorz.com/2016/01/10/const-static-extern/"/>
+    <id>https://www.devorz.com/2016/01/10/const-static-extern/</id>
     <published>2016-01-09T16:14:09.000Z</published>
     <updated>2018-07-13T06:24:13.000Z</updated>
     
@@ -475,18 +475,18 @@
     </summary>
     
     
-      <category term="iOS" scheme="http://Jatstar.cn/tags/iOS/"/>
+      <category term="iOS" scheme="https://www.devorz.com/tags/iOS/"/>
     
-      <category term="Objective-C" scheme="http://Jatstar.cn/tags/Objective-C/"/>
+      <category term="Objective-C" scheme="https://www.devorz.com/tags/Objective-C/"/>
     
-      <category term="语法" scheme="http://Jatstar.cn/tags/%E8%AF%AD%E6%B3%95/"/>
+      <category term="语法" scheme="https://www.devorz.com/tags/%E8%AF%AD%E6%B3%95/"/>
     
   </entry>
   
   <entry>
     <title>Objective-C语法@property详解</title>
-    <link href="http://Jatstar.cn/2016/01/07/Objective-C-property/"/>
-    <id>http://Jatstar.cn/2016/01/07/Objective-C-property/</id>
+    <link href="https://www.devorz.com/2016/01/07/Objective-C-property/"/>
+    <id>https://www.devorz.com/2016/01/07/Objective-C-property/</id>
     <published>2016-01-07T14:58:05.000Z</published>
     <updated>2018-07-13T06:24:13.000Z</updated>
     
@@ -500,11 +500,11 @@
     </summary>
     
     
-      <category term="iOS" scheme="http://Jatstar.cn/tags/iOS/"/>
+      <category term="iOS" scheme="https://www.devorz.com/tags/iOS/"/>
     
-      <category term="Objective-C" scheme="http://Jatstar.cn/tags/Objective-C/"/>
+      <category term="Objective-C" scheme="https://www.devorz.com/tags/Objective-C/"/>
     
-      <category term="语法" scheme="http://Jatstar.cn/tags/%E8%AF%AD%E6%B3%95/"/>
+      <category term="语法" scheme="https://www.devorz.com/tags/%E8%AF%AD%E6%B3%95/"/>
     
   </entry>
   
