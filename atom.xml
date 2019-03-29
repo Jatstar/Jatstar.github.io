@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <title>Jat&#39;s Blog</title>
+  <title>DevOrz</title>
   
   <subtitle>如果没有见过太阳,我本可以忍受黑暗</subtitle>
   <link href="/atom.xml" rel="self"/>
@@ -10,7 +10,7 @@
   <id>https://www.devorz.com/</id>
   
   <author>
-    <name>Jatstar</name>
+    <name>iDevOrz</name>
     
   </author>
   
