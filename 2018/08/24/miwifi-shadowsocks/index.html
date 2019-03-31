@@ -88,7 +88,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="Shadowsocks,VPN,翻墙,SS," />
+  <meta name="keywords" content="Shadowsocks,VPN,翻墙,SS,SSR," />
 
 
 
@@ -107,7 +107,7 @@
 
 
 <meta name="description" content="打开 SSH，安装 Misstar Tools，安装所需插件。">
-<meta name="keywords" content="Shadowsocks,VPN,翻墙,SS">
+<meta name="keywords" content="Shadowsocks,VPN,翻墙,SS,SSR">
 <meta property="og:type" content="article">
 <meta property="og:title" content="小米路由器Pro 打开SSH 安装 MT 工具箱">
 <meta property="og:url" content="https://www.devorz.com/2018/08/24/miwifi-shadowsocks/index.html">
@@ -124,7 +124,7 @@
 <meta property="og:image" content="https://i.loli.net/2018/08/24/5b7fe2f2b05c2.png">
 <meta property="og:image" content="https://i.loli.net/2018/08/24/5b7fe39d84ce1.png">
 <meta property="og:image" content="https://i.loli.net/2018/08/24/5b7fe3f098188.png">
-<meta property="og:updated_time" content="2018-08-24T10:59:04.000Z">
+<meta property="og:updated_time" content="2019-03-31T07:04:33.823Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="小米路由器Pro 打开SSH 安装 MT 工具箱">
 <meta name="twitter:description" content="打开 SSH，安装 Misstar Tools，安装所需插件。">
@@ -416,6 +416,13 @@
 <p><img src="https://i.loli.net/2018/08/24/5b7fe1e8689f8.png" alt="MT工具箱"></p>
 <p>如果需要卸载，使用：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.misstar.com/tools/uninstall.sh -O /tmp/uninstall.sh &amp;&amp; chmod +x /tmp/uninstall.sh &amp;&amp; /tmp/uninstall.sh</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>2019/03/31 Update：<br>由于站点 <code>www.misstar.com</code>现已开始3.0内测，并开启全站https,且原有2.0已经从站点移除，所以现在使用上述上述命令会提示 <code>wget: not an http or ftp url: https://www.misstar.com/tools/appstore/install.sh</code>;现在需要使用<a href="http://cloud.lifeheart.cn:188/miwifi/MT/" target="_blank" rel="noopener">分流站</a>安装/卸载：</p>
+</blockquote>
+<p>安装：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://cloud.lifeheart.cn:188/miwifi/MT/tools/appstore/install.sh -O /tmp/install.sh &amp;&amp; chmod +x /tmp/install.sh &amp;&amp; /tmp/install.sh</span><br></pre></td></tr></table></figure>
+<p>卸载:</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://cloud.lifeheart.cn:188/miwifi/MT/tools/appstore/uninstall.sh -O /tmp/uninstall.sh &amp;&amp; chmod +x /tmp/uninstall.sh &amp;&amp; /tmp/uninstall.sh</span><br></pre></td></tr></table></figure>
 <h2 id="安装-Shadowsocks"><a href="#安装-Shadowsocks" class="headerlink" title="安装 Shadowsocks"></a>安装 Shadowsocks</h2><p>打开 MT 插件管理页，使用开发者工具，定位页面中任意一个 安装 按钮，然后找到代码中的 <code>id=&quot;XXX&quot;</code> 字样，如下图中 <code>id=&quot;frp&quot;</code><img src="https://i.loli.net/2018/08/24/5b7fe2f2b05c2.png" alt="WX20180824-185008@2x"></p>
 <p>修改为 <code>id=&quot;ss&quot;</code> :</p>
 <p><img src="https://i.loli.net/2018/08/24/5b7fe39d84ce1.png" alt="ss"></p>
@@ -445,6 +452,8 @@
             <a href="/tags/翻墙/" rel="tag"># 翻墙</a>
           
             <a href="/tags/SS/" rel="tag"># SS</a>
+          
+            <a href="/tags/SSR/" rel="tag"># SSR</a>
           
         </div>
       
@@ -566,7 +575,7 @@
             
             <div class="site-state-item site-state-tags">
               <a href="/tags/index.html">
-                <span class="site-state-item-count">36</span>
+                <span class="site-state-item-count">37</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
