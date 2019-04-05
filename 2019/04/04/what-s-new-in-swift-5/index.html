@@ -109,15 +109,17 @@
 <meta name="description" content="原文链接：What’s New in Swift 5?  Swift 5 最终伴随着Xcode 10.2一起到来。这次发布带来了 ABI 稳定性 并且改进了语言，一些期待已久的特性。来看看这些新东西吧！ 在这篇教程，你将学习Swift 5的一些重大改变。使用 Swift 5 需要Xcode 10.2，所以在开始前请确认你安装了它。 Getting StartedSwift 5 源兼容(sourc">
 <meta name="keywords" content="iOS,Swift">
 <meta property="og:type" content="article">
-<meta property="og:title" content="译">
+<meta property="og:title" content="「译」What’s New in Swift 5?">
 <meta property="og:url" content="https://www.devorz.com/2019/04/04/what-s-new-in-swift-5/index.html">
 <meta property="og:site_name" content="DevOrz">
 <meta property="og:description" content="原文链接：What’s New in Swift 5?  Swift 5 最终伴随着Xcode 10.2一起到来。这次发布带来了 ABI 稳定性 并且改进了语言，一些期待已久的特性。来看看这些新东西吧！ 在这篇教程，你将学习Swift 5的一些重大改变。使用 Swift 5 需要Xcode 10.2，所以在开始前请确认你安装了它。 Getting StartedSwift 5 源兼容(sourc">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2019-04-05T15:45:26.625Z">
+<meta property="og:image" content="https://www.devorz.com/2019/04/04/what-s-new-in-swift-5/media/15544803203095.jpg">
+<meta property="og:updated_time" content="2019-04-05T16:47:49.990Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="译">
+<meta name="twitter:title" content="「译」What’s New in Swift 5?">
 <meta name="twitter:description" content="原文链接：What’s New in Swift 5?  Swift 5 最终伴随着Xcode 10.2一起到来。这次发布带来了 ABI 稳定性 并且改进了语言，一些期待已久的特性。来看看这些新东西吧！ 在这篇教程，你将学习Swift 5的一些重大改变。使用 Swift 5 需要Xcode 10.2，所以在开始前请确认你安装了它。 Getting StartedSwift 5 源兼容(sourc">
+<meta name="twitter:image" content="https://www.devorz.com/2019/04/04/what-s-new-in-swift-5/media/15544803203095.jpg">
 
 
 
@@ -152,7 +154,7 @@
 
 
 
-  <title>译 | DevOrz</title>
+  <title>「译」What’s New in Swift 5? | DevOrz</title>
   
 
 
@@ -305,7 +307,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">译</h1>
+          <h1 class="post-title" itemprop="name headline">「译」What’s New in Swift 5?</h1>
         
 
         <div class="post-meta">
@@ -383,7 +385,7 @@
 </blockquote>
 <h2 id="Language-Improvements"><a href="#Language-Improvements" class="headerlink" title="Language Improvements"></a>Language Improvements</h2><p>Swift 5有很多语言特性，如 动态可调用类型(dynamic callable types),处理未来的枚举(handling future enumeration)等等.</p>
 <h3 id="Testing-Integer-Multiples"><a href="#Testing-Integer-Multiples" class="headerlink" title="Testing Integer Multiples"></a>Testing Integer Multiples</h3><p>在Swift 4.2中，你可以使用余数运算符确定数字是否是另一个的倍数：</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstNumber = <span class="number">4</span></span><br><span class="line"><span class="keyword">let</span> secondNumber = <span class="number">2</span></span><br><span class="line"><span class="keyword">if</span> secondNumber != <span class="number">0</span> &amp;&amp; firstNumber % secondNumber == <span class="number">0</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"<span class="subst">\(secondNumber)</span> * <span class="subst">\(firstNumber / secondNumber)</span> = <span class="subst">\(firstNumber)</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstNumber = <span class="number">4</span></span><br><span class="line"><span class="keyword">let</span> secondNumber = <span class="number">2</span></span><br><span class="line"><span class="keyword">if</span> secondNumber != <span class="number">0</span> &amp;&amp; firstNumber % secondNumber == <span class="number">0</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"\(secondNumber) * \(firstNumber / secondNumber) = \(firstNumber)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这段代码如何工作：</p>
 <ol>
 <li>确认 <code>secondNumber</code> 不为 0.</li>
@@ -392,22 +394,51 @@
 </ol>
 <p>你必须确认 <code>secondNumber</code> 不为 0,否则 % 操作将抛出错误。</p>
 <p>Swift 5 通过给<code>BinaryInteger</code>添加了 <code>isMultiple(of:)</code> 方法简化了这一操作<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0225-binaryinteger-iseven-isodd-ismultiple.md" target="_blank" rel="noopener">SE-0225</a>:</p>
-<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> firstNumber.isMultiple(of: secondNumber) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"<span class="subst">\(secondNumber)</span> * <span class="subst">\(firstNumber / secondNumber)</span> = <span class="subst">\(firstNumber)</span>"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> firstNumber.isMultiple(of: secondNumber) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"\(secondNumber) * \(firstNumber / secondNumber) = \(firstNumber)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>即使你传入 0 作为参数,isMultiple(of:)依然可以工作，而且是代码更加简洁明了。</p>
 <h3 id="Escaping-Raw-Strings"><a href="#Escaping-Raw-Strings" class="headerlink" title="Escaping Raw Strings"></a>Escaping Raw Strings</h3><p>Swift 4.2使用转义序列(escape sequences)来表示字符串中的反斜杠( backslashes )和引号(quote marks)：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> escape = <span class="string">"You use escape sequences for \"quotes\"\\\"backslashes\" in Swift 4.2."</span></span><br><span class="line"><span class="keyword">let</span> multiline = <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">                You use escape sequences for \"\"\"quotes\"\"\"\\\"\"\"backslashes\"\"\"</span></span><br><span class="line"><span class="string">                on multiple lines</span></span><br><span class="line"><span class="string">                in Swift 4.2.</span></span><br><span class="line"><span class="string">                "</span><span class="string">""</span></span><br></pre></td></tr></table></figure>
-<p>Swift 5添加原始字符串(raw strings)。您在字符串的开头和结尾添加＃，这样您就可以使用反斜杠和引号而不会出现问题:</p>
+<p>Swift 5添加了 raw strings 。你可以在字符串的开头和结尾添加＃，这样你就可以使用反斜杠和引号而不会出现问题:</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> raw = #<span class="string">"You can create "</span>raw<span class="string">"\"plain"</span> strings <span class="keyword">in</span> <span class="type">Swift</span> <span class="number">5</span>.<span class="string">"#</span></span><br><span class="line"><span class="string">let multiline = #"</span><span class="string">""</span></span><br><span class="line">                <span class="type">You</span> can create <span class="string">""</span><span class="string">"raw"</span><span class="string">""</span>\<span class="string">""</span><span class="string">"plain"</span><span class="string">""</span> strings</span><br><span class="line">                on multiple lines</span><br><span class="line">                <span class="keyword">in</span> <span class="type">Swift</span> <span class="number">5</span>.</span><br><span class="line">                <span class="string">""</span><span class="string">"#</span></span><br></pre></td></tr></table></figure>
 <p>在原始字符串中使用字符串插值时，必须在反斜杠后使用 # 号：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> track = <span class="string">"Nothing Else Matters"</span></span><br><span class="line"><span class="built_in">print</span>(#<span class="string">"My favorite tune\song is \#(track)."</span>#)</span><br></pre></td></tr></table></figure>
-<p>在某些情况下，您需要在字符串的开头和结尾使用多个＃：</p>
+<p>在某些情况下，你需要在字符串的开头和结尾使用多个＃：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> hashtag = ##<span class="string">"You can use the Swift "</span>hashtag<span class="string">" #swift in Swift 5."</span>##</span><br></pre></td></tr></table></figure>
 <p>在上面的代码中，你在开头添加##在 <code>hashtag</code>结尾添加 #，这样可以在字符串中表示＃。字符串开头使用的 # 数量必须与其末尾的数量相同。</p>
-<p>在Swift 4.2中，您可以在正则表达式中转义反斜杠，如下所示：</p>
+<p>在Swift 4.2中，你可以在正则表达式中转义反斜杠，如下所示：</p>
 <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="keyword">let</span> versions = <span class="string">"3 3.1 4 4.1 4.2 5"</span></span><br><span class="line"><span class="keyword">let</span> range = <span class="type">NSRange</span>(versions.startIndex..., <span class="keyword">in</span>: versions)</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">let</span> regex = <span class="keyword">try</span>! <span class="type">NSRegularExpression</span>(pattern: <span class="string">"\\d\\.\\d"</span>)</span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="keyword">let</span> minorVersions = regex.matches(<span class="keyword">in</span>: versions, range: range)</span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line">minorVersions.forEach &#123; <span class="built_in">print</span>(versions[<span class="type">Range</span>($<span class="number">0</span>.range, <span class="keyword">in</span>:  versions)!]) &#125;</span><br></pre></td></tr></table></figure>
 <ol>
 <li>声明 <code>versions</code>定义一个 <code>range</code> 覆盖整个字符串</li>
+<li>定义一个匹配 <code>versions</code> 中所有次要Swift发行版(minor Swift releases)的正则表达式。</li>
+<li>使用<code>matches(in:options:range:)</code>确定次要发行版的rangs 。</li>
+<li>使用 <code>rangs</code> 从 <code>versions</code>中获得次要发行版。</li>
 </ol>
+<p>Swift 5使用 <code>raw strings</code> 简化正则表达式:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> regex = <span class="keyword">try</span>! <span class="type">NSRegularExpression</span>(pattern: #<span class="string">"\d\.\d"</span>#)</span><br></pre></td></tr></table></figure>
+<p>在上述代码中，你定义 <code>regex</code>用的反斜杠少了一半，因为你不需要在 <code>raw strings</code> 中转义反斜杠。</p>
+<p><img src="media/15544803203095.jpg" alt=""></p>
+<blockquote>
+<p>需要了解更多的关于正则表达式如何在Swift中使用，请看这篇教程: <a href="https://www.raywenderlich.com/5767-an-introduction-to-regular-expressions" target="_blank" rel="noopener">An Introduction to Regular Expressions</a></p>
+</blockquote>
+<h3 id="Using-New-Character-Properties"><a href="#Using-New-Character-Properties" class="headerlink" title="Using New Character Properties"></a>Using New Character Properties</h3><p>在处理<code>characters</code>时，Swift 4.2 需要一个解决方法来处理一个常见的需求：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> id = <span class="string">"ID10"</span></span><br><span class="line"><span class="keyword">var</span> digits = <span class="number">0</span></span><br><span class="line">id.forEach &#123; digits += <span class="type">Int</span>(<span class="type">String</span>($<span class="number">0</span>)) != <span class="literal">nil</span> ? <span class="number">1</span> : <span class="number">0</span> &#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Id has \(digits) digits."</span>)</span><br></pre></td></tr></table></figure>
+<p>在此代码中，首先将每个字符转换为String，然后再转换为Int，以确定 id 有多少数字。</p>
+<p>但是，Swift 5为Character添加了属性，使 characters 更易用<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0221-character-properties.md" target="_blank" rel="noopener">SE-0221</a>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id.forEach &#123; digits += $<span class="number">0</span>.isNumber ? <span class="number">1</span> : <span class="number">0</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>在上述情况中，你使用 <code>isNumber</code> 来检查每个字符是否都是数字。查看提案来寻找其他你能使用的属性。</p>
+<h3 id="Using-New-Unicode-Scalar-Properties"><a href="#Using-New-Unicode-Scalar-Properties" class="headerlink" title="Using New Unicode Scalar Properties"></a>Using New Unicode Scalar Properties</h3><p>在 Swift4.2 中，你为Unicode scalars 实现文本处理算法，如下所示：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> username = <span class="string">"bond007"</span></span><br><span class="line"><span class="keyword">var</span> letters = <span class="number">0</span></span><br><span class="line">username.unicodeScalars.forEach &#123; </span><br><span class="line">  letters += (<span class="number">65</span>...<span class="number">90</span>) ~= $<span class="number">0</span>.value || (<span class="number">97</span>...<span class="number">122</span>) ~= $<span class="number">0</span>.value ? <span class="number">1</span> : <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Username has \(letters) letters."</span>)</span><br></pre></td></tr></table></figure>
+<p>在此代码中，您通过检查每个字符的 <code>unicode scalars</code>是代表小写字母还是大写字母来计算用户名的字母数。</p>
+<p>Swift 5为 <code>unicode scalars</code> 添加了属性，简化了文本处理<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0211-unicode-scalar-properties.md" target="_blank" rel="noopener">SE-0211</a>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username.unicodeScalars.forEach &#123; letters += $<span class="number">0</span>.properties.isAlphabetic ? <span class="number">1</span> : <span class="number">0</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>在此代码中，你使用<code>isAlphabetic</code> 检查每个字符是否为数字。链接的提案将显示你可以检查的所有属性。</p>
+<h3 id="Removing-Subsequences"><a href="#Removing-Subsequences" class="headerlink" title="Removing Subsequences"></a>Removing Subsequences</h3><p>Swift 4.2 使用下列方法 从 <code>Sequence</code> <code>customization points</code>返回 <code>SubSequence</code>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Sequence</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">remove</span><span class="params">(<span class="number">_</span> s: String)</span></span> -&gt; <span class="type">SubSequence</span> &#123;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> n = <span class="type">Int</span>(s) <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">dropLast</span>()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">dropLast</span>(n)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sequence = [<span class="number">5</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">4</span>]</span><br><span class="line">sequence.remove(<span class="string">"2"</span>) <span class="comment">// [5, 2]</span></span><br><span class="line">sequence.remove(<span class="string">"two"</span>) <span class="comment">// [5, 2, 7]</span></span><br></pre></td></tr></table></figure>
+<p>上述情况中，如果 s 是一个 <code>Int</code>那么 <code>remove(_:)</code>将从 <code>sequence</code>移除倒数的 n 个元素,否则移除最后一个元素。</p>
+<p>Swift 5用 <code>sequences</code> 中的具体类型替换<code>SubSequence</code>。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Sequence</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">remove</span><span class="params">(<span class="number">_</span> s: String)</span></span> -&gt; [<span class="type">Element</span>] &#123;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> n = <span class="type">Int</span>(s) <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">dropLast</span>()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">dropLast</span>(n)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这段代码中，<code>remove(_:)</code> 跟随 <code>dropLast()</code> 和 <code>dropLast(_:)</code> 一样返回 <code>[Element]</code>类型。</p>
+<h2 id="Dictionary-Updates"><a href="#Dictionary-Updates" class="headerlink" title="Dictionary Updates"></a>Dictionary Updates</h2><p>Swift 5为 Dictionary 带来了许多期待已久的改进:</p>
 
       
     </div>
@@ -636,7 +667,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Getting-Started"><span class="nav-number">1.</span> <span class="nav-text">Getting Started</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Language-Improvements"><span class="nav-number">2.</span> <span class="nav-text">Language Improvements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Testing-Integer-Multiples"><span class="nav-number">2.1.</span> <span class="nav-text">Testing Integer Multiples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Escaping-Raw-Strings"><span class="nav-number">2.2.</span> <span class="nav-text">Escaping Raw Strings</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Getting-Started"><span class="nav-number">1.</span> <span class="nav-text">Getting Started</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Language-Improvements"><span class="nav-number">2.</span> <span class="nav-text">Language Improvements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Testing-Integer-Multiples"><span class="nav-number">2.1.</span> <span class="nav-text">Testing Integer Multiples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Escaping-Raw-Strings"><span class="nav-number">2.2.</span> <span class="nav-text">Escaping Raw Strings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-New-Character-Properties"><span class="nav-number">2.3.</span> <span class="nav-text">Using New Character Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-New-Unicode-Scalar-Properties"><span class="nav-number">2.4.</span> <span class="nav-text">Using New Unicode Scalar Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Removing-Subsequences"><span class="nav-number">2.5.</span> <span class="nav-text">Removing Subsequences</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dictionary-Updates"><span class="nav-number">3.</span> <span class="nav-text">Dictionary Updates</span></a></li></ol></div>
             
 
           </div>
@@ -817,7 +848,7 @@
         var disqus_config = function () {
           this.page.url = 'https://www.devorz.com/2019/04/04/what-s-new-in-swift-5/';
           this.page.identifier = '2019/04/04/what-s-new-in-swift-5/';
-          this.page.title = '译';
+          this.page.title = '「译」What’s New in Swift 5?';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://jatstar-cn.disqus.com/embed.js';
