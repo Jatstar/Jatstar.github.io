@@ -1,0 +1,1046 @@
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+<meta name="theme-color" content="#222">
+
+<link rel="apple-touch-icon" href="/touch-icon-iphone.png">
+<link rel="apple-touch-icon" sizes="76x76" href="/touch-icon-ipad.png">
+<link rel="apple-touch-icon" sizes="120x120" href="/touch-icon-iphone-retina.png">
+<link rel="apple-touch-icon" sizes="152x152" href="/touch-icon-ipad-retina.png">
+
+<link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
+<link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="iOS,Swift," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="DevOrz" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2" />
+
+
+
+
+
+
+<meta name="description" content="原文链接：What’s New in Swift 5?  Swift 5 最终伴随着Xcode 10.2一起到来。这次发布带来了 ABI 稳定性 并且改进了语言，一些期待已久的特性。来看看这些新东西吧！ 在这篇教程，你将学习Swift 5的一些重大改变。使用 Swift 5 需要Xcode 10.2，所以在开始前请确认你安装了它。 Getting StartedSwift 5 源兼容(sourc">
+<meta name="keywords" content="iOS,Swift">
+<meta property="og:type" content="article">
+<meta property="og:title" content="What’s New in Swift 5?">
+<meta property="og:url" content="https://www.devorz.com/2019/04/04/What-s-New-in-Swift5/index.html">
+<meta property="og:site_name" content="DevOrz">
+<meta property="og:description" content="原文链接：What’s New in Swift 5?  Swift 5 最终伴随着Xcode 10.2一起到来。这次发布带来了 ABI 稳定性 并且改进了语言，一些期待已久的特性。来看看这些新东西吧！ 在这篇教程，你将学习Swift 5的一些重大改变。使用 Swift 5 需要Xcode 10.2，所以在开始前请确认你安装了它。 Getting StartedSwift 5 源兼容(sourc">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2018/05/swift-320x320.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2018/12/announcement.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2018/05/sun-320x320.png">
+<meta property="og:updated_time" content="2019-04-06T12:13:23.961Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="What’s New in Swift 5?">
+<meta name="twitter:description" content="原文链接：What’s New in Swift 5?  Swift 5 最终伴随着Xcode 10.2一起到来。这次发布带来了 ABI 稳定性 并且改进了语言，一些期待已久的特性。来看看这些新东西吧！ 在这篇教程，你将学习Swift 5的一些重大改变。使用 Swift 5 需要Xcode 10.2，所以在开始前请确认你安装了它。 Getting StartedSwift 5 源兼容(sourc">
+<meta name="twitter:image" content="https://koenig-media.raywenderlich.com/uploads/2018/05/swift-320x320.png">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '2860370',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="https://www.devorz.com/2019/04/04/What-s-New-in-Swift5/"/>
+
+
+
+
+
+  <title>What’s New in Swift 5? | DevOrz</title>
+  
+
+
+
+
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+            (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+          m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-88751319-1', 'auto');
+  ga('send', 'pageview');
+</script>
+
+
+  <script type="text/javascript">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7165433b2fc4e7a236412233e2718bcc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">DevOrz</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle">如果没有见过太阳,我本可以忍受黑暗</p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-about">
+          <a href="/about" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-user"></i> <br />
+            
+            关于
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-feed">
+          <a href="/atom.xml" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-rss"></i> <br />
+            
+            RSS
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.devorz.com/2019/04/04/What-s-New-in-Swift5/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="iDevOrz">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/avatar.png">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="DevOrz">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">What’s New in Swift 5?</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-04-04T22:55:55+08:00">
+                2019-04-04
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2019/04/04/What-s-New-in-Swift5/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count"
+                        data-disqus-identifier="2019/04/04/What-s-New-in-Swift5/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <blockquote>
+<p>原文链接：<a href="https://www.raywenderlich.com/55728-what-s-new-in-swift-5" target="_blank" rel="noopener">What’s New in Swift 5?</a></p>
+</blockquote>
+<p>Swift 5 最终伴随着Xcode 10.2一起到来。这次发布带来了 ABI 稳定性 并且改进了语言，一些期待已久的特性。来看看这些新东西吧！</p>
+<p>在这篇教程，你将学习Swift 5的一些重大改变。使用 Swift 5 需要Xcode 10.2，所以在开始前请确认你安装了它。</p>
+<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><p>Swift 5 源兼容(source compatible) Swift 4.2，但是它不二进制兼容（binary compatible）更早的Swift 发行版。不过由于 ABI 稳定性，未来发行版将与Swift 5二进制兼容。</p>
+<p>ABI 稳定性让使用不同 Swift版本编译的应用程序和库之间的二进制兼容性。Swift 标准库和运行时嵌入在 OS 中，因此应用程序不会在任何平台上分发自己的库副本。这导致更好的 工具解耦(tool decoupling) 和 OS 集成(OS integration)。</p>
+<p>你还需要 ABI 稳定性来分发跨多个 Swift 版本的二进制frameworks(binary frameworks )。这需要模块格式稳定性(module format stability)，稳定模块包含编译器的框架公开接口表示的模块文件。</p>
+<p>你可以在本教程的每个章节找到 <a href="https://apple.github.io/swift-evolution/" target="_blank" rel="noopener">Swift Evolution</a>像 [SE-0001] 这样的提议号。你可以浏览每个提案的链接来详细了解每项新变化。</p>
+<p>最好是在 playground 中尝试这些新特性。</p>
+<p>启动 Xcode 10.2，选择 File ▸ New ▸ Playground，在 platform 项选择 <strong>iOS</strong> ，template 选 <strong>Blank</strong> 。命名和保存位置随意，你开心就好。开始吧！</p>
+<blockquote>
+<p>需要快速复习一下 Swift 4.2 重点，查看 Swift 4.2教程。<a href="https://www.raywenderlich.com/5357-what-s-new-in-swift-4-2" target="_blank" rel="noopener">What’s New in Swift 4.2?</a></p>
+</blockquote>
+<h2 id="Language-Improvements"><a href="#Language-Improvements" class="headerlink" title="Language Improvements"></a>Language Improvements</h2><p>Swift 5有很多语言特性，如 动态可调用类型(dynamic callable types),处理未来的枚举(handling future enumeration)等等.</p>
+<h3 id="Testing-Integer-Multiples"><a href="#Testing-Integer-Multiples" class="headerlink" title="Testing Integer Multiples"></a>Testing Integer Multiples</h3><p>在Swift 4.2中，你可以使用余数运算符确定数字是否是另一个的倍数：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> firstNumber = <span class="number">4</span></span><br><span class="line"><span class="keyword">let</span> secondNumber = <span class="number">2</span></span><br><span class="line"><span class="keyword">if</span> secondNumber != <span class="number">0</span> &amp;&amp; firstNumber % secondNumber == <span class="number">0</span> &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"\(secondNumber) * \(firstNumber / secondNumber) = \(firstNumber)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码如何工作：</p>
+<ol>
+<li>确认 <code>secondNumber</code> 不为 0.</li>
+<li>确认 <code>firstNumber</code>除以<code>secondNumber</code>余 0.</li>
+<li>执行除法操作。</li>
+</ol>
+<p>你必须确认 <code>secondNumber</code> 不为 0,否则 % 操作将抛出错误。</p>
+<p>Swift 5 通过给<code>BinaryInteger</code>添加了 <code>isMultiple(of:)</code> 方法简化了这一操作<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0225-binaryinteger-iseven-isodd-ismultiple.md" target="_blank" rel="noopener">SE-0225</a>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> firstNumber.isMultiple(of: secondNumber) &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="string">"\(secondNumber) * \(firstNumber / secondNumber) = \(firstNumber)"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>即使你传入 0 作为参数,<code>isMultiple(of:)</code>依然可以工作，而且是代码更加简洁明了。</p>
+<h3 id="Escaping-Raw-Strings"><a href="#Escaping-Raw-Strings" class="headerlink" title="Escaping Raw Strings"></a>Escaping Raw Strings</h3><p>Swift 4.2使用转义符来表示字符串中的反斜杠和引号：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> escape = <span class="string">"You use escape sequences for \"quotes\"\\\"backslashes\" in Swift 4.2."</span></span><br><span class="line"><span class="keyword">let</span> multiline = <span class="string">""</span><span class="string">"</span></span><br><span class="line"><span class="string">                You use escape sequences for \"\"\"quotes\"\"\"\\\"\"\"backslashes\"\"\"</span></span><br><span class="line"><span class="string">                on multiple lines</span></span><br><span class="line"><span class="string">                in Swift 4.2.</span></span><br><span class="line"><span class="string">                "</span><span class="string">""</span></span><br></pre></td></tr></table></figure>
+<p>Swift 5添加了 raw strings 。你可以在字符串的开头和结尾添加＃，这样你就可以使用反斜杠和引号而不会出现问题:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> raw = #<span class="string">"You can create "</span>raw<span class="string">"\"plain"</span> strings <span class="keyword">in</span> <span class="type">Swift</span> <span class="number">5</span>.<span class="string">"#</span></span><br><span class="line"><span class="string">let multiline = #"</span><span class="string">""</span></span><br><span class="line">                <span class="type">You</span> can create <span class="string">""</span><span class="string">"raw"</span><span class="string">""</span>\<span class="string">""</span><span class="string">"plain"</span><span class="string">""</span> strings</span><br><span class="line">                on multiple lines</span><br><span class="line">                <span class="keyword">in</span> <span class="type">Swift</span> <span class="number">5</span>.</span><br><span class="line">                <span class="string">""</span><span class="string">"#</span></span><br></pre></td></tr></table></figure>
+<p>在原始字符串中使用字符串插值时，必须在反斜杠后使用 # 号：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> track = <span class="string">"Nothing Else Matters"</span></span><br><span class="line"><span class="built_in">print</span>(#<span class="string">"My favorite tune\song is \#(track)."</span>#)</span><br></pre></td></tr></table></figure>
+<p>在某些情况下，你需要在字符串的开头和结尾使用多个＃：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> hashtag = ##<span class="string">"You can use the Swift "</span>hashtag<span class="string">" #swift in Swift 5."</span>##</span><br></pre></td></tr></table></figure>
+<p>在上面的代码中，你在开头添加##在 <code>hashtag</code>结尾添加 #，这样可以在字符串中表示＃。字符串开头使用的 # 数量必须与其末尾的数量相同。</p>
+<p>在Swift 4.2中，你在正则表达式中转义反斜杠，如下所示：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="keyword">let</span> versions = <span class="string">"3 3.1 4 4.1 4.2 5"</span></span><br><span class="line"><span class="keyword">let</span> range = <span class="type">NSRange</span>(versions.startIndex..., <span class="keyword">in</span>: versions)</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">let</span> regex = <span class="keyword">try</span>! <span class="type">NSRegularExpression</span>(pattern: <span class="string">"\\d\\.\\d"</span>)</span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="keyword">let</span> minorVersions = regex.matches(<span class="keyword">in</span>: versions, range: range)</span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line">minorVersions.forEach &#123; <span class="built_in">print</span>(versions[<span class="type">Range</span>($<span class="number">0</span>.range, <span class="keyword">in</span>:  versions)!]) &#125;</span><br></pre></td></tr></table></figure>
+<ol>
+<li>声明 <code>versions</code>定义一个 <code>range</code> 覆盖整个字符串</li>
+<li>定义一个匹配 <code>versions</code> 中所有次要Swift发行版(minor Swift releases)的正则表达式。</li>
+<li>使用<code>matches(in:options:range:)</code>确定次要发行版的rangs 。</li>
+<li>使用 <code>rangs</code> 从 <code>versions</code>中获得次要发行版。</li>
+</ol>
+<p>Swift 5使用 <code>raw strings</code> 简化正则表达式:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> regex = <span class="keyword">try</span>! <span class="type">NSRegularExpression</span>(pattern: #<span class="string">"\d\.\d"</span>#)</span><br></pre></td></tr></table></figure>
+<p>在上述代码中，你定义 <code>regex</code>用的反斜杠少了一半，因为你不需要在 <code>raw strings</code> 中转义反斜杠。</p>
+<p><a href="https://koenig-media.raywenderlich.com/uploads/2018/05/swift.png" target="_blank" rel="noopener"><img src="https://koenig-media.raywenderlich.com/uploads/2018/05/swift-320x320.png" alt="No extra backslashes in regular expressions!"></a>  </p>
+<blockquote>
+<p>需要了解更多的关于正则表达式如何在Swift中使用，请看这篇教程: <a href="https://www.raywenderlich.com/5767-an-introduction-to-regular-expressions" target="_blank" rel="noopener">An Introduction to Regular Expressions</a></p>
+</blockquote>
+<h3 id="Using-New-Character-Properties"><a href="#Using-New-Character-Properties" class="headerlink" title="Using New Character Properties"></a>Using New Character Properties</h3><p>在处理<code>characters</code>时，Swift 4.2 需要一个解决方法来处理一个常见的需求：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> id = <span class="string">"ID10"</span></span><br><span class="line"><span class="keyword">var</span> digits = <span class="number">0</span></span><br><span class="line">id.forEach &#123; digits += <span class="type">Int</span>(<span class="type">String</span>($<span class="number">0</span>)) != <span class="literal">nil</span> ? <span class="number">1</span> : <span class="number">0</span> &#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Id has \(digits) digits."</span>)</span><br></pre></td></tr></table></figure>
+<p>在此代码中，首先将每个字符转换为String，然后再转换为Int，以确定 id 有多少数字。</p>
+<p>但是，Swift 5为Character添加了属性，使 characters 更易用<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0221-character-properties.md" target="_blank" rel="noopener">SE-0221</a>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">id.forEach &#123; digits += $<span class="number">0</span>.isNumber ? <span class="number">1</span> : <span class="number">0</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>在上述情况中，你使用 <code>isNumber</code> 来检查每个字符是否都是数字。查看提案来寻找其他你能使用的属性。</p>
+<h3 id="Using-New-Unicode-Scalar-Properties"><a href="#Using-New-Unicode-Scalar-Properties" class="headerlink" title="Using New Unicode Scalar Properties"></a>Using New Unicode Scalar Properties</h3><p>在 Swift4.2 中，你为Unicode scalars 实现文本处理算法，如下所示：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> username = <span class="string">"bond007"</span></span><br><span class="line"><span class="keyword">var</span> letters = <span class="number">0</span></span><br><span class="line">username.unicodeScalars.forEach &#123; </span><br><span class="line">  letters += (<span class="number">65</span>...<span class="number">90</span>) ~= $<span class="number">0</span>.value || (<span class="number">97</span>...<span class="number">122</span>) ~= $<span class="number">0</span>.value ? <span class="number">1</span> : <span class="number">0</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">print</span>(<span class="string">"Username has \(letters) letters."</span>)</span><br></pre></td></tr></table></figure>
+<p>在此代码中，您通过检查每个字符的 <code>unicode scalars</code>是代表小写字母还是大写字母来计算用户名的字母数。</p>
+<p>Swift 5为 <code>unicode scalars</code> 添加了属性，简化了文本处理<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0211-unicode-scalar-properties.md" target="_blank" rel="noopener">SE-0211</a>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">username.unicodeScalars.forEach &#123; letters += $<span class="number">0</span>.properties.isAlphabetic ? <span class="number">1</span> : <span class="number">0</span> &#125;</span><br></pre></td></tr></table></figure>
+<p>在此代码中，你使用<code>isAlphabetic</code> 检查每个字符是否为数字。链接的提案将显示你可以检查的所有属性。</p>
+<h3 id="Removing-Subsequences"><a href="#Removing-Subsequences" class="headerlink" title="Removing Subsequences"></a>Removing Subsequences</h3><p>Swift 4.2 使用下列方法 从 <code>Sequence</code> <code>customization points</code>返回 <code>SubSequence</code>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Sequence</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">remove</span><span class="params">(<span class="number">_</span> s: String)</span></span> -&gt; <span class="type">SubSequence</span> &#123;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> n = <span class="type">Int</span>(s) <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">dropLast</span>()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">dropLast</span>(n)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> sequence = [<span class="number">5</span>, <span class="number">2</span>, <span class="number">7</span>, <span class="number">4</span>]</span><br><span class="line">sequence.remove(<span class="string">"2"</span>) <span class="comment">// [5, 2]</span></span><br><span class="line">sequence.remove(<span class="string">"two"</span>) <span class="comment">// [5, 2, 7]</span></span><br></pre></td></tr></table></figure>
+<p>上述情况中，如果 s 是一个 <code>Int</code>那么 <code>remove(_:)</code>将从 <code>sequence</code>移除倒数的 n 个元素,否则移除最后一个元素。</p>
+<p>Swift 5用 <code>sequences</code> 中的具体类型替换<code>SubSequence</code>。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Sequence</span> </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">remove</span><span class="params">(<span class="number">_</span> s: String)</span></span> -&gt; [<span class="type">Element</span>] &#123;</span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> n = <span class="type">Int</span>(s) <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="built_in">dropLast</span>()</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="built_in">dropLast</span>(n)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这段代码中，<code>remove(_:)</code> 跟随 <code>dropLast()</code> 和 <code>dropLast(_:)</code> 一样返回 <code>[Element]</code>类型。</p>
+<h2 id="Dictionary-Updates"><a href="#Dictionary-Updates" class="headerlink" title="Dictionary Updates"></a>Dictionary Updates</h2><p>Swift 5为 Dictionary 带来了许多期待已久的改进:</p>
+<h3 id="Compacting-Dictionaries"><a href="#Compacting-Dictionaries" class="headerlink" title="Compacting Dictionaries"></a>Compacting Dictionaries</h3><p>Swift 4.2使用 <code>mapValues</code>,<code>filter</code>和 <code>reduce</code>来从过滤 Dictionary 中的 nil 值：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> students = [<span class="string">"Oana"</span>: <span class="string">"10"</span>, <span class="string">"Nori"</span>: <span class="string">"ten"</span>]</span><br><span class="line"><span class="keyword">let</span> filterStudents = students.mapValues(<span class="type">Int</span>.<span class="keyword">init</span>)</span><br><span class="line">  .<span class="built_in">filter</span> &#123; $<span class="number">0</span>.value != <span class="literal">nil</span> &#125;</span><br><span class="line">  .mapValues &#123; $<span class="number">0</span>! &#125;</span><br><span class="line"><span class="keyword">let</span> reduceStudents = students.<span class="built_in">reduce</span>(into: [:]) &#123; $<span class="number">0</span>[$<span class="number">1</span>.key] = <span class="type">Int</span>($<span class="number">1</span>.value) &#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码使用 <code>mapValues</code>加上<code>mapValues</code>或者 <code>reduce</code> 来认定 <code>students</code>中成绩有效的学生。<br>两种方法都需要多次通过 <code>dictionary</code>而且使代码复杂化。</p>
+<p>Swift 5 使用 <code>compactMapValues(_:)</code>来高效解决<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0218-introduce-compact-map-values.md" target="_blank" rel="noopener">[SE-0218]</a>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> mapStudents = students.compactMapValues(<span class="type">Int</span>.<span class="keyword">init</span>)</span><br></pre></td></tr></table></figure>
+<p>使用更少的代码行数完成了相同的事情，整洁！</p>
+<h3 id="Renaming-Dictionary-Literals"><a href="#Renaming-Dictionary-Literals" class="headerlink" title="Renaming Dictionary Literals"></a>Renaming Dictionary Literals</h3><p>Swift 4.2使用 <code>DictionaryLiteral</code>来来声明一个Dictionary:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pets: <span class="type">DictionaryLiteral</span> = [<span class="string">"dog"</span>: <span class="string">"Sclip"</span>, <span class="string">"cat"</span>: <span class="string">"Peti"</span>]</span><br></pre></td></tr></table></figure>
+<p>DictionaryLiteral 不是一个 Dictionary 也不是 literal. 它是一个键值对表。</p>
+<p>Swift 5 重命名 <code>DictionaryLiteral</code> 为 <code>KeyValuePairs</code><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0214-DictionaryLiteral.md" target="_blank" rel="noopener">[SE-0214]</a>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> pets: <span class="type">KeyValuePairs</span> = [<span class="string">"dog"</span>: <span class="string">"Sclip"</span>, <span class="string">"cat"</span>: <span class="string">"Peti"</span>]</span><br></pre></td></tr></table></figure>
+<h2 id="Numeric-Protocol-Updates"><a href="#Numeric-Protocol-Updates" class="headerlink" title="Numeric Protocol Updates"></a>Numeric Protocol Updates</h2><p>Swift 4.2为向量实现了 <code>Numeric</code>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Vector</span> </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> x, y: <span class="type">Int</span></span><br><span class="line">  </span><br><span class="line">  <span class="keyword">init</span>(<span class="number">_</span> x: <span class="type">Int</span>, <span class="number">_</span> y: <span class="type">Int</span>) &#123;</span><br><span class="line">    <span class="keyword">self</span>.x = x</span><br><span class="line">    <span class="keyword">self</span>.y = y</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Vector</span>: <span class="title">ExpressibleByIntegerLiteral</span> </span>&#123;</span><br><span class="line">  <span class="keyword">init</span>(integerLiteral value: <span class="type">Int</span>) &#123;</span><br><span class="line">    x = value</span><br><span class="line">    y = value</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Vector</span>: <span class="title">Numeric</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> magnitude: <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Int</span>(sqrt(<span class="type">Double</span>(x * x + y * y)))</span><br><span class="line">  &#125;  </span><br><span class="line"></span><br><span class="line">  <span class="keyword">init</span>?&lt;<span class="type">T</span>&gt;(exactly value: <span class="type">T</span>) &#123;</span><br><span class="line">    x = value <span class="keyword">as</span>! <span class="type">Int</span></span><br><span class="line">    y = value <span class="keyword">as</span>! <span class="type">Int</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> +<span class="params">(lhs: Vector, rhs: Vector)</span></span> -&gt; <span class="type">Vector</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Vector</span>(lhs.x + rhs.x, lhs.y + rhs.y)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> +=<span class="params">(lhs: <span class="keyword">inout</span> Vector, rhs: Vector)</span></span> &#123;</span><br><span class="line">    lhs = lhs + rhs</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> -<span class="params">(lhs: Vector, rhs: Vector)</span></span> -&gt; <span class="type">Vector</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Vector</span>(lhs.x - rhs.x, lhs.y - rhs.y)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> -=<span class="params">(lhs: <span class="keyword">inout</span> Vector, rhs: Vector)</span></span> &#123;</span><br><span class="line">    lhs = lhs - rhs</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> *<span class="params">(lhs: Vector, rhs: Vector)</span></span> -&gt; <span class="type">Vector</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Vector</span>(lhs.x * rhs.y, lhs.y * rhs.x)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> *=<span class="params">(lhs: <span class="keyword">inout</span> Vector, rhs: Vector)</span></span> &#123;</span><br><span class="line">    lhs = lhs * rhs</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 4</span></span><br><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Vector</span>: <span class="title">CustomStringConvertible</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> description: <span class="type">String</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"(\(x) \(y))"</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这段代码如何工作：</p>
+<ol>
+<li><p>为 <code>vector</code> 声明<code>x</code>，<code>y</code>和 <code>init(_:_:)</code>。</p>
+</li>
+<li><p>实现 <code>init(integerLiteral:)</code>方法来使 <code>Vector</code> 遵守 <code>Numeric</code>必须遵守的 <code>ExpressibleByIntegerLiteral</code>。</p>
+</li>
+<li>定义 vector 的<code>magnitude</code>使其符合 <code>Numeric</code>,声明 <code>init(exactly:)</code>然后实现 <code>+(lhs:rhs:)</code>, <code>+=(lhs:rhs:)</code>, <code>-(lhs:rhs:)</code>, <code>-=(lhs:rhs:)</code>, <code>*(lhs:rhs:)</code>, <code>*=(lhs:rhs:)</code>。</li>
+<li>实现 <code>description</code> 使 <code>Vector</code>  遵守 <code>CustomStringConvertible</code>。</li>
+</ol>
+<p>上面的代码使你可以轻松地使用 vector :</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> first = <span class="type">Vector</span>(<span class="number">1</span>, <span class="number">2</span>) <span class="comment">// (1,2)</span></span><br><span class="line"><span class="keyword">let</span> second = <span class="type">Vector</span>(<span class="number">3</span>, <span class="number">4</span>) <span class="comment">// (3,4)</span></span><br><span class="line"><span class="keyword">let</span> third = first + second <span class="comment">// (4,6)</span></span><br><span class="line">first += second <span class="comment">// (4,6)</span></span><br><span class="line"><span class="keyword">let</span> fourth = first - second <span class="comment">// (1,2)</span></span><br><span class="line">first -= second <span class="comment">// (1,2)</span></span><br></pre></td></tr></table></figure>
+<p>Swift 5为 vector 实现 <code>AdditiveArithmetic</code>，因为你无法定义2D向量的叉积。<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0233-additive-arithmetic-protocol.md" target="_blank" rel="noopener">[SE-0233]</a>。它在 <code>ExpressibleByIntegerLiteral</code> 中不是必须的:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Vector</span>: <span class="title">AdditiveArithmetic</span> </span>&#123;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">var</span> zero: <span class="type">Vector</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Vector</span>(<span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> +<span class="params">(lhs: Vector, rhs: Vector)</span></span> -&gt; <span class="type">Vector</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Vector</span>(lhs.x + rhs.x, lhs.y + rhs.y)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> +=<span class="params">(lhs: <span class="keyword">inout</span> Vector, rhs: Vector)</span></span> &#123;</span><br><span class="line">    lhs = lhs + rhs</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> -<span class="params">(lhs: Vector, rhs: Vector)</span></span> -&gt; <span class="type">Vector</span> &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="type">Vector</span>(lhs.x - rhs.x, lhs.y - rhs.y)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">static</span> <span class="function"><span class="keyword">func</span> -=<span class="params">(lhs: <span class="keyword">inout</span> Vector, rhs: Vector)</span></span> &#123;</span><br><span class="line">    lhs = lhs - rhs</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>在这段代码，你通过定义 <code>zero</code>和实现 <code>+(lhs:rhs:)</code>, <code>+=(lhs:rhs:)</code>, <code>-(lhs:rhs:)</code>, <code>-=(lhs:rhs:)</code>。</p>
+<p><a href="https://koenig-media.raywenderlich.com/uploads/2018/12/announcement.png" target="_blank" rel="noopener"><img src="https://koenig-media.raywenderlich.com/uploads/2018/12/announcement.png" alt="Working with vectors is so easy in Swift 5!"></a>  </p>
+<blockquote>
+<p>想学习更多关于Swift中的操作符重载，访问操作符重载的教程<a href="https://www.raywenderlich.com/650-overloading-custom-operators-in-swift" target="_blank" rel="noopener">Overloading Custom Operators in Swift</a></p>
+</blockquote>
+<h2 id="String-Interpolation-Updates"><a href="#String-Interpolation-Updates" class="headerlink" title="String Interpolation Updates"></a>String Interpolation Updates</h2><p>Swift 4.2 通过 <code>interpolating segments</code> 实现 字符串的插入:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> language = <span class="string">"Swift"</span></span><br><span class="line"><span class="keyword">let</span> languageSegment = <span class="type">String</span>(stringInterpolationSegment: language)</span><br><span class="line"><span class="keyword">let</span> space = <span class="string">" "</span></span><br><span class="line"><span class="keyword">let</span> spaceSegment = <span class="type">String</span>(stringInterpolationSegment: space)</span><br><span class="line"><span class="keyword">let</span> version = <span class="number">4.2</span></span><br><span class="line"><span class="keyword">let</span> versionSegment = <span class="type">String</span>(stringInterpolationSegment: version)</span><br><span class="line"><span class="keyword">let</span> string = <span class="type">String</span>(stringInterpolation: languageSegment, spaceSegment, versionSegment)</span><br></pre></td></tr></table></figure>
+<p>在上述代码，首先包裹每个部分加入<code>init(stringInterpolationSegment:)</code>，然后把所有的部分用 <code>init(stringInterpolation:)</code>包起来。</p>
+<p>Swift 5带来了完全不同的处理方法<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0228-fix-expressiblebystringinterpolation.md" target="_blank" rel="noopener">[SE-0228]</a>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="keyword">var</span> interpolation = <span class="type">DefaultStringInterpolation</span>(</span><br><span class="line">  literalCapacity: <span class="number">7</span>,</span><br><span class="line">  interpolationCount: <span class="number">1</span>)</span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">let</span> language = <span class="string">"Swift"</span></span><br><span class="line">interpolation.appendLiteral(language)</span><br><span class="line"><span class="keyword">let</span> space = <span class="string">" "</span></span><br><span class="line">interpolation.appendLiteral(space)</span><br><span class="line"><span class="keyword">let</span> version = <span class="number">5</span></span><br><span class="line">interpolation.appendInterpolation(version)</span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="keyword">let</span> string = <span class="type">String</span>(stringInterpolation: interpolation)</span><br></pre></td></tr></table></figure>
+<p>这段代码做了什么：</p>
+<ol>
+<li>用指定容量和插入计数定义了一个 <code>DefaultStringInterpolation</code>实例。</li>
+<li>调用 <code>appendLiteral(_:)</code>和 <code>appendInterpolation(_:)</code>来添加文字和插入数值到<code>interpolation</code>。</li>
+<li>通过调用 <code>init(stringInterpolation:)</code>生成最终的插值字符串。</li>
+</ol>
+<h2 id="Handling-Future-Enumeration-Cases"><a href="#Handling-Future-Enumeration-Cases" class="headerlink" title="Handling Future Enumeration Cases"></a>Handling Future Enumeration Cases</h2><p>Swift 4.2 不能恰当的处理新的枚举值，看下面的代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Post</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> tutorial, article, screencast, course</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">readPost</span><span class="params">(<span class="number">_</span> post: Post)</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">  <span class="keyword">switch</span> post &#123;</span><br><span class="line">    <span class="keyword">case</span> .tutorial:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"You are reading a tutorial."</span></span><br><span class="line">    <span class="keyword">case</span> .article:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"You are reading an article."</span></span><br><span class="line">    <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"You are watching a video."</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="keyword">let</span> screencast = <span class="type">Post</span>.screencast</span><br><span class="line">readPost(screencast) <span class="comment">// "You are watching a video."</span></span><br><span class="line"><span class="keyword">let</span> course = <span class="type">Post</span>.course</span><br><span class="line">readPost(course) <span class="comment">// "You are watching a video."</span></span><br></pre></td></tr></table></figure>
+<p>上面的代码发生了什么：</p>
+<ol>
+<li>定义了所有的网站上的 blog posts 类型。</li>
+<li>添加 <code>default</code>使 <code>switch</code>无遗漏。</li>
+<li>在 <code>default</code> 中处理 <code>.screencast</code> 和<code>.course</code>因为他们都是视频。</li>
+</ol>
+<p>以下是在Swift 4.2中处理 <code>podcasts</code>：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">Post</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> tutorial, article, podcast, screencast, course</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> podcast = <span class="type">Post</span>.podcast</span><br><span class="line">readPost(podcast) <span class="comment">// "You are watching a video."</span></span><br></pre></td></tr></table></figure>
+<p>上述代码中，你在 <code>default</code>中处理<code>.podcast</code>,<br>即使它不是视频，Swift不会报警告因为 <code>switch</code>没有遗漏。</p>
+<p>Swift 5关注到了新增枚举的情况<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0192-non-exhaustive-enums.md" target="_blank" rel="noopener">[SE-0192]</a>：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">readPost</span><span class="params">(<span class="number">_</span> post: BlogPost)</span></span> -&gt; <span class="type">String</span> &#123;</span><br><span class="line">  <span class="keyword">switch</span> post &#123;</span><br><span class="line">    <span class="keyword">case</span> .tutorial:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"You are reading a tutorial."</span></span><br><span class="line">    <span class="keyword">case</span> .article:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"You are reading an article."</span></span><br><span class="line">    @unknown <span class="keyword">default</span>:</span><br><span class="line">      <span class="keyword">return</span> <span class="string">"You are reading a blog post."</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">readPost(screencast) <span class="comment">// "You are reading a blog post."</span></span><br><span class="line">readPost(course) <span class="comment">// "You are reading a blog post."</span></span><br><span class="line">readPost(podcast) <span class="comment">// "You are reading a blog post."</span></span><br></pre></td></tr></table></figure>
+<p>在这段代码中，你标记用<code>@unknown</code><br>标记 <code>default</code>，Swift 将会警告你<code>switch</code>是不详尽的。<code>default</code>处理 <code>.screencast</code>, <code>.course</code>和<code>.podcast</code><br>，因为他们都是 blog posts。</p>
+<p><a href="https://koenig-media.raywenderlich.com/uploads/2018/05/sun.png" target="_blank" rel="noopener"><img src="https://koenig-media.raywenderlich.com/uploads/2018/05/sun-320x320.png" alt="The future is bright for Swift 5 enumerations!"></a>  </p>
+<h2 id="Adding-Result-to-the-Standard-Library"><a href="#Adding-Result-to-the-Standard-Library" class="headerlink" title="Adding Result to the Standard Library"></a>Adding Result to the Standard Library</h2><p>Swift 5 加入 <code>Result</code>到标准库<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0235-add-result.md" target="_blank" rel="noopener"> [SE-0235]</a>：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">ConnectionError</span>: <span class="title">Error</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> noNetwork, noDatabase</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2</span></span><br><span class="line"><span class="keyword">let</span> networkSuccess = <span class="type">Result</span>&lt;<span class="type">String</span>, <span class="type">ConnectionError</span>&gt;.success(<span class="string">"Network connected!"</span>)</span><br><span class="line"><span class="keyword">let</span> databaseSuccess = <span class="type">Result</span>&lt;<span class="type">String</span>, <span class="type">ConnectionError</span>&gt;.success(<span class="string">"Database connected!"</span>)</span><br><span class="line"><span class="keyword">let</span> networkFailure = <span class="type">Result</span>&lt;<span class="type">String</span>, <span class="type">ConnectionError</span>&gt;.failure(.noNetwork)</span><br><span class="line"><span class="keyword">let</span> databaseFailure = <span class="type">Result</span>&lt;<span class="type">String</span>, <span class="type">ConnectionError</span>&gt;.failure(.noDatabase)</span><br><span class="line"><span class="keyword">let</span> sameSuccess = networkSuccess == databaseSuccess</span><br><span class="line"><span class="keyword">let</span> sameFailure = networkFailure == databaseFailure</span><br><span class="line"><span class="keyword">let</span> success: <span class="type">Set</span> = [networkSuccess, databaseSuccess]</span><br><span class="line"><span class="keyword">let</span> failure: <span class="type">Set</span> = [networkFailure, databaseFailure]</span><br><span class="line"><span class="keyword">let</span> successDictionary = [</span><br><span class="line">  networkSuccess: <span class="keyword">try</span>! networkSuccess.<span class="keyword">get</span>(),</span><br><span class="line">  databaseSuccess: <span class="keyword">try</span>! databaseSuccess.<span class="keyword">get</span>()</span><br><span class="line">]</span><br><span class="line"><span class="keyword">let</span> failureDictionary = [</span><br><span class="line">  networkFailure: <span class="type">ConnectionError</span>.noNetwork,</span><br><span class="line">  databaseFailure: <span class="type">ConnectionError</span>.noDatabase</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>这段代码如何工作：</p>
+<ol>
+<li>声明最常见的连接错误.</li>
+<li>比较连接结果，将它们添加到集合中。你可以使用这些集和中的元素作为字典的 key ，因为Result实现了 <code>Equatable</code>和 <code>Hashable</code>。</li>
+</ol>
+<h2 id="Conforming-Never-to-Equatable-and-Hashable"><a href="#Conforming-Never-to-Equatable-and-Hashable" class="headerlink" title="Conforming Never to Equatable and Hashable"></a>Conforming Never to Equatable and Hashable</h2><p>Swift 5 是 <code>Never</code> 遵从 <code>Equatable</code>和<code>Hashable</code><a href="https://github.com/apple/swift-evolution/blob/master/proposals/0215-conform-never-to-hashable-and-equatable.md" target="_blank" rel="noopener">[SE-0215]</a><br>:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> alwaysSucceeds = <span class="type">Result</span>&lt;<span class="type">String</span>, <span class="type">Never</span>&gt;.success(<span class="string">"Network connected!"</span>)</span><br><span class="line"><span class="keyword">let</span> neverFails = <span class="type">Result</span>&lt;<span class="type">String</span>, <span class="type">Never</span>&gt;.success(<span class="string">"Database connected!"</span>)</span><br><span class="line"><span class="keyword">let</span> alwaysFails = <span class="type">Result</span>&lt;<span class="type">Never</span>, <span class="type">ConnectionError</span>&gt;.failure(.noNetwork)</span><br><span class="line"><span class="keyword">let</span> neverSucceeds = <span class="type">Result</span>&lt;<span class="type">Never</span>, <span class="type">ConnectionError</span>&gt;.failure(.noDatabase)</span><br><span class="line"><span class="keyword">let</span> sameValue = alwaysSucceeds == neverFails</span><br><span class="line"><span class="keyword">let</span> sameError = alwaysFails == neverSucceeds</span><br><span class="line"><span class="keyword">let</span> alwaysSuccess: <span class="type">Set</span> = [alwaysSucceeds, neverFails]</span><br><span class="line"><span class="keyword">let</span> alwaysFailure: <span class="type">Set</span> = [alwaysFails, neverSucceeds]</span><br><span class="line"><span class="keyword">let</span> alwaysSuccessDictionary = [</span><br><span class="line">  alwaysSucceeds: <span class="keyword">try</span>! alwaysSucceeds.<span class="keyword">get</span>(),</span><br><span class="line">  neverFails: <span class="keyword">try</span>! neverFails.<span class="keyword">get</span>()</span><br><span class="line">]</span><br><span class="line"><span class="keyword">let</span> alwaysFailureDictionary = [</span><br><span class="line">  alwaysFails: <span class="type">ConnectionError</span>.noNetwork,</span><br><span class="line">  neverSucceeds: <span class="type">ConnectionError</span>.noDatabase</span><br><span class="line">]</span><br></pre></td></tr></table></figure>
+<p>在此代码中，您定义连接结果的返回值或错误，比较它们，将它们添加到集合并将它们用作字典key。</p>
+<h2 id="Dynamically-Callable-Types"><a href="#Dynamically-Callable-Types" class="headerlink" title="Dynamically Callable Types"></a>Dynamically Callable Types</h2><p>Swift 5定义了 <code>dynamically callable types</code>,使其可以与 <code>Python</code> 和 <code>Ruby</code>相互操作。</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line">@dynamicCallable</span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">DynamicFeatures</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 2</span></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">dynamicallyCall</span><span class="params">(withArguments params: [Int])</span></span> -&gt; <span class="type">Int</span>? &#123;</span><br><span class="line">    <span class="keyword">guard</span> !params.isEmpty <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> params.<span class="built_in">reduce</span>(<span class="number">0</span>, +)</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">dynamicallyCall</span><span class="params">(withKeywordArguments params: KeyValuePairs&lt;String, Int&gt;)</span></span> -&gt; <span class="type">Int</span>? &#123;</span><br><span class="line">    <span class="keyword">guard</span> !params.isEmpty <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="literal">nil</span></span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> params.<span class="built_in">reduce</span>(<span class="number">0</span>) &#123; $<span class="number">1</span>.key.isEmpty ? $<span class="number">0</span> : $<span class="number">0</span> + $<span class="number">1</span>.value &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="keyword">let</span> features = <span class="type">DynamicFeatures</span>()</span><br><span class="line">features() <span class="comment">// nil</span></span><br><span class="line">features(<span class="number">3</span>, <span class="number">4</span>, <span class="number">5</span>) <span class="comment">// 12</span></span><br><span class="line">features(first: <span class="number">3</span>, <span class="number">4</span>, second: <span class="number">5</span>) <span class="comment">// 8</span></span><br></pre></td></tr></table></figure>
+<p>上述代码：</p>
+<ol>
+<li>用 <code>@dynamicCallable</code> 标记 <code>DynamicFeatures</code> 使其成为 <code>dynamically callable type</code></li>
+<li>使 <code>DynamicFeatures</code> 遵从 <code>@dynamicCallable</code> ,实现 <code>dynamicallyCall(withArguments:)</code> 和 <code>dynamicallyCall(withKeywordArguments:)</code>。</li>
+<li>使用平常的语法调用 <code>features</code>，编译器将调用<code>dynamicallyCall(withArguments:)</code> 或者<code>dynamicallyCall(withKeywordArguments:)</code> 。</li>
+</ol>
+<h2 id="Swift-Package-Manager-Updates"><a href="#Swift-Package-Manager-Updates" class="headerlink" title="Swift Package Manager Updates"></a>Swift Package Manager Updates</h2><p>Swift 5给 Swift Package Manager添加了一些特性：</p>
+<h3 id="Platform-Deployment-Settings"><a href="#Platform-Deployment-Settings" class="headerlink" title="Platform Deployment Settings"></a>Platform Deployment Settings</h3><p>Swift 5允许您在 Package.swift 中定义所需的最低平台部署目标版本<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0236-package-manager-platform-deployment-settings.md" target="_blank" rel="noopener">[SE-0236]</a>：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> package = <span class="type">Package</span>(name: “<span class="type">Package</span>”, platforms: [</span><br><span class="line">  .macOS(.v10_14), </span><br><span class="line">  .iOS(.v12),</span><br><span class="line">  .tvOS(.v12), </span><br><span class="line">  .watchOS(.v5)</span><br><span class="line">])</span><br></pre></td></tr></table></figure>
+<p>你可以在 <code>SupportedPlatform</code>中使用 <code>macOS（）</code>，<code>iOS（）</code>，<code>tvOS（）</code>和<code>watchOS（）</code>来设置包所需的最低平台版本。</p>
+<h3 id="Target-Build-Settings"><a href="#Target-Build-Settings" class="headerlink" title="Target Build Settings"></a>Target Build Settings</h3><p>Swift 5在 Package.swift 中声明了特定于目标的构建设置。它们自定义包管理器在目标构建期间如何调用构建工具<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0238-package-manager-build-settings.md" target="_blank" rel="noopener">[SE-0238]</a>。</p>
+<h3 id="Dependency-Mirroring"><a href="#Dependency-Mirroring" class="headerlink" title="Dependency Mirroring"></a>Dependency Mirroring</h3><p>Swift 5为Swift Package Manager带来了依赖镜像 [<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0219-package-manager-dependency-mirroring.md" target="_blank" rel="noopener">SE-0219</a>].</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">swift package config set-mirror --package-url &lt;package&gt; --mirror-url &lt;mirror&gt;</span><br></pre></td></tr></table></figure>
+<p>即使原始源不可用或被删除，镜像也允许您访问依赖项。</p>
+<p><code>set-mirror</code>使用镜像更新依赖项，后者替换所有其他镜像。</p>
+<p>使用<code>unset-mirror</code>从依赖项中删除镜像：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">swift package config unset-mirror --package-url &lt;package&gt;</span><br><span class="line">swift package config unset-mirror —mirror-url &lt;mirror&gt; </span><br><span class="line">swift package config unset-mirror --all</span><br></pre></td></tr></table></figure>
+<h2 id="Miscellaneous-Bits-and-Pieces"><a href="#Miscellaneous-Bits-and-Pieces" class="headerlink" title="Miscellaneous Bits and Pieces"></a>Miscellaneous Bits and Pieces</h2><p>  Swift 5还增加了一些其他急需的功能和改进：</p>
+<h3 id="Making-Codable-Ranges"><a href="#Making-Codable-Ranges" class="headerlink" title="Making Codable Ranges"></a>Making Codable Ranges</h3><p>  Swift 5 给 rangs 增加了 Codable 的遵从 [<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0239-codable-range.md" target="_blank" rel="noopener">SE-0239</a>]:</p>
+  <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> temperature = <span class="number">0</span>...<span class="number">10</span></span><br><span class="line"><span class="keyword">let</span> encoder = <span class="type">JSONEncoder</span>()</span><br><span class="line"><span class="keyword">let</span> data = <span class="keyword">try</span>! encoder.encode(temperature)</span><br><span class="line"><span class="keyword">let</span> decoder = <span class="type">JSONDecoder</span>()</span><br><span class="line"><span class="keyword">let</span> temperatureRange = <span class="keyword">try</span>! decoder.decode(<span class="type">ClosedRange</span>&lt;<span class="type">Int</span>&gt;.<span class="keyword">self</span>, from: data)</span><br></pre></td></tr></table></figure>
+<p>您使用JSONEncoder对温度进行编码并使用JSONDecoder解码数据，因为默认情况下,rangs 在Swift 5中实现了 Codable 。</p>
+<h3 id="Flattening-Nested-Optionals"><a href="#Flattening-Nested-Optionals" class="headerlink" title="Flattening Nested Optionals"></a>Flattening Nested Optionals</h3><p>  Swift 4.2 使用 <code>try?</code>创建 Nested Optionals：</p>
+  <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Int</span> </span>&#123;</span><br><span class="line">  <span class="comment">// 1</span></span><br><span class="line">  <span class="class"><span class="keyword">enum</span> <span class="title">DivisionError</span>: <span class="title">Error</span> </span>&#123;</span><br><span class="line">    <span class="keyword">case</span> divisionByZero</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="comment">// 2</span></span><br><span class="line">  <span class="function"><span class="keyword">func</span> <span class="title">divideBy</span><span class="params">(<span class="number">_</span> number: Int)</span></span> <span class="keyword">throws</span> -&gt; <span class="type">Int</span> &#123;</span><br><span class="line">    <span class="keyword">guard</span> number != <span class="number">0</span> <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">throw</span> <span class="type">DivisionError</span>.divisionByZero</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">self</span> / number</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 3</span></span><br><span class="line"><span class="keyword">let</span> number: <span class="type">Int</span>? = <span class="number">10</span></span><br><span class="line"><span class="keyword">let</span> division = <span class="keyword">try</span>? number?.divideBy(<span class="number">2</span>)</span><br><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> division = division, </span><br><span class="line">   <span class="keyword">let</span> <span class="keyword">final</span> = division &#123;</span><br><span class="line">  <span class="built_in">print</span>(<span class="keyword">final</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上述代码：</p>
+<ol>
+<li>用 <code>DivisionError</code> 扩展 <code>Int</code> 。</li>
+<li>如果 <code>number</code>为 0 ,<code>divideBy(_:)</code> 抛出 <code>.divisionByZero</code>。</li>
+<li>解开 <code>division</code> 两次，因为它是一个 <code>Int ??</code> 型。</li>
+</ol>
+<p> Swift 5以不同的方式处理[<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0230-flatten-optional-try.md" target="_blank" rel="noopener">SE-0230</a>]:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> <span class="keyword">let</span> division = division &#123;</span><br><span class="line">  <span class="built_in">print</span>(division)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>try?</code> 在Swift 5中不会创建 nested optionals ，因此你需要解包一次，因为它是一个 <code>Int？</code>型</p>
+<h3 id="Removing-Customization-Points-From-Collections"><a href="#Removing-Customization-Points-From-Collections" class="headerlink" title="Removing Customization Points From Collections"></a>Removing Customization Points From Collections</h3><p> 在Swift 4.2  你入口可以从 <code>Collection</code>中自定义细节(customization points)：</p>
+ <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">Array</span> </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> first: <span class="type">Element</span>? &#123;</span><br><span class="line">    <span class="keyword">return</span> !isEmpty ? <span class="keyword">self</span>[<span class="built_in">count</span> - <span class="number">1</span>] : <span class="literal">nil</span></span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="keyword">var</span> last: <span class="type">Element</span>? &#123;</span><br><span class="line">    <span class="keyword">return</span> !isEmpty ? <span class="keyword">self</span>[<span class="number">0</span>] : <span class="literal">nil</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> names = [<span class="string">"Cosmin"</span>, <span class="string">"Oana"</span>, <span class="string">"Sclip"</span>, <span class="string">"Nori"</span>]</span><br><span class="line">names.first <span class="comment">// "Nori"</span></span><br><span class="line">names.last <span class="comment">// "Cosmin"</span></span><br></pre></td></tr></table></figure>
+<p>在此代码中，<code>first</code> 从 <code>names</code>返回最后一个名字，<code>last</code> 返回数组的第一个元素。</p>
+<p>两个计算属性都不能按预期工作，因此 Swift 5 会从集合中删除自定义细节 [<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0232-remove-customization-points.md" target="_blank" rel="noopener">SE-0232</a>]<br>。</p>
+<h3 id="Identity-Key-Paths"><a href="#Identity-Key-Paths" class="headerlink" title="Identity Key Paths"></a>Identity Key Paths</h3><p>Swift 4.2使用<code>.self</code>来访问值:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Tutorial</span> </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> title: <span class="type">String</span></span><br><span class="line">  <span class="keyword">let</span> author: <span class="type">String</span></span><br><span class="line">  <span class="keyword">init</span>(title: <span class="type">String</span>, author: <span class="type">String</span>) &#123;</span><br><span class="line">    <span class="keyword">self</span>.title = title</span><br><span class="line">    <span class="keyword">self</span>.author = author</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> tutorial = <span class="type">Tutorial</span>(title: <span class="string">"What's New in Swift 5.0?"</span>, author: <span class="string">"Cosmin Pupaza"</span>)</span><br><span class="line">tutorial.<span class="keyword">self</span> = <span class="type">Tutorial</span>(title: <span class="string">"What's New in Swift 5?"</span>, author: <span class="string">"Cosmin Pupăză"</span>)</span><br></pre></td></tr></table></figure>
+<p>在此代码中，你使用 <code>.self</code> 一口气更改教程的标题和作者。</p>
+<p>Swift 5 添加为 <strong>identity key paths</strong> 来访问值 [<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0227-identity-keypath.md" target="_blank" rel="noopener">SE-0227</a>];</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">tutorial[keyPath: \.<span class="keyword">self</span>] = <span class="type">Tutorial</span>(</span><br><span class="line">  title: <span class="string">"What's New in Swift 5?"</span>,</span><br><span class="line">  author: <span class="string">"Cosmin Pupăză"</span>)</span><br></pre></td></tr></table></figure>
+<p>在此代码中，您使用<code>\ .self</code>来更新 <code>tutorial</code>。</p>
+<h3 id="Initializing-Literals-Through-Coercion"><a href="#Initializing-Literals-Through-Coercion" class="headerlink" title="Initializing Literals Through Coercion"></a>Initializing Literals Through Coercion</h3><p>在Swift 5中，如果类型符合 literal 协议，则<code>literal initializers</code>会将字面值强制转换为其类型:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> value = <span class="type">UInt64</span>(<span class="number">0xFFFF_FFFF_FFFF_FFFF</span>)</span><br></pre></td></tr></table></figure>
+<p>在Swift 4.2中，上面的代码行在编译时产生溢出错误。</p>
+<h3 id="Build-Configuration-Updates"><a href="#Build-Configuration-Updates" class="headerlink" title="Build Configuration Updates"></a>Build Configuration Updates</h3><p>Swift 4.2 条件编译时用 <code>&gt;=</code>：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> favoriteNumber = <span class="number">10</span></span><br><span class="line"><span class="keyword">var</span> evenNumber = <span class="literal">true</span></span><br><span class="line"></span><br><span class="line">#<span class="keyword">if</span> !swift(&gt;=<span class="number">5</span>)</span><br><span class="line">  evenNumber = favoriteNumber % <span class="number">2</span> == <span class="number">0</span></span><br><span class="line">#<span class="keyword">else</span> </span><br><span class="line">  evenNumber = favoriteNumber.isMultiple(of: <span class="number">2</span>)</span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">#<span class="keyword">if</span> !compiler(&gt;=<span class="number">5</span>)</span><br><span class="line">  evenNumber = favoriteNumber % <span class="number">2</span> == <span class="number">0</span>  </span><br><span class="line">#<span class="keyword">else</span></span><br><span class="line">  evenNumber = favoriteNumber.isMultiple(of: <span class="number">2</span>)</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+<p>这些条件检查Swift版本是否大于或等于5，并在满足条件时编译这些代码。</p>
+<p>Swift 5增加 <code>&lt;</code> 用来更简洁的表达条件 [<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0224-ifswift-lessthan-operator.md" target="_blank" rel="noopener">SE-0224</a>]:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">#<span class="keyword">if</span> swift(&lt;<span class="number">5</span>)</span><br><span class="line">  evenNumber = favoriteNumber % <span class="number">2</span> == <span class="number">0</span>   </span><br><span class="line">#<span class="keyword">else</span></span><br><span class="line">  evenNumber = favoriteNumber.isMultiple(of: <span class="number">2</span>)  </span><br><span class="line">#endif</span><br><span class="line"></span><br><span class="line">#<span class="keyword">if</span> compiler(&lt;<span class="number">5</span>)</span><br><span class="line">  evenNumber = favoriteNumber % <span class="number">2</span> == <span class="number">0</span> </span><br><span class="line">#<span class="keyword">else</span></span><br><span class="line">  evenNumber = favoriteNumber.isMultiple(of: <span class="number">2</span>)   </span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+<h3 id="Using-Variadic-Parameters-for-Enumeration-Cases-With-Associated-Values"><a href="#Using-Variadic-Parameters-for-Enumeration-Cases-With-Associated-Values" class="headerlink" title="Using Variadic Parameters for Enumeration Cases With Associated Values"></a>Using Variadic Parameters for Enumeration Cases With Associated Values</h3><p>Swift 4.2中，在有关联值时，你可以使用可变参数来枚举case:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">BlogPost</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> tutorial(<span class="number">_</span>: <span class="type">String</span>...)</span><br><span class="line">  <span class="keyword">case</span> article(<span class="number">_</span>: <span class="type">String</span>...)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>您可以使用 <code>String ...</code> 获取 tutorials 和 articles 详细信息。这在 Swift 5 中是不行的，所以你应该使用数组：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">enum</span> <span class="title">BlogPost</span> </span>&#123;</span><br><span class="line">  <span class="keyword">case</span> tutorial([<span class="type">String</span>])</span><br><span class="line">  <span class="keyword">case</span> article([<span class="type">String</span>])</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Deprecating-String-Index-Encoded-Offsets"><a href="#Deprecating-String-Index-Encoded-Offsets" class="headerlink" title="Deprecating String Index Encoded Offsets"></a>Deprecating String Index Encoded Offsets</h3><p> Swift 4.2字符串使用UTF-16编码。因此，encodedOffset将返回UTF-16字符串的偏移量：</p>
+ <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> swiftVersion = <span class="string">"Swift 4.2"</span></span><br><span class="line"><span class="keyword">let</span> offset = swiftVersion.endIndex.encodedOffset</span><br></pre></td></tr></table></figure>
+<p> 在这段代码 你可以获得 <code>swiftVersion</code> 中 <code>endIndex</code> 的偏移量。这不适用于Swift 5中使用的UTF-8字符串编码，因此Swift 5用<code>utf16Offset（in :)</code>替换<code>encodedOffset</code>来处理这两种情况:</p>
+ <figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> swiftVersion = <span class="string">"Swift 5"</span></span><br><span class="line"><span class="keyword">let</span> offset = swiftVersion.endIndex.utf16Offset(<span class="keyword">in</span>: swiftVersion)</span><br></pre></td></tr></table></figure>
+<h3 id="New-Pointer-Methods"><a href="#New-Pointer-Methods" class="headerlink" title="New Pointer Methods"></a>New Pointer Methods</h3><p>Swift 5添加了 <code>ContiguousStorageIfAvailable（_ :)</code>到 <code>Sequence</code> 和 <code>withContiguousMutableStorageIfAvailable（_ :)</code> 到 <code>MutableCollection</code>，为协议扩展中的 <code>withUnsafeBufferPointer（_ :)</code>和<code>withUnsafeMutableBufferPointer（_ :)</code>提供通用实现[<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0237-contiguous-collection.md" target="_blank" rel="noopener">SE-0237</a>]。</p>
+<h3 id="SIMD-Vector-Updates"><a href="#SIMD-Vector-Updates" class="headerlink" title="SIMD Vector Updates"></a>SIMD Vector Updates</h3><p> Swift 5将处理器的SIMD类型操作添加到标准库中。它们为 SIMD vectors 和矩阵提供底层支持。它们还简化了&lt;simd/simd.h&gt;的Objective-C，C和C实现[<a href="https://github.com/apple/swift-evolution/blob/master/proposals/0229-simd.md" target="_blank" rel="noopener">SE-0229</a>].</p>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2018/11/14/Dell-U2518DR-HiDPI/" rel="next" title="Dell U2518DR 开启HiDPI">
+                <i class="fa fa-chevron-left"></i> Dell U2518DR 开启HiDPI
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div id="disqus_thread">
+        <noscript>
+          Please enable JavaScript to view the
+          <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a>
+        </noscript>
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.png"
+               alt="iDevOrz" />
+          <p class="site-author-name" itemprop="name">iDevOrz</p>
+           
+              <p class="site-description motion-element" itemprop="description">Write the bug. Change the world</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/">
+                <span class="site-state-item-count">22</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">37</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/iDevorz" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                    
+                      GitHub
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.weibo.com/Jatstar" target="_blank" title="Weibo">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                    
+                      Weibo
+                    
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="https://zhihu.com/people/Jatstar" target="_blank" title="Zhihu">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                    
+                      Zhihu
+                    
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+
+        
+        
+          <div class="links-of-blogroll motion-element links-of-blogroll-inline">
+            <div class="links-of-blogroll-title">
+              <i class="fa  fa-fw fa-globe"></i>
+              友情链接
+            </div>
+            <ul class="links-of-blogroll-list">
+              
+                <li class="links-of-blogroll-item">
+                  <a href="http://blog.zimu.xybeta.com" title="刘子沐的博客" target="_blank">刘子沐的博客</a>
+                </li>
+              
+            </ul>
+          </div>
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Getting-Started"><span class="nav-number">1.</span> <span class="nav-text">Getting Started</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Language-Improvements"><span class="nav-number">2.</span> <span class="nav-text">Language Improvements</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Testing-Integer-Multiples"><span class="nav-number">2.1.</span> <span class="nav-text">Testing Integer Multiples</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Escaping-Raw-Strings"><span class="nav-number">2.2.</span> <span class="nav-text">Escaping Raw Strings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-New-Character-Properties"><span class="nav-number">2.3.</span> <span class="nav-text">Using New Character Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-New-Unicode-Scalar-Properties"><span class="nav-number">2.4.</span> <span class="nav-text">Using New Unicode Scalar Properties</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Removing-Subsequences"><span class="nav-number">2.5.</span> <span class="nav-text">Removing Subsequences</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dictionary-Updates"><span class="nav-number">3.</span> <span class="nav-text">Dictionary Updates</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Compacting-Dictionaries"><span class="nav-number">3.1.</span> <span class="nav-text">Compacting Dictionaries</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Renaming-Dictionary-Literals"><span class="nav-number">3.2.</span> <span class="nav-text">Renaming Dictionary Literals</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Numeric-Protocol-Updates"><span class="nav-number">4.</span> <span class="nav-text">Numeric Protocol Updates</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#String-Interpolation-Updates"><span class="nav-number">5.</span> <span class="nav-text">String Interpolation Updates</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Handling-Future-Enumeration-Cases"><span class="nav-number">6.</span> <span class="nav-text">Handling Future Enumeration Cases</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Adding-Result-to-the-Standard-Library"><span class="nav-number">7.</span> <span class="nav-text">Adding Result to the Standard Library</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Conforming-Never-to-Equatable-and-Hashable"><span class="nav-number">8.</span> <span class="nav-text">Conforming Never to Equatable and Hashable</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Dynamically-Callable-Types"><span class="nav-number">9.</span> <span class="nav-text">Dynamically Callable Types</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Swift-Package-Manager-Updates"><span class="nav-number">10.</span> <span class="nav-text">Swift Package Manager Updates</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Platform-Deployment-Settings"><span class="nav-number">10.1.</span> <span class="nav-text">Platform Deployment Settings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Target-Build-Settings"><span class="nav-number">10.2.</span> <span class="nav-text">Target Build Settings</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dependency-Mirroring"><span class="nav-number">10.3.</span> <span class="nav-text">Dependency Mirroring</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Miscellaneous-Bits-and-Pieces"><span class="nav-number">11.</span> <span class="nav-text">Miscellaneous Bits and Pieces</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Making-Codable-Ranges"><span class="nav-number">11.1.</span> <span class="nav-text">Making Codable Ranges</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Flattening-Nested-Optionals"><span class="nav-number">11.2.</span> <span class="nav-text">Flattening Nested Optionals</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Removing-Customization-Points-From-Collections"><span class="nav-number">11.3.</span> <span class="nav-text">Removing Customization Points From Collections</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Identity-Key-Paths"><span class="nav-number">11.4.</span> <span class="nav-text">Identity Key Paths</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Initializing-Literals-Through-Coercion"><span class="nav-number">11.5.</span> <span class="nav-text">Initializing Literals Through Coercion</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Build-Configuration-Updates"><span class="nav-number">11.6.</span> <span class="nav-text">Build Configuration Updates</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Using-Variadic-Parameters-for-Enumeration-Cases-With-Associated-Values"><span class="nav-number">11.7.</span> <span class="nav-text">Using Variadic Parameters for Enumeration Cases With Associated Values</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deprecating-String-Index-Encoded-Offsets"><span class="nav-number">11.8.</span> <span class="nav-text">Deprecating String Index Encoded Offsets</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#New-Pointer-Methods"><span class="nav-number">11.9.</span> <span class="nav-text">New Pointer Methods</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#SIMD-Vector-Updates"><span class="nav-number">11.10.</span> <span class="nav-text">SIMD Vector Updates</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy;  2015 &mdash; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iDevOrz</span>
+
+  
+</div>
+
+
+  <div class="powered-by">
+    Hosted by  <a class="theme-link" href="https://pages.coding.me">Coding Pages</a>
+  </div>
+
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">
+    主题 &mdash;
+    <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+      NexT.Mist
+    </a>
+  </div>
+
+  <span class="post-meta-divider">|</span>
+  <div class="powered-by">
+    <a class="theme-link" href="https://www.miitbeian.gov.cn">粤ICP备16014512号-1</a>
+  </div>
+
+
+        
+
+
+<script>
+  	var _mtac = {};
+  	(function() {
+  		var mta = document.createElement("script");
+  		mta.src = "https://pingjs.qq.com/h5/stats.js?v2.0.4";
+  		mta.setAttribute("name", "MTAH5");
+  		mta.setAttribute("sid", "500492087");
+
+  		var s = document.getElementsByTagName("script")[0];
+  		s.parentNode.insertBefore(mta, s);
+  	})();
+</script>
+
+
+
+  <script type="text/javascript">
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "//tajs.qq.com/stats?sId=57342025";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+    
+      <script id="dsq-count-scr" src="https://jatstar-cn.disqus.com/count.js" async></script>
+    
+
+    
+      <script type="text/javascript">
+        var disqus_config = function () {
+          this.page.url = 'https://www.devorz.com/2019/04/04/What-s-New-in-Swift5/';
+          this.page.identifier = '2019/04/04/What-s-New-in-Swift5/';
+          this.page.title = 'What’s New in Swift 5?';
+        };
+        var d = document, s = d.createElement('script');
+        s.src = 'https://jatstar-cn.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', '' + +new Date());
+        (d.head || d.body).appendChild(s);
+      </script>
+    
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+<script>
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';        
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
