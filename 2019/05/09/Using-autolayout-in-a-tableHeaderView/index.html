@@ -88,7 +88,7 @@
 <link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="runtime," />
+  <meta name="keywords" content="iOS,AutoLayout,UI," />
 
 
 
@@ -106,18 +106,18 @@
 
 
 
-<meta name="description" content="Associative-References 的使用">
-<meta name="keywords" content="runtime">
+<meta name="description" content="我一直在寻找如何在 tableHeaderView 使用AutoLayout。设置  tableView 的 tableHeaderView 感觉就像在黑洞中投掷视图一样。我们不知道它与层次结构中的其他视图有何关联。 最后，我找到了一个适合我的解决方案，没有显式的 frame 计算。   我使用 UIViewController 和 UITableView 作为子视图，而不是UITableView">
+<meta name="keywords" content="iOS,AutoLayout,UI">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Objective-C Associative-References(关联引用)">
-<meta property="og:url" content="https://www.devorz.com/2016/07/14/Associative-References/index.html">
+<meta property="og:title" content="在 tableHeaderView 中使用 AutoLayout">
+<meta property="og:url" content="https://www.devorz.com/2019/05/09/Using-autolayout-in-a-tableHeaderView/index.html">
 <meta property="og:site_name" content="DevOrz">
-<meta property="og:description" content="Associative-References 的使用">
+<meta property="og:description" content="我一直在寻找如何在 tableHeaderView 使用AutoLayout。设置  tableView 的 tableHeaderView 感觉就像在黑洞中投掷视图一样。我们不知道它与层次结构中的其他视图有何关联。 最后，我找到了一个适合我的解决方案，没有显式的 frame 计算。   我使用 UIViewController 和 UITableView 作为子视图，而不是UITableView">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-13T06:24:13.000Z">
+<meta property="og:updated_time" content="2019-05-09T15:20:42.151Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Objective-C Associative-References(关联引用)">
-<meta name="twitter:description" content="Associative-References 的使用">
+<meta name="twitter:title" content="在 tableHeaderView 中使用 AutoLayout">
+<meta name="twitter:description" content="我一直在寻找如何在 tableHeaderView 使用AutoLayout。设置  tableView 的 tableHeaderView 感觉就像在黑洞中投掷视图一样。我们不知道它与层次结构中的其他视图有何关联。 最后，我找到了一个适合我的解决方案，没有显式的 frame 计算。   我使用 UIViewController 和 UITableView 作为子视图，而不是UITableView">
 
 
 
@@ -146,13 +146,13 @@
 
 
 
-  <link rel="canonical" href="https://www.devorz.com/2016/07/14/Associative-References/"/>
+  <link rel="canonical" href="https://www.devorz.com/2019/05/09/Using-autolayout-in-a-tableHeaderView/"/>
 
 
 
 
 
-  <title>Objective-C Associative-References(关联引用) | DevOrz</title>
+  <title>在 tableHeaderView 中使用 AutoLayout | DevOrz</title>
   
 
 
@@ -288,7 +288,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="https://www.devorz.com/2016/07/14/Associative-References/">
+    <link itemprop="mainEntityOfPage" href="https://www.devorz.com/2019/05/09/Using-autolayout-in-a-tableHeaderView/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="iDevOrz">
@@ -305,7 +305,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Objective-C Associative-References(关联引用)</h1>
+          <h1 class="post-title" itemprop="name headline">在 tableHeaderView 中使用 AutoLayout</h1>
         
 
         <div class="post-meta">
@@ -317,8 +317,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2016-07-14T23:55:11+08:00">
-                2016-07-14
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-05-09T22:07:45+08:00">
+                2019-05-09
               </time>
             
 
@@ -336,9 +336,9 @@
                 <span class="post-meta-item-icon">
                   <i class="fa fa-comment-o"></i>
                 </span>
-                <a href="/2016/07/14/Associative-References/#comments" itemprop="discussionUrl">
+                <a href="/2019/05/09/Using-autolayout-in-a-tableHeaderView/#comments" itemprop="discussionUrl">
                   <span class="post-comments-count disqus-comment-count"
-                        data-disqus-identifier="2016/07/14/Associative-References/" itemprop="commentCount"></span>
+                        data-disqus-identifier="2019/05/09/Using-autolayout-in-a-tableHeaderView/" itemprop="commentCount"></span>
                 </a>
               </span>
             
@@ -366,67 +366,30 @@
       
 
       
-        <p>Associative-References 的使用<br><a id="more"></a></p>
-<h2 id="需求"><a href="#需求" class="headerlink" title="需求"></a>需求</h2><p>  有时需要在对象中存放相关信息，我们通常使用对象的所属类继承一个子类，然后改用，这个对象的子类。但并非所有对象都能这么做，比如类簇(Class Clusters)，是不建议被继承的。那么这个时候就可以利用<code>关联引用</code>(Associative-References)解决此问题。</p>
-<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;objc/runtime.h&gt;</span></span></span><br><span class="line"><span class="comment">//设置关联</span></span><br><span class="line"><span class="keyword">void</span> objc_setAssociatedObject(<span class="keyword">id</span> object, <span class="keyword">void</span> *key, <span class="keyword">id</span> value, objc_AssociationPolicy policy)</span><br><span class="line"><span class="comment">//获取关联对象</span></span><br><span class="line"><span class="keyword">id</span> objc_getAssociatedObject(<span class="keyword">id</span> object, <span class="keyword">void</span> *key)</span><br><span class="line"><span class="comment">//移除关联</span></span><br><span class="line"><span class="keyword">void</span> objc_removeAssociatedObjects(<span class="keyword">id</span> object)</span><br></pre></td></tr></table></figure>
-<table>
-<thead>
-<tr>
-<th>参数</th>
-<th style="text-align:left">说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>object</td>
-<td style="text-align:left">被关联的对象</td>
-</tr>
-<tr>
-<td>key</td>
-<td style="text-align:left">关联的key</td>
-</tr>
-<tr>
-<td>value</td>
-<td style="text-align:left">关联的key对应的对象</td>
-</tr>
-<tr>
-<td>policy</td>
-<td style="text-align:left">内存管理策略</td>
-</tr>
-</tbody>
-</table>
-<table>
-<thead>
-<tr>
-<th>objc_AssociationPolicy枚举</th>
-<th style="text-align:center">对应的@property修饰符</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>OBJC_ASSOCIATION_ASSIGN</td>
-<td style="text-align:center">assign</td>
-</tr>
-<tr>
-<td>OBJC_ASSOCIATION_RETAIN_NONATOMIC</td>
-<td style="text-align:center">nonatomic,retain</td>
-</tr>
-<tr>
-<td>OBJC_ASSOCIATION_COPY_NONATOMIC</td>
-<td style="text-align:center">nonatomic,copy</td>
-</tr>
-<tr>
-<td>OBJC_ASSOCIATION_RETAIN</td>
-<td style="text-align:center">retain</td>
-</tr>
-<tr>
-<td>OBJC_ASSOCIATION_COPY</td>
-<td style="text-align:center">copy</td>
-</tr>
-</tbody>
-</table>
-<p><strong>有别于NSDictionary,关联引用中，想让两个key匹配到同一个value，必须两个key的指针完全相等才行。所以key通常使用静态全局变量</strong></p>
-<h2 id="举个🌰"><a href="#举个🌰" class="headerlink" title="举个🌰"></a>举个🌰</h2><figure class="highlight objectivec"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="meta">#import <span class="meta-string">&lt;objc/runtime.h&gt;</span> </span></span><br><span class="line"> </span><br><span class="line"><span class="keyword">static</span> <span class="keyword">void</span> *EOCMyAlertViewKey = <span class="string">"EOCMyAlertViewKey"</span>;  </span><br><span class="line"> </span><br><span class="line">- (<span class="keyword">void</span>)askUserAQuestion &#123;  </span><br><span class="line">    <span class="built_in">UIAlertView</span> *alert = [[<span class="built_in">UIAlertViewalloc</span>]  </span><br><span class="line">                             initWithTitle:<span class="string">@"Question"</span>  </span><br><span class="line">                               message:<span class="string">@"What do you want to do?"</span>  </span><br><span class="line">                                  delegate:<span class="keyword">self</span>  </span><br><span class="line">                        cancelButtonTitle:<span class="string">@"Cancel"</span>  </span><br><span class="line">                        otherButtonTitles:<span class="string">@"Continue"</span>, <span class="literal">nil</span>];  </span><br><span class="line"> </span><br><span class="line">        <span class="keyword">void</span> (^block)(<span class="built_in">NSInteger</span>) = ^(<span class="built_in">NSInteger</span> buttonIndex)&#123;  </span><br><span class="line">          <span class="keyword">if</span> (buttonIndex == <span class="number">0</span>) &#123;  </span><br><span class="line">              [<span class="keyword">self</span> doCancel];  </span><br><span class="line">        &#125; <span class="keyword">else</span> &#123;  </span><br><span class="line">            [<span class="keyword">self</span> doContinue];  </span><br><span class="line">        &#125;  </span><br><span class="line">    &#125;;  </span><br><span class="line"> </span><br><span class="line">      objc_setAssociatedObject(alert,  </span><br><span class="line">                               EOCMyAlertViewKey,  </span><br><span class="line">                               block,  </span><br><span class="line">                               BJC_ASSOCIATION_COPY);  </span><br><span class="line"> </span><br><span class="line">      [alert show];  </span><br><span class="line">&#125;  </span><br><span class="line"> </span><br><span class="line"><span class="comment">// UIAlertViewDelegate protocol method  </span></span><br><span class="line">- (<span class="keyword">void</span>)alertView:(<span class="built_in">UIAlertView</span>*)alertView  </span><br><span class="line">        clickedButtonAtIndex:(<span class="built_in">NSInteger</span>)buttonIndex  </span><br><span class="line">&#123;  </span><br><span class="line">    <span class="keyword">void</span> (^block)(<span class="built_in">NSInteger</span>) =  </span><br><span class="line">        objc_getAssociatedObject(alertView, EOCMyAlertViewKey);  </span><br><span class="line">    block(buttonIndex);  </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <p>我一直在寻找如何在 <code>tableHeaderView</code> 使用AutoLayout。设置  <code>tableView</code> 的 <code>tableHeaderView</code> 感觉就像在黑洞中投掷视图一样。我们不知道它与层次结构中的其他视图有何关联。</p>
+<p>最后，我找到了一个适合我的解决方案，没有显式的 frame 计算。</p>
+<blockquote>
+<p> 我使用 <code>UIViewController</code> 和 <code>UITableView</code> 作为子视图，而不是<code>UITableViewController</code>。</p>
+</blockquote>
+<p>要点:</p>
+<ol>
+<li>设置 <code>table header view</code></li>
+<li>将 <code>header view</code> 的 <code>centerX</code>，<code>width</code> 和<code>top</code> 锚点固定到 <code>table view</code>.</li>
+<li>用 <code>tableHeaderView</code> 调用 <code>layoutIfNeeded</code> 更新他的大小。</li>
+<li><strong>重新赋值 <code>tableHeaderView</code> </strong></li>
+</ol>
+<h2 id="Code"><a href="#Code" class="headerlink" title="Code"></a>Code</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// ...In viewDidLoad()</span></span><br><span class="line"><span class="comment">// 1.</span></span><br><span class="line"><span class="keyword">let</span> containerView = <span class="type">UIView</span>()</span><br><span class="line">containerView.translatesAutoresizingMaskIntoConstraints = <span class="literal">false</span></span><br><span class="line"><span class="comment">// headerView is your actual content.</span></span><br><span class="line">containerView.addSubview(headerView)</span><br><span class="line"></span><br><span class="line"><span class="comment">// 2.</span></span><br><span class="line"><span class="keyword">self</span>.tableView.tableHeaderView = containerView</span><br><span class="line"><span class="comment">// 3.</span></span><br><span class="line">containerView.centerXAnchor.constraint(equalTo: <span class="keyword">self</span>.tableView.centerXAnchor).isActive = <span class="literal">true</span></span><br><span class="line">containerView.widthAnchor.constraint(equalTo: <span class="keyword">self</span>.tableView.widthAnchor).isActive = <span class="literal">true</span></span><br><span class="line">containerView.topAnchor.constraint(equalTo: <span class="keyword">self</span>.tableView.topAnchor).isActive = <span class="literal">true</span></span><br><span class="line"><span class="comment">// 4.</span></span><br><span class="line"><span class="keyword">self</span>.tableView.tableHeaderView?.layoutIfNeeded()</span><br><span class="line"><span class="keyword">self</span>.tableView.tableHeaderView = <span class="keyword">self</span>.tableView.tableHeaderView</span><br></pre></td></tr></table></figure>
+<h2 id="To-update-the-header-frame-on-device-rotation"><a href="#To-update-the-header-frame-on-device-rotation" class="headerlink" title="To update the header frame on device rotation"></a>To update the header frame on device rotation</h2><p>处理设备旋转需要重新布局的情况：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">override</span> <span class="function"><span class="keyword">func</span> <span class="title">viewWillTransition</span><span class="params">(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator)</span></span> &#123;</span><br><span class="line">  <span class="keyword">super</span>.viewWillTransition(to: size, with: coordinator)</span><br><span class="line">  <span class="type">DispatchQueue</span>.main.async &#123;</span><br><span class="line">    <span class="keyword">self</span>.tableView.tableHeaderView?.layoutIfNeeded()</span><br><span class="line">    <span class="keyword">self</span>.tableView.tableHeaderView = <span class="keyword">self</span>.tableView.tableHeaderView</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><strong>完整Demo</strong>: <a href="https://github.com/aunnnn/TableHeaderViewWithAutoLayout" target="_blank" rel="noopener">TableHeaderViewWithAutoLayout</a></p>
+<h2 id="Extension"><a href="#Extension" class="headerlink" title="Extension"></a>Extension</h2><figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">extension</span> <span class="title">UITableView</span> </span>&#123;</span><br><span class="line">    <span class="comment">//set the tableHeaderView so that the required height can be determined, update the header's frame and set it again</span></span><br><span class="line">    <span class="function"><span class="keyword">func</span> <span class="title">setAndLayoutTableHeaderView</span><span class="params">(header: UIView)</span></span> &#123;</span><br><span class="line">        <span class="keyword">self</span>.tableHeaderView = header</span><br><span class="line">        header.setNeedsLayout()</span><br><span class="line">        header.layoutIfNeeded()</span><br><span class="line">        header.frame.size = header.systemLayoutSizeFittingSize(<span class="type">UILayoutFittingCompressedSize</span>)</span><br><span class="line">        <span class="keyword">self</span>.tableHeaderView = header</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>使用:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> header = <span class="type">SCAMessageView</span>()</span><br><span class="line">header.titleLabel.text = <span class="string">"Warning"</span></span><br><span class="line">header.subtitleLabel.text = <span class="string">"Warning message here."</span></span><br><span class="line">tableView.setAndLayoutTableHeaderView(header)</span><br></pre></td></tr></table></figure>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://medium.com/@aunnnn/table-header-view-with-autolayout-13de4cfc4343" target="_blank" rel="noopener">Table header view with AutoLayout</a></li>
+<li><a href="https://stackoverflow.com/questions/16471846/is-it-possible-to-use-autolayout-with-uitableviews-tableheaderview" target="_blank" rel="noopener">Is it possible to use AutoLayout with UITableView’s tableHeaderView?</a></li>
+<li><a href="https://stackoverflow.com/questions/28079591/using-autolayout-in-a-tableheaderview" target="_blank" rel="noopener">Using autolayout in a tableHeaderView</a></li>
+</ul>
 
       
     </div>
@@ -444,7 +407,11 @@
       
         <div class="post-tags">
           
-            <a href="/tags/runtime/" rel="tag"># runtime</a>
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/AutoLayout/" rel="tag"># AutoLayout</a>
+          
+            <a href="/tags/UI/" rel="tag"># UI</a>
           
         </div>
       
@@ -457,8 +424,8 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/07/10/Effective-Objective-C-2-0/" rel="next" title="《Effective-Objective-C 2.0》笔记">
-                <i class="fa fa-chevron-left"></i> 《Effective-Objective-C 2.0》笔记
+              <a href="/2019/04/04/What-s-New-in-Swift5/" rel="next" title="What’s New in Swift 5?">
+                <i class="fa fa-chevron-left"></i> What’s New in Swift 5?
               </a>
             
           </div>
@@ -466,10 +433,6 @@
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/07/16/Class-Cluster/" rel="prev" title="从NSArray看Objective-C中的类族(Class Clusters)和工厂模式">
-                从NSArray看Objective-C中的类族(Class Clusters)和工厂模式 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -657,7 +620,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#需求"><span class="nav-number">1.</span> <span class="nav-text">需求</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#API"><span class="nav-number">2.</span> <span class="nav-text">API</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#举个🌰"><span class="nav-number">3.</span> <span class="nav-text">举个🌰</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Code"><span class="nav-number">1.</span> <span class="nav-text">Code</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#To-update-the-header-frame-on-device-rotation"><span class="nav-number">2.</span> <span class="nav-text">To update the header frame on device rotation</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Extension"><span class="nav-number">3.</span> <span class="nav-text">Extension</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">4.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
             
 
           </div>
@@ -836,9 +799,9 @@
     
       <script type="text/javascript">
         var disqus_config = function () {
-          this.page.url = 'https://www.devorz.com/2016/07/14/Associative-References/';
-          this.page.identifier = '2016/07/14/Associative-References/';
-          this.page.title = 'Objective-C Associative-References(关联引用)';
+          this.page.url = 'https://www.devorz.com/2019/05/09/Using-autolayout-in-a-tableHeaderView/';
+          this.page.identifier = '2019/05/09/Using-autolayout-in-a-tableHeaderView/';
+          this.page.title = '在 tableHeaderView 中使用 AutoLayout';
         };
         var d = document, s = d.createElement('script');
         s.src = 'https://jatstar-cn.disqus.com/embed.js';
