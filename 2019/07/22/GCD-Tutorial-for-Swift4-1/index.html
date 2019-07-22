@@ -1,0 +1,1178 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="Grand Central Dispatch (GCD) 是一个用来管理并发操作的底层API,它可以通过将计算成本高昂的任务推迟到后台来提高你的应用的响应速度，与锁和线程相比它是一套更易用的并发模型。 Getting Started下载 初始项目 ，用 Xcode 打开它看看。 首页最开始是空白的。点击 + ，选择 Le Internet  来从网络下载预设的图片，选择第一张图，然后你将看到一个卡">
+<meta name="keywords" content="iOS,Swift,GCD,translate">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Grand Central Dispatch Tutorial for Swift 4（Part 1&#x2F;2）">
+<meta property="og:url" content="https://www.devorz.com/2019/07/22/GCD-Tutorial-for-Swift4-1/index.html">
+<meta property="og:site_name" content="iDevOrz">
+<meta property="og:description" content="Grand Central Dispatch (GCD) 是一个用来管理并发操作的底层API,它可以通过将计算成本高昂的任务推迟到后台来提高你的应用的响应速度，与锁和线程相比它是一套更易用的并发模型。 Getting Started下载 初始项目 ，用 Xcode 打开它看看。 首页最开始是空白的。点击 + ，选择 Le Internet  来从网络下载预设的图片，选择第一张图，然后你将看到一个卡">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2016/12/starter_app_flow.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2014/01/Concurrency_vs_Parallelism.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2014/09/Serial-Queue-Swift.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2014/09/Concurrent-Queue-Swift.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2018/05/Simulator-Screen-Shot-iPhone-8-2018-05-29-at-17.43.43.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2018/05/Simulator-Screen-Shot-iPhone-8-2018-05-29-at-17.46.41.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2014/09/Dispatch-Barrier-Swift.png">
+<meta property="og:image" content="https://koenig-media.raywenderlich.com/uploads/2018/05/Simulator-Screen-Shot-iPhone-8-2018-05-29-at-17.48.27.png">
+<meta property="og:updated_time" content="2019-07-22T15:58:38.669Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Grand Central Dispatch Tutorial for Swift 4（Part 1&#x2F;2）">
+<meta name="twitter:description" content="Grand Central Dispatch (GCD) 是一个用来管理并发操作的底层API,它可以通过将计算成本高昂的任务推迟到后台来提高你的应用的响应速度，与锁和线程相比它是一套更易用的并发模型。 Getting Started下载 初始项目 ，用 Xcode 打开它看看。 首页最开始是空白的。点击 + ，选择 Le Internet  来从网络下载预设的图片，选择第一张图，然后你将看到一个卡">
+<meta name="twitter:image" content="https://koenig-media.raywenderlich.com/uploads/2016/12/starter_app_flow.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="iDevOrz" type="application/atom+xml"/>
+
+
+
+  
+  
+  <link rel="canonical" href="https://www.devorz.com/2019/07/22/GCD-Tutorial-for-Swift4-1/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>Grand Central Dispatch Tutorial for Swift 4（Part 1/2） | iDevOrz</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-88751319-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-88751319-1');
+    }
+  </script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?7165433b2fc4e7a236412233e2718bcc";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iDevOrz</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Eat,Code,Sleep</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.devorz.com/2019/07/22/GCD-Tutorial-for-Swift4-1/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="iDevOrz"/>
+      <meta itemprop="description" content="Write the bug. Change the world"/>
+      <meta itemprop="image" content="/images/avatar.png"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iDevOrz"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">Grand Central Dispatch Tutorial for Swift 4（Part 1/2）
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2019-07-22 23:56:58 / 修改时间：23:58:38" itemprop="dateCreated datePublished" datetime="2019-07-22T23:56:58+08:00">2019-07-22</time>
+            </span>
+          
+
+          
+            
+
+            
+          
+
+          
+
+          
+            
+            
+              
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2019/07/22/GCD-Tutorial-for-Swift4-1/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2019/07/22/GCD-Tutorial-for-Swift4-1/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon"
+              >
+                <i class="fa fa-eye"></i>
+                 阅读次数： 
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
+
+          <br/>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>Grand Central Dispatch (GCD) 是一个用来管理并发操作的底层API,它可以通过将计算成本高昂的任务推迟到后台来提高你的应用的响应速度，与锁和线程相比它是一套更易用的并发模型。</p>
+<h2 id="Getting-Started"><a href="#Getting-Started" class="headerlink" title="Getting Started"></a>Getting Started</h2><p>下载 <a href="https://koenig-media.raywenderlich.com/uploads/2018/08/GooglyPuff_Swift4_Materials_Part1-1.zip" target="_blank" rel="noopener">初始项目</a> ，用 Xcode 打开它看看。</p>
+<p>首页最开始是空白的。点击 + ，选择 <em>Le Internet</em>  来从网络下载预设的图片，选择第一张图，然后你将看到一个卡通的眼球添加在了脸上。</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2016/12/starter_app_flow.png" alt="starter_app_flow"></p>
+<p>在本教程中你将主要使用以下四个 Class:</p>
+<ul>
+<li><code>PhotoCollectionViewController</code> : 初始控制器，用来一块一块的显示选择的图片。</li>
+<li><code>PhotoDetailViewController</code>：显示一张来自 <code>PhotoCollectionViewController</code>  的图片，并加上卡通的眼球上图片上。</li>
+<li><code>Photo</code> ：用来描述 <code>Photo</code> 的属性。它提供一张图、一张缩略图图和相应的状态。这个项目提供了两个实现它的类：<code>DownloadPhoto</code> 从一个URL实例实例化照片;<code>AssetPhoto</code>  从一个<code>PHAsset</code>实例实例化照片</li>
+<li><code>PhotoManager</code> 管理所有的 <code>Photo</code> 实例。</li>
+</ul>
+<p>该应用程序存在一些问题。在运行应用程序时您可能已经注意到的一个是下载完成警报为时过早。你将在后面解决这个问题。</p>
+<p>下面，你将进行一些改进，包括优化googly-fying过程和使 <code>PhotoManager</code> 线程安全。</p>
+<h2 id="GCD-Concepts"><a href="#GCD-Concepts" class="headerlink" title="GCD Concepts"></a>GCD Concepts</h2><p>要理解GCD，您需要熟悉与并发和线程相关的几个概念。</p>
+<h3 id="Concurrency"><a href="#Concurrency" class="headerlink" title="Concurrency"></a>Concurrency</h3><p>在 iOS 中，进程或应用程序由一个或多个线程组成。操作系统调度程序彼此独立地管理线程。每个线程可以并发操作，但由系统来决定是否并发，何时并发以及如何并发。</p>
+<p>单核设备通过称为时间切片（<em>time-slicing</em>）的方法实现并发，它们运行一个线程，执行上下文切换，然后运行另一个线程。</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2014/01/Concurrency_vs_Parallelism.png" alt="Concurrency_vs_Parallelism"></p>
+<p>另一方面，多核设备通过并行（<em>parallelism</em>）同时执行多个线程。</p>
+<p>GCD构建在线程上，在引擎盖下它管理着共享线程池。通过GCD，你可以添加代码块到 <em>dispatch queues</em> ，由GCD决定哪个线程执行它们。</p>
+<p>构建代码时，你将发现代码块有时可以同时运行但是有时候不可以。这时你可以使用GCD 取得并发执行的优势。</p>
+<p>注意，GCD需要根据系统和系统可用资源决定它可以并行（parallelism）多少,要重点注意的是并行（parallelism）需要并发（concurrency），但并发并不能保证并行。</p>
+<p>根本上说，并发是围绕结构（<em>structure</em>），而并行是围绕执行（<em>execution</em>）。</p>
+<h3 id="Queues"><a href="#Queues" class="headerlink" title="Queues"></a>Queues</h3><p>如前所述，GCD通过一个名为 <code>DispatchQueue</code>的类来操作调度队列（<em>dispatch queues</em>）。你提交的到队列的工作单元，GCD将通过先进先出（FIFO） 的规则执行它们，以保证最早提交的队列将最早开始执行。</p>
+<p>调度队列是线程安全（<em>thread-safe</em>）的，这意味着您可以同时从多个线程访问它们。当您了解调度队列如何为你写的代码的某些部分提供线程安全时，GCD的好处是显而易见的。这个问题的关键在于选择正确的 dispatch queues 类型和正确的 <em>dispatching function</em> 来提交你的操作到队列。</p>
+<p>队列 （Queues） 可以是串行（<em>serial</em>）或者是并行（<em>concurrent</em>）的。串行队列保证在任何给定时间只运行一个任务。GCD控制执行时间。你将不知道一个任务结束和下一个任务开始之间的间隔时间。</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2014/09/Serial-Queue-Swift.png" alt="Serial-Queue-Swift"></p>
+<p>并发队列允许在同一时间多个任务同时执行。任务可以按任何顺序完成，你将不知道下一个任务启动所需的时间，也不知道在任何给定时间运行的任务数。</p>
+<p>这是设计使然：您的代码不应该依赖于这些实现细节。</p>
+<p>看看下面这个任务执行的例子：</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2014/09/Concurrent-Queue-Swift.png" alt="Concurrent-Queue-Swift"></p>
+<p>请注意Task1，Task2和Task3是一个接一个地快速启动。另一方面，Task0之后，Task1过了一会儿才启动。同时注意到Task3 在Task2 后面开始但是优先结束。</p>
+<p>决定什么时候开始任务完全取决于GCD 。如果一个任务的执行时间与另一个任务重叠，GCD决定它是否应该运行在不同的核心上。如果只有一个核心可用，可能通过执行上下文切换以运行其他任务。</p>
+<p>GCD 提供三种主要是队列：</p>
+<ol>
+<li><em>Main queue</em>: 运行在主线程，并发队列。</li>
+<li><em>Global queues</em>： 整个系统共享的并发队列。这有四种优先级：high、default、 low 和 background。background 级队列优先级最低，并在任何 I / O 活动中受到限制，以最大限度地减少系统负担。</li>
+<li><em>Custom queues</em>：你创建的队列，可以是串行或并发。这些队列中的请求实际上最终在一个全局队列中。</li>
+</ol>
+<p>将任务发送到全局并发队列时，不用直接指定优先级。而是使用 Quality of Service (QoS)  类的属性，它决定了任务的权重，指导 GCD 去确定给予任务的优先级。</p>
+<p>Qos 类包括：</p>
+<ul>
+<li><em>User-interactive</em> 它代表了任务必须立即完成来提供良好的用户体验。可以使用它来更新UI、响应事件和一些需要低延迟的小工作。这些操作的总耗时应该很小。它们在主线程执行。</li>
+<li><em>User-initiated</em>: 用户从UI启动的异步任务。当用户需要一个直接的返回值然后任务需要继续执行用户交互。它们在高优先级的全局主队列中执行。</li>
+<li><em>Utility</em> 表示长时间运行的任务，通常会伴随一个用户可见的进度指示器。使用它来计算、I/O、网络请求、连接数据流等类似的操作。这个类致力于高效节能。将被映射到低优先级全局队列。</li>
+<li><em>Background</em>: 表示用户意识不到的任务。用来预获取，维护和其他不需要用户交互的时间不敏感的任务。它们在 background 优先级的全局主队列中执行。</li>
+</ul>
+<h3 id="Synchronous-vs-Asynchronous"><a href="#Synchronous-vs-Asynchronous" class="headerlink" title="Synchronous vs. Asynchronous"></a>Synchronous vs. Asynchronous</h3><p>使用 GCD 你可以同步或者异步调度任务。</p>
+<p>一个同步函数（<em>synchronous</em> function）会在任务完成后将控制权返回给调用者。调用 <code>DispatchQueue.sync(execute:)</code>你可以安排工作单元同步工作。</p>
+<p>一个异步函数 （<em>asynchronous</em> function )会立即返回，按顺序开始任务但是不等待它完成。因此，异步函数不会阻止当前执行线程继续执行下一个函数。调用 <code>DispatchQueue.async(execute:)</code>你可以安排工作单元异步工作。</p>
+<h3 id="Managing-Tasks"><a href="#Managing-Tasks" class="headerlink" title="Managing Tasks"></a>Managing Tasks</h3><p>前面已经多次提到任务了。在这个教程中，你可以认为每个任务是一个闭包。闭包是独立的，可以引用和传递的可调用的代码块。</p>
+<p>你提交给<code>DispatchQueue</code>每个任务都是一个 <code>DispatchWorkItem</code>。你可以配置 <code>DispatchWorkItem</code> 的行为例如它的 QoS 类或者是否产生一个新的分离的线程。</p>
+<h2 id="Handling-Background-Tasks"><a href="#Handling-Background-Tasks" class="headerlink" title="Handling Background Tasks"></a>Handling Background Tasks</h2><p>是时候通过这些压抑的 GCD 知识来改善你的一个应用了。</p>
+<p>回到应用程序并从你的照片库或使用 Le Internet 选项下载来添加一些照片。点击一张图片。注意照片详情显示出来所需要的时长。在较慢的设备上查看大图像时，滞后更明显。</p>
+<p>重载视图控制器的<code>viewDidLoad()</code>很容易，导致在视图出现之前等待很长时间。可以加载时的一些不必要的操作移到后台。</p>
+<p>这听起来是<code>DispatchQueue</code> 的 <code>async</code>的工作!</p>
+<p>打来 <em>PhotoDetailViewController.swift</em> 修改 <code>viewDidLoad()</code>  替换这两行代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> overlayImage = faceOverlayImageFrom(image)</span><br><span class="line">fadeInNewImage(overlayImage)</span><br></pre></td></tr></table></figure>
+<p>使用下面的代码：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1</span></span><br><span class="line"><span class="type">DispatchQueue</span>.global(qos: .userInitiated).async &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></span><br><span class="line">  <span class="keyword">guard</span> <span class="keyword">let</span> <span class="keyword">self</span> = <span class="keyword">self</span> <span class="keyword">else</span> &#123;</span><br><span class="line">    <span class="keyword">return</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">let</span> overlayImage = <span class="keyword">self</span>.faceOverlayImageFrom(<span class="keyword">self</span>.image)</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 2</span></span><br><span class="line">  <span class="type">DispatchQueue</span>.main.async &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></span><br><span class="line">    <span class="comment">// 3</span></span><br><span class="line">    <span class="keyword">self</span>?.fadeInNewImage(overlayImage)</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是代码一步一步做的事情：</p>
+<ol>
+<li>你把工作移动到  background global queue  ，在闭包中异步运行它。这使得 <code>viewDidLoad()</code> 在主线程中提早的完成，使加载看起来更利索。与此同时，面部检测处理开始了并在稍后完成。</li>
+<li>在此刻，面部检测处理完成，你生成了一个张新图片。然后你想使用新的图片更新你的 <code>UIImageView</code> ,你在主线程添加了新的闭包。记住：所有修改UI 的操作必须在主线程运行。</li>
+<li>最后你使用 <code>fadeInNewImage(_:)</code> 更新UI,该方法执行新的卡通眼睛图像的淡入过渡。</li>
+</ol>
+<p>在两个地方，你添加了 <code>[weak self]</code> 来在每个闭包中获得 self 的弱引用。如果您不熟悉捕获列表，参考： <a href="https://www.raywenderlich.com/134411/arc-memory-management-swift" target="_blank" rel="noopener">这个内存管理的教程</a>.</p>
+<p>构建运行应用。通过 <em>Le Internet</em>  选项下载一些图片。选择一张图片，你将注意到视图控制器载入明显更快，然后在短暂的延迟后添加了卡通眼球。</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2018/05/Simulator-Screen-Shot-iPhone-8-2018-05-29-at-17.43.43.png" alt="Simulator-Screen-Shot-iPhone-8-2018-05-29-at-17.43.43"></p>
+<p>当卡通眼睛出现时，为应用程序提供了一个很好的前后效果。即使你尝试加载一个非常庞大的图片，你的应用程序也不会在视图控制器加载时挂起。</p>
+<p>通常，当你需要在后台执行基于网络或CPU密集型的任务而不阻止当前线程时，你要使用 <code>async</code>。</p>
+<p>以下是如何使用以及何时使用<code>async</code>的各种队列的快速指南：</p>
+<ul>
+<li><em>Main Queue</em>: 是在完成并发队列上的任务之后更新UI的常见选择。你将编写一个闭包在另一个闭包的内部。瞄准主线程调用 <code>async</code>保证在当前方法完成后的某个时间执行此新任务.</li>
+<li><em>Global Queue</em>: 这是在后台执行非UI工作的常见选择。</li>
+<li><em>Custom Serial Queue</em> 当你想执行连续的后台任务并且追踪他。这消除了资源争用和竞争条件，因为您知道一次只执行一个任务。注意，如果需要方法中的数据，则必须声明另一个闭包来检索它或考虑使用 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">## Delaying Task Execution</span><br><span class="line"></span><br><span class="line">``DispatchQueue`` 允许你延迟任务的执行。不要使用它通过像引入延迟的hack解决**竞争条件**或者其他时间的掌控上的bug，而是当你想在特定的时间运行一个任务是使用它。</span><br><span class="line"></span><br><span class="line">暂时考虑一下您的应用的用户体验，用户可能会对第一次打开应用时该怎么做感到困惑 - 是吗？ ：]</span><br><span class="line"></span><br><span class="line">如果没有任何照片，最好向用户显示提示。你还应该考虑用户的眼睛如何在主屏幕上巡视，如果你太快的展示一个提示，当他们的眼睛徘徊在视图的其他部分时，他们可能会错过它。一个2秒的延迟足够用来捕捉用户的注意力并引导他们。</span><br><span class="line"></span><br><span class="line">打开 *PhotoCollectionViewController.swift* ，在``showOrHideNavPrompt()``的实现中填入：</span><br><span class="line"></span><br><span class="line">```swift</span><br><span class="line">// 1</span><br><span class="line">let delayInSeconds = 2.0</span><br><span class="line"></span><br><span class="line">// 2</span><br><span class="line">DispatchQueue.main.asyncAfter(deadline: .now() + delayInSeconds) &#123; [weak self] in</span><br><span class="line">  guard let self = self else &#123;</span><br><span class="line">    return</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  if PhotoManager.shared.photos.count &gt; 0 &#123;</span><br><span class="line">    self.navigationItem.prompt = nil</span><br><span class="line">  &#125; else &#123;</span><br><span class="line">    self.navigationItem.prompt = &quot;Add photos with faces to Googlyify them!&quot;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  // 3</span><br><span class="line">  self.navigationController?.viewIfLoaded?.setNeedsLayout()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></li>
+</ul>
+<p>上面的代码做了以下事情：</p>
+<ol>
+<li>指定一个延迟总时长。</li>
+<li>然后等待指定的时间，然后异步运行更新照片计数的Block并更新提示。</li>
+<li>设置提示后强制导航栏进行布局，以确保它符合要求。</li>
+</ol>
+<p><code>showOrHideNavPrompt()</code> 在<code>viewDidLoad()</code> 和你的 <code>UICollectionView</code> 刷新的任何时候执行。</p>
+<p>构建并运行应用，在你看到一个提示显示之前将有一个轻微的延迟。</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2018/05/Simulator-Screen-Shot-iPhone-8-2018-05-29-at-17.46.41.png" alt="Simulator-Screen-Shot-iPhone-8-2018-05-29-at-17.46.41"></p>
+<p><em>Note</em>: 你可以忽略Xcode 控制台中Auto Layout 的信息，它们都来自iOS，并不表示你的错误。</p>
+<p>为什么不使用定时器（Timer）？ 如果你有重复的任务更容易使用Timer安排可以考虑使用它。这有两个理由坚持使用 dispatch queue 的 <code>asyncAfter()</code>。</p>
+<p>一个是可读性。使用定时器你需要定义一个方法，然后使用方法选择器和定义好的方法创建一个定时器。而使用 <code>DispatchQueue</code> 和 <code>asyncAfter()</code>,你仅仅加了一个闭包。</p>
+<p>计时器是在运行池上排布的，因此你还必须确保在正确的运行池（或正确的运行池模式）上排布它。因此，使用 dispatch queue 更简单。</p>
+<h2 id="Managing-Singletons"><a href="#Managing-Singletons" class="headerlink" title="Managing Singletons"></a>Managing Singletons</h2><p>## </p>
+<p>单例。 有人爱他或者有人恨他,它在iOS上的常见程度想网络上的猫的照片一样。</p>
+<p>常常涉及到的一点是他们通常不是线程安全的。考虑到单例的使用，这个考虑是合理的：单例通常用于同时访问单例实例的多个控制器。你的 <code>PhotoManager</code> 是一个单例，所以你需要考虑这个问题。</p>
+<p>线程安全的代码可以从多个线程或并发任务安全地调用，而不会导致任何问题，例如数据损坏或应用程序崩溃。非线程安全的代码一次只能在一个上下文中运行。</p>
+<p>线程安全需要考虑的有两个点：在单例实例的初始化期间以及对实例的读写期间。</p>
+<p>单例的初始化很简单，这是由于Swift初始化静态变量的方式。它在首次访问时初始化静态变量，并保证初始化是原子的。也就是说，Swift将执行初始化的代码视为关键部分，并保证在任何其他线程访问静态变量之前完成。</p>
+<p>另一个关键点是一段不能同时执行的代码，即一次从两个线程执行。这通常是因为代码操纵共享资源（如变量），如果它由并发进程访问，则可能会损坏。</p>
+<p>打开 <code>PhotoManager.swift</code>  来看看你是如何初始化单例的：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">PhotoManager</span> </span>&#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">init</span>() &#123;&#125;</span><br><span class="line">  <span class="keyword">static</span> <span class="keyword">let</span> shared = <span class="type">PhotoManager</span>()</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>私有构造器确保唯一的PhotoManager是通过访问 <code>shared</code>得到的。这样你就不必担心会在不同管理器之间同步更改照片库。</p>
+<p>在访问单例中操作共享的内部数据的代码时你还是必须处理线程安全性。你可以通过同步数据访问等方法来处理此问题。你将在下一节中看到一种方法。</p>
+<h2 id="Handling-the-Readers-Writers-Problem"><a href="#Handling-the-Readers-Writers-Problem" class="headerlink" title="Handling the Readers-Writers Problem"></a>Handling the Readers-Writers Problem</h2><p>在Swift 中，任何 <code>let</code>关键词声明的变量都是常量,因此，他们是只读且线程安全的。然而，使用<code>var</code>关键字声明变量，它会变得可变并且不是线程安全的，除非数据类型被设计为如此。Swift的集合类型、向<code>Array</code>和</p>
+<p><code>Dictionary</code> 定义为可变时不是线程安全的。</p>
+<p>尽管许多线程可以同时读取可变的 <code>Array</code>实例而没有问题,但当一个线程读取它时让另一个线程修改它是不安全的。你的单例当前的状态不会阻止这种情况发生。</p>
+<p>要查看问题，查看 <code>PhotoManager.swift</code>中的<code>addPhoto（_ :)</code>，如下所示：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">addPhoto</span><span class="params">(<span class="number">_</span> photo: Photo)</span></span> &#123;</span><br><span class="line">  unsafePhotos.append(photo)</span><br><span class="line">  <span class="type">DispatchQueue</span>.main.async &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></span><br><span class="line">    <span class="keyword">self</span>?.postContentAddedNotification()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是一个修改可变数组实例的 <strong>写</strong> 方法。</p>
+<p>然后来看一下 <code>photos</code>属性：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">var</span> unsafePhotos: [<span class="type">Photo</span>] = []</span><br><span class="line">  </span><br><span class="line"><span class="keyword">var</span> photos: [<span class="type">Photo</span>] &#123;</span><br><span class="line">  <span class="keyword">return</span> unsafePhotos</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这个属性的getter方法读取可变数组，这被称为 <strong>读</strong> 操作。调用者获取数组的副本，并防止不适当地改变原始数组。然而它不会在一个线程调用写方法<code>addPhoto(_:)</code>另一个线程同时调用<code>photos</code>属性的getter方法时提供任何保护。</p>
+<p>这就是为什么返回的变量被命名为unsafePhotos  - 如果它在错误的线程上访问，你可能会得到一些古怪的行为！</p>
+<p>这是经典的软件开发 <a href="http://en.wikipedia.org/wiki/Readers–writers_problem" target="_blank" rel="noopener">读写问题</a>。通过 <em>dispatch barriers</em> ， GCD提供一个优雅的创建读写锁解决方案。Dispatch barriers 是一组在使用并发队列时充当串行式瓶颈的函数。</p>
+<p>当你向一个 dispatch queue 提交 <code>DispatchWorkItem</code> 时，你可以设置标志以指示它应该是在特定时间内在指定队列上执行的唯一项目。这意味着在 dispatch barrier 之前提交到队列的所有项必须在 这个<code>DispatchWorkItem</code>执行之前完成。</p>
+<p>当运行到 <code>DispatchWorkItem</code>时，barrier executes 执行它并确保队列在此期间不执行任何其他任务。完成后，队列将返回其默认实现。</p>
+<p>下图说明了  barrier 对各异步任务的影响：</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2014/09/Dispatch-Barrier-Swift.png" alt="Dispatch-Barrier-Swift"></p>
+<p>请注意，在正常操作中，队列的行为与普通并发队列的作用相同。但是当屏障执行时，它基本上就像一个串行队列。也就是说，barrier 是唯一执行的事情。barrier 完成后，队列将返回到正常的并发队列。</p>
+<p>在全局后台并发队列（global background concurrent queues ）中使用 barriers 时要慎重，因为这些队列是共享资源。在自定义串行队列中使用 barriers 是多余的，因为它已经是串行行执行。在自定义并发队列中使用 barriers 是处理原子或关键代码区域中的线程安全的绝佳选择。</p>
+<p>你将使用自定义并发队列来处理屏障功能并分离读写功能。并发队列将允许同时进行多个读取操作。</p>
+<p>打开 <strong>PhotoManager.swift</strong> 并在 <code>unsafePhotos</code>声明上方添加一个私有属性:</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">private</span> <span class="keyword">let</span> concurrentPhotoQueue =</span><br><span class="line">  <span class="type">DispatchQueue</span>(</span><br><span class="line">    label: <span class="string">"com.raywenderlich.GooglyPuff.photoQueue"</span>,</span><br><span class="line">    attributes: .concurrent)</span><br></pre></td></tr></table></figure>
+<p>上述代码将 <code>concurrentPhotoQueue</code>初始化为并发队列。你可以设置 一个描述性名称给的<code>label</code>属性，这样便于调试。通常，按照命名约定使用反向DNS样式。</p>
+<p>然后使用下列代码替换 <code>addPhoto(_:)</code>方法：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">func</span> <span class="title">addPhoto</span><span class="params">(<span class="number">_</span> photo: Photo)</span></span> &#123;</span><br><span class="line">  concurrentPhotoQueue.async(flags: .barrier) &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></span><br><span class="line">    <span class="comment">// 1</span></span><br><span class="line">    <span class="keyword">guard</span> <span class="keyword">let</span> <span class="keyword">self</span> = <span class="keyword">self</span> <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2</span></span><br><span class="line">    <span class="keyword">self</span>.unsafePhotos.append(photo)</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 3</span></span><br><span class="line">    <span class="type">DispatchQueue</span>.main.async &#123; [<span class="keyword">weak</span> <span class="keyword">self</span>] <span class="keyword">in</span></span><br><span class="line">      <span class="keyword">self</span>?.postContentAddedNotification()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>刚刚写的新方法将这样工作：</p>
+<ol>
+<li>使用 barrier 异步调度写入操作。执行时，它将是队列中唯一的项目。</li>
+<li>添加对象到数组。</li>
+<li>最后，发送了添加照片的通知。发布通知的操作必须在主线程上，因为它将执行UI工作。因此，异步的派发另一个任务到主队列以触发通知。</li>
+</ol>
+<p>这个任务考虑了写入，但你还需要实现<code>photos</code>读取方法.</p>
+<p>要确保写入的线程安全,你需要在<code>concurrentPhotoQueue</code>队列中执行读取操作。你需要从函数调用返回数据，因此异步调度不符合要求。在这种情况下，同步将是一个很好的选项。</p>
+<p>使用 <code>sync</code>可以通过  dispatch barriers 跟踪工作，或者在需要等待操作完成时，在这之前你可以使用闭包处理数据。</p>
+<p>但是你需要小心，如果你瞄准你当前运行的队列调用<code>sync</code>。这将导致死锁情况。</p>
+<p>两个操作（或有时更多）- 在大多数情况下线程死锁的原因 ： 如果它们都被卡住等待彼此完成或执行另一个操作则会死锁。第一个无法完成，因为它正在等待第二个完成。但第二个无法完成，因为它正在等待第一个完成</p>
+<p>在你的案例中，<code>sync</code> 调用将等到闭包完成，但闭包无法完成（或启动！），直到当前正在执行的不能完成的闭包完成！这应该会强制你了解你正在调用的队列 - 以及你传入的队列。</p>
+<p>以下是使用<code>sync</code>的时机和位置的简单概述：</p>
+<p><em>Main Queue</em>: ：出于与上述相同的原因，要非常小心;这种情况也有可能造成锁死。这在主队列上尤其糟糕，因为整个应用程序将无法响应。</p>
+<p><em>Global Queue</em>: 这是使用 dispatch barriers 或者 在等待任务完成时执行下一步处理的极佳选择。</p>
+<p><em>Custom Serial Queue</em>: 需要非常小心；如果你正在队列中运行并瞄准当前队列调用 <code>sync</code>，那么肯定会造成死锁。</p>
+<p>停留在 <code>PhotoManager.swift</code>中,修改<code>photos</code>属性的getter：</p>
+<figure class="highlight swift"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> photos: [<span class="type">Photo</span>] &#123;</span><br><span class="line">  <span class="keyword">var</span> photosCopy: [<span class="type">Photo</span>]!</span><br><span class="line"></span><br><span class="line">  <span class="comment">// 1</span></span><br><span class="line">  concurrentPhotoQueue.sync &#123;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 2</span></span><br><span class="line">    photosCopy = <span class="keyword">self</span>.unsafePhotos</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> photosCopy</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>这是每一步的进度：</p>
+<ol>
+<li>同步调度到<code>concurrentPhotoQueue</code> 执行读取。</li>
+<li>将照片数组的副本存储在 <code>photosCopy</code>中并将其返回。</li>
+</ol>
+<p>构建并运行应用程序。通过Le Internet选项下载照片。它看起来应该像以前一样，但在引擎盖下，你有一些非常幸福的线程。</p>
+<p><img src="https://koenig-media.raywenderlich.com/uploads/2018/05/Simulator-Screen-Shot-iPhone-8-2018-05-29-at-17.48.27.png" alt="Simulator-Screen-Shot-iPhone-8-2018-05-29-at-17.48.27"></p>
+<p>恭喜 - 你的<code>PhotoManager</code>单例现在是线程安全的！无论你在何处或如何读取或写入照片，你都可以确信它会以安全的方式发生而不会出现任何意外。</p>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/Swift/" rel="tag"># Swift</a>
+          
+            <a href="/tags/GCD/" rel="tag"># GCD</a>
+          
+            <a href="/tags/translate/" rel="tag"># translate</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/05/09/Using-autolayout-in-a-tableHeaderView/" rel="next" title="在 tableHeaderView 中使用 AutoLayout">
+                <i class="fa fa-chevron-left"></i> 在 tableHeaderView 中使用 AutoLayout
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="iDevOrz"/>
+            
+              <p class="site-author-name" itemprop="name">iDevOrz</p>
+              <div class="site-description motion-element" itemprop="description">Write the bug. Change the world</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">25</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">41</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/iDevorz" title="GitHub &rarr; https://github.com/iDevorz" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://www.weibo.com/Jatstar" title="Weibo &rarr; http://www.weibo.com/Jatstar" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://zhihu.com/people/Jatstar" title="Zhihu &rarr; https://zhihu.com/people/Jatstar" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Zhihu</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"/></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Getting-Started"><span class="nav-number">1.</span> <span class="nav-text">Getting Started</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#GCD-Concepts"><span class="nav-number">2.</span> <span class="nav-text">GCD Concepts</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Concurrency"><span class="nav-number">2.1.</span> <span class="nav-text">Concurrency</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Queues"><span class="nav-number">2.2.</span> <span class="nav-text">Queues</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Synchronous-vs-Asynchronous"><span class="nav-number">2.3.</span> <span class="nav-text">Synchronous vs. Asynchronous</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Managing-Tasks"><span class="nav-number">2.4.</span> <span class="nav-text">Managing Tasks</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Handling-Background-Tasks"><span class="nav-number">3.</span> <span class="nav-text">Handling Background Tasks</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Managing-Singletons"><span class="nav-number">4.</span> <span class="nav-text">Managing Singletons</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Handling-the-Readers-Writers-Problem"><span class="nav-number">5.</span> <span class="nav-text">Handling the Readers-Writers Problem</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">粤ICP备16014512号-1 </a>&copy; 2015 – <span itemprop="copyrightYear">2019</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iDevOrz</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+  <div class="footer-custom">Hosted by <a href="https://pages.coding.me" class="theme-link" rel="noopener" target="_blank">Coding Pages</a></div>
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://jatstar-cn.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://www.devorz.com/2019/07/22/GCD-Tutorial-for-Swift4-1/";
+    this.page.identifier = "2019/07/22/GCD-Tutorial-for-Swift4-1/";
+    this.page.title = 'Grand Central Dispatch Tutorial for Swift 4（Part 1/2）';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://jatstar-cn.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    window.addEventListener('load', loadComments, false);
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
