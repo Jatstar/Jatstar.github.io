@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.devorz.com/"/>
-  <updated>2019-08-09T15:42:29.443Z</updated>
+  <updated>2019-09-16T15:23:36.751Z</updated>
   <id>https://www.devorz.com/</id>
   
   <author>
@@ -15,6 +15,29 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>pod install vs. pod update</title>
+    <link href="https://www.devorz.com/2019/09/16/pod-install-vs-pod-update/"/>
+    <id>https://www.devorz.com/2019/09/16/pod-install-vs-pod-update/</id>
+    <published>2019-09-16T10:44:49.000Z</published>
+    <updated>2019-09-16T15:23:36.751Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>很多人似乎认为 <code>pod install</code> 只在第一次配置项目时使用，之后便使用 <code>pod update</code> 。但是事实并非如此。</p><p>这篇教程的目标时解释什么时候该使用 <code>pod install</code>,什么时候该使用 <code>pod update</code>.</p><h3 id="Too-long-Don’t-read"><a href="#Too-long-Don’t-read" class="headerlink" title="Too long; Don’t read"></a>Too long; Don’t read</h3><ul><li>当安装一个新的 pods 时，使用 <code>pod install</code> .<strong>即使你已经有一个 <code>Podfile</code> 并且运行过 <code>pod install</code></strong> ; 即使你只是从已经使用了 CocoaPods 的项目添加/移除 pods 。</li><li><code>pod update</code>仅仅只在你想要<strong>更新 pods 到更新的版本</strong>时.</li></ul><h2 id="Detailed-presentation-of-the-commands"><a href="#Detailed-presentation-of-the-commands" class="headerlink" title="Detailed presentation of the commands"></a>Detailed presentation of the commands</h2><blockquote><p><code>install</code> 和 <code>update</code> 事实上并不是 CocoaPods 的特定词汇，它的灵感来自许多其他依赖管理器，如 <a href="https://bundler.io/" target="_blank" rel="noopener">bundler</a>，<a href="https://rubygems.org/" target="_blank" rel="noopener">RubyGems</a>或<a href="https://getcomposer.org/" target="_blank" rel="noopener">composer</a>，它们具有类似的命令，具有与本文档中描述的完全相同的行为和意图。</p></blockquote><h3 id="pod-install"><a href="#pod-install" class="headerlink" title="pod install"></a><code>pod install</code></h3><p>它在第一次要检索项目的pod时使用，同时在每次编辑 Podfile 以添加、更新或删除Pod时使用。</p><ul><li><p>每次运行 <code>pod install</code>命令 - 并下载并安装新pod时 - 它会在Podfile.lock文件中为每个pod写入已安装的版本。此文件跟踪每个pod的已安装版本并锁定这些版本。</p></li><li><p>运行<code>pod install</code>时，它仅解析<code>Podfile.lock</code>中尚未列出的pod的依赖项.</p><ol><li>对于Podfile.lock中列出的pod，它会下载Podfile.lock中列出的显式版本，而不尝试检查是否有更新的版本.</li><li>对于尚未在Podfile.lock中列出的pod，它会搜索与Podfile中描述的版本匹配的版本(像是：<code>pod &#39;MyPod&#39;, &#39;~&gt;1.2&#39;</code>)</li></ol></li></ul><h3 id="pod-outdated"><a href="#pod-outdated" class="headerlink" title="pod outdated"></a><code>pod outdated</code></h3><p>当运行 <code>pod outdated</code>时，CocoaPods 将列出所有具有比 <code>Podfile.lock</code>(当前版本)中列出的版本更新的版本的pod。这代表着如果在这些pod上运行<code>pod update PODNAME</code>，它们将会更新.只要新版本仍然符合你在 <code>Podfilie</code>中设置的像 <code>pod &#39;MyPod&#39;, &#39;~&gt;x.y&#39;</code>的限制。</p><h3 id="pod-update"><a href="#pod-update" class="headerlink" title="pod update"></a><code>pod update</code></h3><p>当您运行pod update PODNAME时，CocoaPods将尝试查找pod PODNAME的更新版本，而不考虑Podfile.lock中列出的版本。它会将pod更新为最新版本（只要它与Podfile中的版本限制相匹配）。</p><p>如果您运行没有pod名称的<code>pod update</code>，CocoaPods 会将<code>Podfile</code>中列出的每个pod更新为最新版本。</p><h2 id="Intended-usage"><a href="#Intended-usage" class="headerlink" title="Intended usage"></a>Intended usage</h2><p>使用<code>pod update PODNAME</code>，你将只能更新特定的pod（检查是否存在新版本并相应地更新pod）。相反，<code>pod install</code> 不会尝试更新已安装的pod版本。</p><p>将pod添加到<code>Podfile</code>时，应该运行<code>pod install</code>而不是<code>pod update</code>  - 在这个安装这个新pod的过程中不会有更新现有的pod的风险。</p><p>只有在当你要更新特定 pod（或所有pods）的版本时才使用 <code>pod install</code>。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;Introduction&quot;&gt;&lt;a href=&quot;#Introduction&quot; class=&quot;headerlink&quot; title=&quot;Introduction&quot;&gt;&lt;/a&gt;Introduction&lt;/h2&gt;&lt;p&gt;很多人似乎认为 &lt;code&gt;pod install&lt;/cod
+      
+    
+    </summary>
+    
+    
+      <category term="CocoaPods" scheme="https://www.devorz.com/tags/CocoaPods/"/>
+    
+  </entry>
   
   <entry>
     <title>Xcode 懒加载生成插件</title>
