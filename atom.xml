@@ -86,9 +86,9 @@
     </summary>
     
     
-      <category term="Swift" scheme="https://www.devorz.com/tags/Swift/"/>
-    
       <category term="iOS" scheme="https://www.devorz.com/tags/iOS/"/>
+    
+      <category term="Swift" scheme="https://www.devorz.com/tags/Swift/"/>
     
       <category term="GCD" scheme="https://www.devorz.com/tags/GCD/"/>
     
@@ -164,9 +164,9 @@
     </summary>
     
     
-      <category term="Swift" scheme="https://www.devorz.com/tags/Swift/"/>
-    
       <category term="iOS" scheme="https://www.devorz.com/tags/iOS/"/>
+    
+      <category term="Swift" scheme="https://www.devorz.com/tags/Swift/"/>
     
   </entry>
   
@@ -192,34 +192,6 @@
       <category term="外设" scheme="https://www.devorz.com/tags/%E5%A4%96%E8%AE%BE/"/>
     
       <category term="硬件" scheme="https://www.devorz.com/tags/%E7%A1%AC%E4%BB%B6/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>小米路由器Pro 打开SSH 安装 MT 工具箱</title>
-    <link href="https://www.devorz.com/2018/08/24/miwifi-shadowsocks/"/>
-    <id>https://www.devorz.com/2018/08/24/miwifi-shadowsocks/</id>
-    <published>2018-08-24T09:56:48.000Z</published>
-    <updated>2019-04-05T16:46:29.000Z</updated>
-    
-    <content type="html"><![CDATA[<p>打开 SSH，安装 Misstar Tools，安装所需插件。</p><a id="more"></a><h2 id="路由器刷入开发版ROM"><a href="#路由器刷入开发版ROM" class="headerlink" title="路由器刷入开发版ROM"></a>路由器刷入开发版ROM</h2><p>进入 <a href="http://www1.miwifi.com/miwifi_download.html" target="_blank" rel="noopener">MiWiFi-下载</a> 选择对应的路由器信号的开发版 ROM 进行下载。<br>进入 <a href="http://192.168.31.1/" target="_blank" rel="noopener">路由器设置页面</a>,常用设置-&gt;系统状态-&gt;升级检测 点击手动升级，选择刚刚下载的固件上传开始升级。</p><p><img src="https://i.loli.net/2018/08/24/5b7fdb380df1a.png" alt="update"></p><p>完成后进入路由器设置页，看到路由器信息显示固件为开发版<br><img src="https://i.loli.net/2018/08/24/5b7fdb865fe1e.png" alt="开发版"></p><h2 id="开启-SSH"><a href="#开启-SSH" class="headerlink" title="开启 SSH"></a>开启 SSH</h2><p>使用小米账号绑定路由器。<br>打开<a href="http://d.miwifi.com/rom/ssh" target="_blank" rel="noopener">MiWiFi-SSH</a>下载工具包</p><p><img src="https://i.loli.net/2018/08/24/5b7fdcaf8cadc.jpg" alt=""></p><blockquote><p>开启SSH将失去保修。</p></blockquote><ol><li>请将下载的工具包bin文件复制到U盘（FAT/FAT32格式）的根目录下，保证文件名为miwifi_ssh.bin；</li><li>断开小米路由器的电源，将U盘插入USB接口；</li><li>按住reset按钮之后重新接入电源，指示灯变为黄色闪烁状态即可松开reset键；</li><li>等待3-5秒后安装完成之后，小米路由器会自动重启，之后您就可以尽情折腾啦 ：）</li></ol><blockquote><p>实测第三步需保证重启后路由器与外网连接，否则SSH无法开启。（猜想应该是用来提交SN码到小米服务器，标记开启SSH,失去保修资格）</p></blockquote><p>PS: 不知道为什么小米路由器这种辣鸡我为什么买了3台。自带劫持作呕。<br><img src="https://i.loli.net/2018/08/24/5b7fdd4e88a47.png" alt="劫持"></p><h2 id="安装-Misstar-Tools"><a href="#安装-Misstar-Tools" class="headerlink" title="安装 Misstar Tools"></a>安装 Misstar Tools</h2><p>工具箱简介：</p><blockquote><p>MT工具箱是目前第三方插件里面最为方便易用的插件集合，往往我们以前安装各种插件，都要一个个在SSH里面安装并且还一个个设置都是比较麻烦的！MT工具箱给我们提供一个整体的框架，在工具箱里面的每个插件都是独立的。所以我们可以自由选择需要自己安装的插件，并且可以单独更新插件。MT工具箱直接集成在路由器后台页面，只有安装的时候需要一行SSH命令，往后的插件安装卸载升级都只需要在这一个后台页面进行，全图形化操作，特别的方便！有问题的时候不用再经常使用SSH去查看每个插件的运行状况和设置了！并且工具箱是免疫OTA升级的，可以放心更新系统，工具箱依然坚挺的存在！</p></blockquote><p>使用 <code>ssh root@192.168.31.1</code>连接路由器，输入 <a href="http://d.miwifi.com/rom/ssh" target="_blank" rel="noopener">MiWiFi-SSH</a> 页面得到的 root 密码。</p><p>如果正常进去路由器，将得到如下页面</p><p><img src="https://i.loli.net/2018/08/24/5b7fe0bc3dfbe.png" alt="ssh"></p><blockquote><p>彩蛋：猴王金曲</p></blockquote><p>如果提示 <code>connection refused</code> 考虑是 SSH 未开启成功。可以重试开启 SSH 部分的操作。并使用 <code>nmap</code> 命令验证 22 端口是否开启。</p><p><img src="https://i.loli.net/2018/08/24/5b7fe0896035c.png" alt="ssh验证"></p><p>使用 <code>passwd</code> 命令修改 root 密码。</p><p>使用如下命令安装工具箱：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.misstar.com/tools/appstore/install.sh -O /tmp/install.sh &amp;&amp; chmod a+x /tmp/install.sh &amp;&amp; /tmp/install.sh</span><br></pre></td></tr></table></figure><p>刷新设置页，导航栏出现 MT工具箱。</p><p><img src="https://i.loli.net/2018/08/24/5b7fe1e8689f8.png" alt="MT工具箱"></p><p>如果需要卸载，使用：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://www.misstar.com/tools/uninstall.sh -O /tmp/uninstall.sh &amp;&amp; chmod +x /tmp/uninstall.sh &amp;&amp; /tmp/uninstall.sh</span><br></pre></td></tr></table></figure><blockquote><p>2019/03/31 Update：</p></blockquote><p>由于站点 <code>www.misstar.com</code>现已开始3.0内测，并开启全站https,且原有2.0已经从站点移除，所以现在使用上述上述命令会提示 <code>wget: not an http or ftp url: https://www.misstar.com/tools/appstore/install.sh</code>;现在需要使用<a href="http://cloud.lifeheart.cn:188/miwifi/MT/" target="_blank" rel="noopener">分流站</a>安装/卸载：</p><p>安装：</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://cloud.lifeheart.cn:188/miwifi/MT/tools/appstore/install.sh -O /tmp/install.sh &amp;&amp; chmod +x /tmp/install.sh &amp;&amp; /tmp/install.sh</span><br></pre></td></tr></table></figure><p>卸载:</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget http://cloud.lifeheart.cn:188/miwifi/MT/tools/appstore/uninstall.sh -O /tmp/uninstall.sh &amp;&amp; chmod +x /tmp/uninstall.sh &amp;&amp; /tmp/uninstall.sh</span><br></pre></td></tr></table></figure><h2 id="安装-Shadowsocks"><a href="#安装-Shadowsocks" class="headerlink" title="安装 Shadowsocks"></a>安装 Shadowsocks</h2><p>打开 MT 插件管理页，使用开发者工具，定位页面中任意一个 安装 按钮，然后找到代码中的 <code>id=&quot;XXX&quot;</code> 字样，如下图中 <code>id=&quot;frp&quot;</code><img src="https://i.loli.net/2018/08/24/5b7fe2f2b05c2.png" alt="WX20180824-185008@2x"></p><p>修改为 <code>id=&quot;ss&quot;</code> :</p><p><img src="https://i.loli.net/2018/08/24/5b7fe39d84ce1.png" alt="ss"></p><p>然后点安装，成功后会回到 MT 工具箱首页，配置使用即可。</p><p><img src="https://i.loli.net/2018/08/24/5b7fe3f098188.png" alt="finish"></p>]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;打开 SSH，安装 Misstar Tools，安装所需插件。&lt;/p&gt;
-    
-    </summary>
-    
-    
-      <category term="Shadowsocks" scheme="https://www.devorz.com/tags/Shadowsocks/"/>
-    
-      <category term="VPN" scheme="https://www.devorz.com/tags/VPN/"/>
-    
-      <category term="翻墙" scheme="https://www.devorz.com/tags/%E7%BF%BB%E5%A2%99/"/>
-    
-      <category term="SS" scheme="https://www.devorz.com/tags/SS/"/>
-    
-      <category term="SSR" scheme="https://www.devorz.com/tags/SSR/"/>
     
   </entry>
   
@@ -371,9 +343,9 @@
     </summary>
     
     
-      <category term="Swift" scheme="https://www.devorz.com/tags/Swift/"/>
-    
       <category term="iOS" scheme="https://www.devorz.com/tags/iOS/"/>
+    
+      <category term="Swift" scheme="https://www.devorz.com/tags/Swift/"/>
     
   </entry>
   
