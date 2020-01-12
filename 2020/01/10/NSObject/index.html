@@ -1,0 +1,1099 @@
+<!DOCTYPE html>
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-CN">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2"/>
+<meta name="theme-color" content="#222"/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css?v=4.7.0"/>
+
+<link rel="stylesheet" href="/css/main.css?v=7.2.0"/>
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/avatar.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/avatar.png?v=7.2.0">
+
+
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/avatar.png?v=7.2.0">
+
+
+  <link rel="mask-icon" href="/images/logo.svg?v=7.2.0" color="#222">
+
+
+
+
+
+
+
+<script id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    version: '7.2.0',
+    sidebar: {"position":"left","display":"post","offset":12,"onmobile":false,"dimmer":false},
+    back2top: true,
+    back2top_sidebar: false,
+    fancybox: false,
+    fastclick: false,
+    lazyload: false,
+    tabs: true,
+    motion: {"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+  
+
+
+
+
+  <meta name="description" content="NSObject点开 NSObject 的头文件可以看到如下结构 : 123456@interface NSObject &amp;lt;NSObject&amp;gt; &amp;#123;#pragma clang diagnostic push#pragma clang diagnostic ignored &quot;-Wobjc-interface-ivars&quot;    Class isa  OBJC_ISA_AVAILA">
+<meta name="keywords" content="iOS,NSObject">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NSObject 结构探究">
+<meta property="og:url" content="https://www.devorz.com/2020/01/10/NSObject/index.html">
+<meta property="og:site_name" content="iDevOrz">
+<meta property="og:description" content="NSObject点开 NSObject 的头文件可以看到如下结构 : 123456@interface NSObject &amp;lt;NSObject&amp;gt; &amp;#123;#pragma clang diagnostic push#pragma clang diagnostic ignored &quot;-Wobjc-interface-ivars&quot;    Class isa  OBJC_ISA_AVAILA">
+<meta property="og:locale" content="zh-CN">
+<meta property="og:image" content="https://i.loli.net/2020/01/10/qg54Xema1Gcxt2n.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/12/ZTwHPjQuJIgyt9V.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/12/1b2sGVHNJ45xIf7.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/12/axfST5rcV93HoCg.png">
+<meta property="og:image" content="https://i.loli.net/2020/01/12/axfST5rcV93HoCg.png">
+<meta property="og:updated_time" content="2020-01-11T18:22:46.152Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NSObject 结构探究">
+<meta name="twitter:description" content="NSObject点开 NSObject 的头文件可以看到如下结构 : 123456@interface NSObject &amp;lt;NSObject&amp;gt; &amp;#123;#pragma clang diagnostic push#pragma clang diagnostic ignored &quot;-Wobjc-interface-ivars&quot;    Class isa  OBJC_ISA_AVAILA">
+<meta name="twitter:image" content="https://i.loli.net/2020/01/10/qg54Xema1Gcxt2n.png">
+
+
+
+  <link rel="alternate" href="/atom.xml" title="iDevOrz" type="application/atom+xml"/>
+
+
+
+  
+  
+  <link rel="canonical" href="https://www.devorz.com/2020/01/10/NSObject/"/>
+
+
+
+<script id="page.configurations">
+  CONFIG.page = {
+    sidebar: "",
+  };
+</script>
+
+  <title>NSObject 结构探究 | iDevOrz</title>
+  
+
+
+
+
+  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-88751319-1"></script>
+  <script>
+    var host = window.location.hostname;
+    if (host !== "localhost" || !true) {
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'UA-88751319-1');
+    }
+  </script>
+
+
+
+  <script>
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?1954c17a54b7834eb2123c3077a6da4c";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .motion-element,
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-title { opacity: initial; }
+
+  .use-motion .logo,
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-CN">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">iDevOrz</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+    
+      
+        <h1 class="site-subtitle" itemprop="description">Eat,Code,Sleep</h1>
+      
+    
+    
+  </div>
+
+  <div class="site-nav-toggle">
+    <button aria-label="切换导航栏">
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  
+    <ul id="menu" class="menu">
+      
+        
+        
+        
+          
+          <li class="menu-item menu-item-home">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/" rel="section"><i class="menu-item-icon fa fa-fw fa-home"></i> <br/>首页</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-tags">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/tags/" rel="section"><i class="menu-item-icon fa fa-fw fa-tags"></i> <br/>标签</a>
+
+  </li>
+        
+        
+        
+          
+          <li class="menu-item menu-item-about">
+
+    
+    
+      
+    
+
+    
+
+    <a href="/about/" rel="section"><i class="menu-item-icon fa fa-fw fa-user"></i> <br/>关于</a>
+
+  </li>
+
+      
+      
+    </ul>
+  
+
+  
+    
+
+  
+
+  
+</nav>
+
+
+
+  
+
+
+
+</div>
+    </header>
+
+    
+
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="https://www.devorz.com/2020/01/10/NSObject/"/>
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="iDevOrz"/>
+      <meta itemprop="description" content="Write the bug. Change the world"/>
+      <meta itemprop="image" content="/images/avatar.png"/>
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="iDevOrz"/>
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h2 class="post-title" itemprop="name headline">NSObject 结构探究
+
+              
+            
+          </h2>
+        
+
+        <div class="post-meta">
+
+          
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+
+              
+                
+              
+
+              <time title="创建时间：2020-01-10 00:16:25" itemprop="dateCreated datePublished" datetime="2020-01-10T00:16:25+08:00">2020-01-10</time>
+            </span>
+          
+
+          
+            
+
+            
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">更新于</span>
+                
+                <time title="修改时间：2020-01-12 02:22:46" itemprop="dateModified" datetime="2020-01-12T02:22:46+08:00">2020-01-12</time>
+              </span>
+            
+          
+
+          
+
+          
+            
+            
+              
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+            
+                <span class="post-meta-item-text">评论数：</span>
+                <a href="/2020/01/10/NSObject/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count disqus-comment-count" data-disqus-identifier="2020/01/10/NSObject/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon"
+              >
+                <i class="fa fa-eye"></i>
+                 阅读次数： 
+                <span class="busuanzi-value" id="busuanzi_value_page_pv"></span>
+              </span>
+            </span>
+          
+
+          <br/>
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h2 id="NSObject"><a href="#NSObject" class="headerlink" title="NSObject"></a>NSObject</h2><p>点开 NSObject 的头文件可以看到如下结构 :</p>
+<figure class="highlight objc"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">@interface</span> <span class="title">NSObject</span> &lt;<span class="title">NSObject</span>&gt; </span>&#123;</span><br><span class="line"><span class="meta">#pragma clang diagnostic push</span></span><br><span class="line"><span class="meta">#pragma clang diagnostic ignored <span class="meta-string">"-Wobjc-interface-ivars"</span></span></span><br><span class="line">    Class isa  OBJC_ISA_AVAILABILITY;</span><br><span class="line"><span class="meta">#pragma clang diagnostic pop</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>再次点开 <code>OBJC_ISA_AVAILABILITY</code> 我们可以看到： </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">/* OBJC_ISA_AVAILABILITY: `isa` will be deprecated or unavailable </span><br><span class="line"> * in the future */</span><br><span class="line">#if !defined(OBJC_ISA_AVAILABILITY)</span><br><span class="line">#   if __OBJC2__</span><br><span class="line">#       define OBJC_ISA_AVAILABILITY  __attribute__((deprecated))</span><br><span class="line">#   else</span><br><span class="line">#       define OBJC_ISA_AVAILABILITY  /* still available */</span><br><span class="line">#   endif</span><br><span class="line">#endif</span><br></pre></td></tr></table></figure>
+<p><strong>`isa` will be deprecated or unavailable </strong>  : isa 将被废弃或不可用。</p>
+<p>同时,编译器拓展 <a href="http://www.keil.com/support/man/docs/armcc/armcc_chr1359124981701.htm" target="_blank" rel="noopener"><code>__attribute__((deprecated))</code></a> 也证实了该 <code>isa</code>指针在 <code>OBJC2</code> 不在推荐被使用，使用 <code>objc-&gt;isa</code> 访问时，编译器报错 “Direct access to Objective-C’s isa is deprecated in favor of object_getClass()” 。</p>
+<p>事实上苹果早在 2006 年的 WWDC 就推出了 Objective-C 2.0 ，此处的 isa 的实现就变了，不再是 1.0 时那个指向类对象的指针了。</p>
+<p>虽然在 Foundation 里面能找到的 <code>objc_class</code> 的被标记成<code>OBJC2_UNAVAILABLE</code>，但好在苹果在 <a href="https://opensource.apple.com/tarballs/objc4/" target="_blank" rel="noopener">OpenSource.apple.com</a> 中放出了 objc 的相关代码。</p>
+<p>在最新的 <a href="https://opensource.apple.com/tarballs/objc4/objc4-756.2.tar.gz" target="_blank" rel="noopener">objc4-756.2</a> 中我们可以找到的新的结构：</p>
+<blockquote>
+<p>值得注意的是 objc4 系列的代码有新旧之分，例如 objc4-493.9 的结构和 objc4-756.2 就有较大出入，本文仅对当前最新的 objc4-756.2 做讨论。</p>
+</blockquote>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">objc_object</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">isa_t</span> isa;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line"><span class="comment">// public function ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">objc_class</span> :</span> objc_object &#123;</span><br><span class="line">    <span class="comment">// Class ISA;</span></span><br><span class="line">    Class superclass;</span><br><span class="line">    <span class="keyword">cache_t</span> cache;             <span class="comment">// formerly cache pointer and vtable</span></span><br><span class="line">    <span class="keyword">class_data_bits_t</span> bits;    <span class="comment">// class_rw_t * plus custom rr/alloc flags</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">class_rw_t</span> *data() &#123; </span><br><span class="line">        <span class="keyword">return</span> bits.data();</span><br><span class="line">    &#125;</span><br><span class="line"><span class="comment">// function ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>结构体 <code>objc_class</code> 是继承自 <code>objc_object</code>, 所以也包含 <code>isa_t isa</code> 。可以得到下图：</p>
+<p><img src="https://i.loli.net/2020/01/10/qg54Xema1Gcxt2n.png" alt="WX20200110-131156.png"></p>
+<h3 id="ISA"><a href="#ISA" class="headerlink" title="ISA"></a>ISA</h3><p><img src="https://i.loli.net/2020/01/12/ZTwHPjQuJIgyt9V.png" alt="class_diagram.png"></p>
+<p>关于 <code>Instance/Class/MetaClass</code> 的关系，很多博客习惯用这张图来说明。</p>
+<p>事实上，在 arm64 之前（例如上文提到的 objc4-493.9 中），<code>isa</code> 的确就是一个指向</p>
+<p><code>Class</code>或者<code>MeteClass</code>对象的指针，而 arm64 之后，则需要 <code>&amp;ISA_MASK</code> 掩码才能获得<code>Class</code>或者<code>MeteClass</code> 对象地址。</p>
+<p><img src="https://i.loli.net/2020/01/12/1b2sGVHNJ45xIf7.png" alt="print_isa.png"></p>
+<blockquote>
+<p>不熟悉 LLDB 命令可以看 <a href="https://objccn.io/issue-19-2/" target="_blank" rel="noopener">这里</a></p>
+</blockquote>
+<p>上图中的 $0 和 \$1 并<strong>不相等</strong>，很好的论证了 isa 并没有指向 Class 对象。</p>
+<p>顺带的我们用二进制输出一下，得到 \$2 和 \$3 . </p>
+<blockquote>
+<p>注意，iOS 默认采用小端模式，数据的高字节保存在内存的高地址中，而数据的低字节保存在内存的低地址中，与我们的阅读习惯相反。 关于大小端相关的知识，可以看 <a href="https://awesome-tips.gitbook.io/ios/qi-ta/content-12" target="_blank" rel="noopener">这里</a>。</p>
+</blockquote>
+<p> 从 <code>NSObject</code> 的实现中，顺着 <code>- (Class)class</code> 的  LifeLine 一直找下去，最后来到如下代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">inline Class </span><br><span class="line">objc_object::getIsa() </span><br><span class="line">&#123;</span><br><span class="line">    if (!isTaggedPointer()) return ISA();</span><br><span class="line"></span><br><span class="line">    uintptr_t ptr = (uintptr_t)this;</span><br><span class="line">    if (isExtTaggedPointer()) &#123;</span><br><span class="line">        uintptr_t slot = </span><br><span class="line">            (ptr &gt;&gt; _OBJC_TAG_EXT_SLOT_SHIFT) &amp; _OBJC_TAG_EXT_SLOT_MASK;</span><br><span class="line">        return objc_tag_ext_classes[slot];</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        uintptr_t slot = </span><br><span class="line">            (ptr &gt;&gt; _OBJC_TAG_SLOT_SHIFT) &amp; _OBJC_TAG_SLOT_MASK;</span><br><span class="line">        return objc_tag_classes[slot];</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>其中 <code>isTaggedPointer</code> 涉及到 Tagged Pointer 的知识，可以访问巧叔写的这篇 <a href="https://www.infoq.cn/article/deep-understanding-of-tagged-pointer" target="_blank" rel="noopener">深入理解 Tagged Pointer</a>。</p>
+<p>所以当不涉及到 Tagged Pointer 时，新的关系图应该是 ：</p>
+<p><img src="https://i.loli.net/2020/01/12/axfST5rcV93HoCg.png" alt="class_diagram_new.png"></p>
+<p>即 isa 箭头应该 改为 <code>ISA()</code> 方法返回值。</p>
+<p><code>ISA()</code> 方法实现如下 ：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">inline Class </span><br><span class="line">objc_object::ISA() </span><br><span class="line">&#123;</span><br><span class="line">    assert(!isTaggedPointer()); </span><br><span class="line">#if SUPPORT_INDEXED_ISA</span><br><span class="line">    if (isa.nonpointer) &#123;</span><br><span class="line">        uintptr_t slot = isa.indexcls;</span><br><span class="line">        return classForIndex((unsigned)slot);</span><br><span class="line">    &#125;</span><br><span class="line">    return (Class)isa.bits;</span><br><span class="line">#else</span><br><span class="line">    return (Class)(isa.bits &amp; ISA_MASK);</span><br><span class="line">#endif</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>跳过断言 和 SUPPORT_INDEXED_ISA，可以看到该方法实际上返回的是 <code>(Class)(isa.bits &amp; ISA_MASK)</code></p>
+<p>isa 是一个 <code>union</code>(联合体) ,在 __arm64__ 环境下其结构如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">union isa_t &#123;</span><br><span class="line">    isa_t() &#123; &#125;</span><br><span class="line">    isa_t(uintptr_t value) : bits(value) &#123; &#125;</span><br><span class="line"></span><br><span class="line">    Class cls;</span><br><span class="line">    uintptr_t bits;</span><br><span class="line"></span><br><span class="line">    struct &#123;</span><br><span class="line">       uintptr_t nonpointer        : 1;</span><br><span class="line">       uintptr_t has_assoc         : 1;</span><br><span class="line">       uintptr_t has_cxx_dtor      : 1;</span><br><span class="line">       uintptr_t shiftcls          : 33;</span><br><span class="line">       uintptr_t magic             : 6;</span><br><span class="line">       uintptr_t weakly_referenced : 1;</span><br><span class="line">       uintptr_t deallocating      : 1;</span><br><span class="line">       uintptr_t has_sidetable_rc  : 1;</span><br><span class="line">       uintptr_t extra_rc          : 19;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<ul>
+<li>nonpointer ：是否 <strong>不是指针</strong> ，1表示采用了 tagged pointer 优化；0表示未开启，此时 shiftcls 存放着 Class或者MetaClass 地址。</li>
+<li>has_assoc ：是否含有关联对象</li>
+<li>has_cxx_dtor： 是否含有析构函数</li>
+<li>shiftcls ：Class或者MetaClass 地址</li>
+<li>magic ：是否已经初始化完成</li>
+<li>weakly_referenced ：对象被指向或者曾经指向一个 ARC 的弱变量</li>
+<li>deallocating ：是否正在释放</li>
+<li>has_sidetable_rc ：是否使用了散列表存储应用计数</li>
+<li>extra_rc： 存储引用计数，值为引用计数 - 1 （引用计数为 10是，该值为9 ；引用计数过大时，has_sidetable_rc 为 1，引用计数存储在 sidetable 中）</li>
+</ul>
+<p>而 __arm64__ 环境下 ISA_MASK 为 0x0000000ffffffff8ULL，在 LLDB 调试区输入 <code>p/t 0x0000000ffffffff8ULL</code> ,输出为 0b0000000000000000000000000000111111111111111111111111111111111000，与 \$3 按位与取得  3—35 位（下标从0开始）的数值，与 \$2 相等。</p>
+<h3 id="cache-t"><a href="#cache-t" class="headerlink" title="cache_t"></a>cache_t</h3><p>上源码：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">unsigned</span> <span class="keyword">long</span>           <span class="keyword">uintptr_t</span>;</span><br><span class="line"></span><br><span class="line"><span class="meta">#<span class="meta-keyword">if</span> __LP64__</span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">uint32_t</span> <span class="keyword">mask_t</span>;  <span class="comment">// x86_64 &amp; arm64 asm are less efficient with 16-bits</span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">else</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">uint16_t</span> <span class="keyword">mask_t</span>;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"><span class="keyword">typedef</span> <span class="keyword">uintptr_t</span> SEL;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">bucket_t</span> &#123;</span></span><br><span class="line"><span class="keyword">private</span>:</span><br><span class="line">    <span class="keyword">uintptr_t</span> _imp;</span><br><span class="line">    SEL _sel;</span><br><span class="line">  <span class="comment">//function ...</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">cache_t</span> &#123;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">bucket_t</span> *_<span class="title">buckets</span>;</span></span><br><span class="line">    <span class="keyword">mask_t</span> _mask;</span><br><span class="line">    <span class="keyword">mask_t</span> _occupied;</span><br><span class="line">    <span class="comment">//function ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>bucket_t的结构体中存储了 SEL 和 _imp 。分别存储了函数的编号和地址。</p>
+<p><em>mask：分配用来缓存bucket的总数。</em></p>
+<p>occupied：表明目前实际占用的缓存bucket的个数。</p>
+<p>Cache的作用主要是为了优化方法调用的性能。使用Cache来缓存经常调用的方法，当调用方法时，优先在Cache查找，如果没有找到，再到methodLists查找。</p>
+<h3 id="class-data-bits-t"><a href="#class-data-bits-t" class="headerlink" title="class_data_bits_t"></a>class_data_bits_t</h3><p><code>class_data_bits_t</code> 的结构体，其中只含有一个 64 位的 <code>bits</code> 用于存储与类有关的信息：</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">class_data_bits_t</span> &#123;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// Values are the FAST_ flags above.</span></span><br><span class="line">    <span class="keyword">uintptr_t</span> bits;</span><br><span class="line">    <span class="comment">// function ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>但是 在 <code>objc_class</code> 结构体中的注释写到 <code>class_data_bits_t</code> 相当于 <code>class_rw_t</code> 指针加上 rr/alloc 的标志。</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class_data_bits_t</span> bits;    <span class="comment">// class_rw_t * plus custom rr/alloc flags</span></span><br></pre></td></tr></table></figure>
+<p>来看一下  <code>class_data_bits_t</code> 相关的结构:</p>
+<figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">class_rw_t</span> &#123;</span></span><br><span class="line">    <span class="comment">// Be warned that Symbolication knows the layout of this structure.</span></span><br><span class="line">    <span class="keyword">uint32_t</span> flags;</span><br><span class="line">    <span class="keyword">uint32_t</span> version;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">class_ro_t</span> *ro;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">method_array_t</span> methods;</span><br><span class="line">    <span class="keyword">property_array_t</span> properties;</span><br><span class="line">    <span class="keyword">protocol_array_t</span> protocols;</span><br><span class="line"></span><br><span class="line">    Class firstSubclass;</span><br><span class="line">    Class nextSiblingClass;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">char</span> *demangledName;</span><br><span class="line">    <span class="comment">// function ...</span></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">class_ro_t</span> &#123;</span></span><br><span class="line">    <span class="keyword">uint32_t</span> flags;</span><br><span class="line">    <span class="keyword">uint32_t</span> instanceStart;</span><br><span class="line">    <span class="keyword">uint32_t</span> instanceSize;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">ifdef</span> __LP64__</span></span><br><span class="line">    <span class="keyword">uint32_t</span> reserved;</span><br><span class="line"><span class="meta">#<span class="meta-keyword">endif</span></span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">uint8_t</span> * ivarLayout;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> * name;</span><br><span class="line">    <span class="keyword">method_list_t</span> * baseMethodList;</span><br><span class="line">    <span class="keyword">protocol_list_t</span> * baseProtocols;</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">ivar_list_t</span> * ivars;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">uint8_t</span> * weakIvarLayout;</span><br><span class="line">    <span class="keyword">property_list_t</span> *baseProperties;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// This field exists only when RO_HAS_SWIFT_INITIALIZER is set.</span></span><br><span class="line">    _objc_swiftMetadataInitializer __ptrauth_objc_method_list_imp _swiftMetadataInitializer_NEVER_USE[<span class="number">0</span>];</span><br><span class="line"><span class="comment">// function ...</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>class_rw_t</code> 存放着 方法、属性和协议等信息，其中 <code>class_ro_t</code> 存储着在<strong>编译期</strong>就已经确定的 ivars、属性、方法以及协议等信息。</p>
+<h2 id="Instance-Class-MetaClass"><a href="#Instance-Class-MetaClass" class="headerlink" title="Instance /Class /MetaClass"></a>Instance /Class /MetaClass</h2><p><img src="https://i.loli.net/2020/01/12/axfST5rcV93HoCg.png" alt="class_diagram_new.png"></p>
+<p>当 <strong>实例方法</strong>调用时，通过 <code>ISA()</code> 可以找到实例对象的 Class 对象，从而在 Class 对象中找到存放着的实例方法，Class对象中找不到时，通过superclass向父类查找，最终完成调用或抛出异常。</p>
+<p>当 <strong>类方法</strong> 调用时，通过 <code>ISA()</code> 可以找到类对象的 MateClass 对象，从而在 MateClass 对象中找到存放着的类方法，MateClass 对象中找不到时，通过superclass向父类查找，最终完成调用或抛出异常。</p>
+<h2 id="参考资料"><a href="#参考资料" class="headerlink" title="参考资料"></a>参考资料</h2><ul>
+<li><a href="https://github.com/draveness/analyze/blob/master/contents/objc/从%20NSObject%20的初始化了解%20isa.md" target="_blank" rel="noopener">从 NSObject 的初始化了解 isa</a></li>
+<li><a href="https://github.com/draveness/analyze/blob/master/contents/objc/深入解析%20ObjC%20中方法的结构.md" target="_blank" rel="noopener">深入解析 ObjC 中方法的结构</a></li>
+</ul>
+
+      
+    </div>
+
+    
+
+    
+    
+    
+
+    
+
+    
+      
+    
+    
+
+    
+
+    <footer class="post-footer">
+      
+        
+          
+        
+        <div class="post-tags">
+          
+            <a href="/tags/iOS/" rel="tag"># iOS</a>
+          
+            <a href="/tags/NSObject/" rel="tag"># NSObject</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/16/pod-install-vs-pod-update/" rel="next" title="pod install vs. pod update">
+                <i class="fa fa-chevron-left"></i> pod install vs. pod update
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+  </div>
+
+
+          </div>
+          
+
+  
+    <div class="comments" id="comments">
+      <div id="disqus_thread">
+        <noscript>Please enable JavaScript to view the comments powered by Disqus.</noscript>
+      </div>
+    </div>
+
+  
+
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-overview">
+          <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+            
+              <img class="site-author-image" itemprop="image"
+                src="/images/avatar.png"
+                alt="iDevOrz"/>
+            
+              <p class="site-author-name" itemprop="name">iDevOrz</p>
+              <div class="site-description motion-element" itemprop="description">Write the bug. Change the world</div>
+          </div>
+
+          
+            <nav class="site-state motion-element">
+              
+                <div class="site-state-item site-state-posts">
+                
+                  <a href="/archives">
+                
+                    <span class="site-state-item-count">27</span>
+                    <span class="site-state-item-name">日志</span>
+                  </a>
+                </div>
+              
+
+              
+
+              
+                
+                
+                <div class="site-state-item site-state-tags">
+                  
+                    
+                      <a href="/tags/">
+                    
+                  
+                    
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                      
+                    
+                    <span class="site-state-item-count">40</span>
+                    <span class="site-state-item-name">标签</span>
+                  </a>
+                </div>
+              
+            </nav>
+          
+
+          
+            <div class="feed-link motion-element">
+              <a href="/atom.xml" rel="alternate">
+                <i class="fa fa-rss"></i>
+                RSS
+              </a>
+            </div>
+          
+
+          
+
+          
+            <div class="links-of-author motion-element">
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://github.com/iDevorz" title="GitHub &rarr; https://github.com/iDevorz" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>GitHub</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="http://www.weibo.com/Jatstar" title="Weibo &rarr; http://www.weibo.com/Jatstar" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Weibo</a>
+                </span>
+              
+                <span class="links-of-author-item">
+                  
+                  
+                    
+                  
+                  
+                    
+                  
+                  <a href="https://zhihu.com/people/Jatstar" title="Zhihu &rarr; https://zhihu.com/people/Jatstar" rel="noopener" target="_blank"><i class="fa fa-fw fa-globe"></i>Zhihu</a>
+                </span>
+              
+            </div>
+          
+
+          
+             <div class="cc-license motion-element" itemprop="license">
+              
+              
+                
+              
+              
+              
+              <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"/></a>
+             </div>
+          
+
+          
+          
+
+          
+            
+          
+          
+
+        </div>
+      </div>
+
+      
+      <!--noindex-->
+        <div class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+            
+            
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#NSObject"><span class="nav-number">1.</span> <span class="nav-text">NSObject</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#ISA"><span class="nav-number">1.1.</span> <span class="nav-text">ISA</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#cache-t"><span class="nav-number">1.2.</span> <span class="nav-text">cache_t</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#class-data-bits-t"><span class="nav-number">1.3.</span> <span class="nav-text">class_data_bits_t</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Instance-Class-MetaClass"><span class="nav-number">2.</span> <span class="nav-text">Instance /Class /MetaClass</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考资料"><span class="nav-number">3.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+            
+
+          </div>
+        </div>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+  
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">  <a href="http://www.beian.miit.gov.cn" rel="noopener" target="_blank">粤ICP备16014512号-1 </a>&copy; 2015 – <span itemprop="copyrightYear">2020</span>
+  <span class="with-love" id="animate">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">iDevOrz</span>
+
+  
+
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+<div class="busuanzi-count">
+  <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-user"></i>
+    </span>
+    <span class="site-uv" title="总访客量">
+      <span class="busuanzi-value" id="busuanzi_value_site_uv"></span>
+    </span>
+  
+
+  
+    <span class="post-meta-divider">|</span>
+  
+
+  
+    <span class="post-meta-item-icon">
+      <i class="fa fa-eye"></i>
+    </span>
+    <span class="site-pv" title="总访问量">
+      <span class="busuanzi-value" id="busuanzi_value_site_pv"></span>
+    </span>
+  
+</div>
+
+
+
+
+
+
+
+
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+    
+
+    
+
+    
+  </div>
+
+  
+
+<script>
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script src="/lib/jquery/index.js?v=3.4.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+
+  
+
+
+  <script src="/js/utils.js?v=7.2.0"></script>
+
+  <script src="/js/motion.js?v=7.2.0"></script>
+
+
+
+  
+  
+
+
+  <script src="/js/schemes/muse.js?v=7.2.0"></script>
+
+
+
+
+  
+  <script src="/js/scrollspy.js?v=7.2.0"></script>
+<script src="/js/post-details.js?v=7.2.0"></script>
+
+
+
+  
+
+
+  <script src="/js/next-boot.js?v=7.2.0"></script>
+
+
+  
+
+  
+
+  
+
+  
+  
+<script>
+  function loadCount() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://jatstar-cn.disqus.com/count.js';
+    s.id = 'dsq-count-scr';
+    (d.head || d.body).appendChild(s);
+  }
+  // defer loading until the whole page loading is completed
+  window.addEventListener('load', loadCount, false);
+</script>
+
+
+<script>
+  var disqus_config = function() {
+    this.page.url = "https://www.devorz.com/2020/01/10/NSObject/";
+    this.page.identifier = "2020/01/10/NSObject/";
+    this.page.title = 'NSObject 结构探究';
+    };
+  function loadComments() {
+    var d = document, s = d.createElement('script');
+    s.src = 'https://jatstar-cn.disqus.com/embed.js';
+    s.setAttribute('data-timestamp', '' + +new Date());
+    (d.head || d.body).appendChild(s);
+  }
+  
+    window.addEventListener('load', loadComments, false);
+  
+</script>
+
+
+
+
+
+  
+
+
+  
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+  <script>
+    (function(){
+      var bp = document.createElement('script');
+      var curProtocol = window.location.protocol.split(':')[0];
+      bp.src = (curProtocol === 'https') ? 'https://zz.bdstatic.com/linksubmit/push.js' : 'http://push.zhanzhang.baidu.com/push.js';
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(bp, s);
+    })();
+  </script>
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
