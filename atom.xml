@@ -3,7 +3,7 @@
   <title>iDevOrz</title>
   
   <subtitle>Eat,Code,Sleep</subtitle>
-  <link href="https://www.devorz.com/atom.xml" rel="self"/>
+  <link href="/atom.xml" rel="self"/>
   
   <link href="https://www.devorz.com/"/>
   <updated>2020-05-23T08:50:01.197Z</updated>
