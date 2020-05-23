@@ -3,10 +3,10 @@
   <title>iDevOrz</title>
   
   <subtitle>Eat,Code,Sleep</subtitle>
-  <link href="/atom.xml" rel="self"/>
+  <link href="https://www.devorz.com/atom.xml" rel="self"/>
   
   <link href="https://www.devorz.com/"/>
-  <updated>2020-03-10T16:06:26.862Z</updated>
+  <updated>2020-05-23T08:50:01.197Z</updated>
   <id>https://www.devorz.com/</id>
   
   <author>
@@ -15,6 +15,30 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>下载 App Store 上的 IPA 文件到 Mac</title>
+    <link href="https://www.devorz.com/2020/05/23/Downloading-IPA-file-from-App-Store-onto-a-Mac/"/>
+    <id>https://www.devorz.com/2020/05/23/Downloading-IPA-file-from-App-Store-onto-a-Mac/</id>
+    <published>2020-05-23T08:19:43.000Z</published>
+    <updated>2020-05-23T08:50:01.197Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>苹果已经从iTunes的12.7版本中删除了App Store，这使得从App Store下载IPA变得更加困难。</p><p>但是，现在可以通过使用Apple Configurator 2来实现。</p><h2 id="Apple-Configurator-2"><a href="#Apple-Configurator-2" class="headerlink" title="Apple Configurator 2"></a>Apple Configurator 2</h2><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gf2hbz058tj312y0u01kx.jpg" alt="image-20200523163159823" style="zoom:50%;"></p><p>选中设备，点击 Add -&gt; Apps</p><p><img src="https://tva1.sinaimg.cn/large/007S8ZIlly1gf2hc4intcj313e0u01kx.jpg" alt="WX20200523-163020@2x" style="zoom:50%;"></p><p>如果设备上之前没有当前添加的 App，会直接安装。</p><p>如果该 App 已经再设备上存在，会询问是否覆盖，此时<strong>不要做选择</strong>。</p><p>打开 使用 iTerm 或者 PopClip打开进去如下路径：</p><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">~/Library/Group Containers/K36BKF7T3D.group.com.apple.configurator/Library/Caches/Assets/TemporaryItems/MobileApps/`</span><br></pre></td></tr></table></figure><p>应该看到带有随机生成的ID的目录，深入到该目录应该就能找到IPA文件了。</p>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;h2 id=&quot;前言&quot;&gt;&lt;a href=&quot;#前言&quot; class=&quot;headerlink&quot; title=&quot;前言&quot;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;苹果已经从iTunes的12.7版本中删除了App Store，这使得从App Store下载IPA变得更加困难。&lt;/p&gt;
+&lt;p&gt;但是，现在
+      
+    
+    </summary>
+    
+    
+      <category term="Tools" scheme="https://www.devorz.com/tags/Tools/"/>
+    
+  </entry>
   
   <entry>
     <title>FDTemplateLayoutCell源码学习</title>
